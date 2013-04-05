@@ -8,13 +8,11 @@ namespace GOS.Classes
     class Stock
     {
 
-        private int QMin;
         private List<Produit> stock;
 
         public Stock()
         {
             this.stock = new List<Produit>();
-            this.QMin = 1;
 
             this._init();
         }
@@ -35,7 +33,7 @@ namespace GOS.Classes
 
         public bool checkQuantite(int id)
         {
-            return stock[id].Quantite < QMin;
+            return stock[id].Quantite < stock[id].Qmin;
         }
         public List<int> getOutOfOrder()
         {

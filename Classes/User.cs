@@ -47,7 +47,9 @@ namespace GOS.Classes
                 {
                     if (dataReader.Read())
                     {
-                        return new User(dataReader.GetInt32(0), dataReader.GetString(1), dataReader.GetString(2), dataReader.GetString(3));
+                        User u = new User(dataReader.GetInt32(0), dataReader.GetString(1), dataReader.GetString(2), dataReader.GetString(3));
+                        u.updateDerniereConnexion();
+                        return u;
                     }
                 }
 
