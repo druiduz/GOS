@@ -8,8 +8,8 @@
     <ProjectGuid>{EEBE247C-467B-439C-9BD7-B42C004A079A}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>GOS2</RootNamespace>
-    <AssemblyName>GOS2</AssemblyName>
+    <RootNamespace>GOS</RootNamespace>
+    <AssemblyName>GOS</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <TargetFrameworkProfile>Client</TargetFrameworkProfile>
     <FileAlignment>512</FileAlignment>
@@ -74,6 +74,7 @@
     <Compile Include="Classes\SendMail.cs" />
     <Compile Include="Classes\Stock.cs" />
     <Compile Include="Classes\User.cs" />
+    <Compile Include="Classes\Vente.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>

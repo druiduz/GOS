@@ -13,6 +13,7 @@ namespace GOS.Classes
         private String name;
         private int quantite;
         private float prix;
+        private int qmin;
 
         public Produit()
         {
@@ -51,6 +52,12 @@ namespace GOS.Classes
             set { prix = value; }
         }
 
+        public int Qmin
+        {
+            get { return qmin; }
+            set { qmin = value; }
+        }
+
         public override String ToString()
         {
             String s = "";
@@ -64,7 +71,7 @@ namespace GOS.Classes
 
         public void update()
         {
-            #region TODO: Connexion bdd
+            #region BDD
             Connexion co = Connexion.getInstance();
 
             string query = "UPDATE produit SET name = @name, quantite = @quantite, prix = @prix WHERE id = @id";
@@ -87,7 +94,7 @@ namespace GOS.Classes
             float prix = 0.0f;
 
 
-            #region TODO: Connexion bdd
+            #region BDD
 
             Connexion co = Connexion.getInstance();
 
@@ -117,7 +124,7 @@ namespace GOS.Classes
         {
             List<Produit> lp = new List<Produit>();
 
-            #region TODO: Connexion bdd
+            #region BDD
 
             Connexion co = Connexion.getInstance();
 
@@ -140,7 +147,7 @@ namespace GOS.Classes
 
         public static bool addProduit(Produit p)
         {
-            #region TODO: BDD
+            #region BDD
 
             Connexion co = Connexion.getInstance();
 

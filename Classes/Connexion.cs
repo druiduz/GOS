@@ -11,9 +11,14 @@ namespace GOS.Classes
 
     public class InvalidConnexion : Exception
     {
+        public string Message;
         public InvalidConnexion()
         {
-            
+            this.Message = "";
+        }
+        public InvalidConnexion(string m)
+        {
+            this.Message = m;
         }
     }
 
@@ -30,7 +35,7 @@ namespace GOS.Classes
         private Connexion()
         {
             Initialize();
-            OpenConnection();
+            if (!OpenConnection()) { throw new InvalidConnexion("Impossible d'ouvrir la connexion"); }
         }
 
         public static Connexion getInstance()
@@ -128,6 +133,11 @@ namespace GOS.Classes
                 dataReader.Close();
                 this.CloseConnection();
             }
+        }
+
+        public bool checkCo()
+        {
+            return connexion.Ping();
         }
     }
 }
