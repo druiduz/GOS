@@ -29,7 +29,8 @@ namespace GOS.Classes
             {
                 Connexion co = Connexion.getInstance();
 
-                foreach(KeyValuePair<int, Produit> p in panier) {
+                foreach (KeyValuePair<Produit, int> p in panier)
+                {
                     string query = "INSERT INTO vente SET User_idUser = @userid, Produit_idProduit = @produit, Quantite_vente = @quantite, Date_Vente = NOW()";
 
                     MySqlCommand cmd = new MySqlCommand(query, co.connexion);

@@ -29,13 +29,16 @@ namespace GOS.Classes
 
         public static User Login(string login, string mdp)
         {
+
+            User u = null;
+
             #region BDD
 
             try
             {
                 Connexion co = Connexion.getInstance();
 
-                string query = "SELECT idClient as id, nom, prenom, login FROM vendeur WHERE login = @login AND mdp = @mdp";
+                string query = "SELECT id, nom, prenom, login FROM vendeur WHERE login = @login AND mdp = @mdp";
 
                 MySqlCommand cmd = new MySqlCommand(query, co.connexion);
                 cmd.Parameters.AddWithValue("@login", login);
@@ -43,23 +46,31 @@ namespace GOS.Classes
 
                 MySqlDataReader dataReader = cmd.ExecuteReader();
 
-                if (dataReader.HasRows)
+                try
                 {
-                    if (dataReader.Read())
+
+                    if (dataReader.HasRows)
                     {
-                        User u = new User(dataReader.GetInt32(0), dataReader.GetString(1), dataReader.GetString(2), dataReader.GetString(3));
-                        u.updateDerniereConnexion();
-                        return u;
+                        if (dataReader.Read())
+                        {
+                            u = new User(dataReader.GetInt32(0), dataReader.GetString(1), dataReader.GetString(2), dataReader.GetString(3));
+                            //u.updateDerniereConnexion();
+                        }
                     }
+
+                    dataReader.Close();
+                    return u;
                 }
-
-                dataReader.Close();
-
+                catch (Exception e)
+                {
+                    dataReader.Close();
+                }
             }
             catch (InvalidConnexion a)
             {
 
             }
+            
             #endregion
 
             return null;

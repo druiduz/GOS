@@ -15,19 +15,13 @@ using System.Windows.Shapes;
 namespace GOS.Pages
 {
     /// <summary>
-    /// Logique d'interaction pour HomePage.xaml
+    /// Logique d'interaction pour PaiementCartePage.xaml
     /// </summary>
-    public partial class HomePage : Page
+    public partial class PaiementCartePage : Page
     {
-        public HomePage()
+        public PaiementCartePage()
         {
             InitializeComponent();
-        }
-
-        private void btnVente_Click(object sender, RoutedEventArgs e)
-        {
-            MainWindow main = (MainWindow)this.Parent;
-            main.Content = new VentePage();
         }
     }
 }

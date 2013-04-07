@@ -25,7 +25,7 @@ namespace GOS.Pages
             InitializeComponent();
         }
 
-        private void button1_Click(object sender, RoutedEventArgs e)
+        private void btnConnexion_Click(object sender, RoutedEventArgs e)
         {
             MainWindow main = (MainWindow)this.Parent;
             main.vendeur = User.Login(this.inputLogin.Text, this.inputPass.Text);

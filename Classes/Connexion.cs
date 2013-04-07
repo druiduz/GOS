@@ -11,7 +11,7 @@ namespace GOS.Classes
 
     public class InvalidConnexion : Exception
     {
-        public string Message;
+        new public string Message;
         public InvalidConnexion()
         {
             this.Message = "";

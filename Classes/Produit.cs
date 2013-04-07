@@ -11,9 +11,11 @@ namespace GOS.Classes
     {
         private int _ID;
         private String name;
-        private int quantite;
+        private String type;
         private float prix;
-        private int qmin;
+        private int quantite;
+        private int quantite_min;
+        private String logo;
 
         public Produit()
         {
@@ -23,12 +25,15 @@ namespace GOS.Classes
             this.prix = 0.0f;
         }
 
-        public Produit(int id, String name, int quantite, float prix)
+        public Produit(int id, String name, String type, float prix, int quantite, int quantite_min, String logo)
         {
             this._ID = id;
             this.name = name;
-            this.quantite = quantite;
+            this.type = type;
             this.prix = prix;
+            this.quantite = quantite;
+            this.quantite_min = quantite_min;
+            this.logo = logo;
         }
 
         public int ID
@@ -41,21 +46,30 @@ namespace GOS.Classes
             get { return name; }
             set { name = value; }
         }
-        public int Quantite
+        public String Type
         {
-            get { return quantite; }
-            set { quantite = value; }
+            get { return type; }
+            set { type = value; }
         }
         public float Prix
         {
             get { return prix; }
             set { prix = value; }
         }
-
-        public int Qmin
+        public int Quantite
         {
-            get { return qmin; }
-            set { qmin = value; }
+            get { return quantite; }
+            set { quantite = value; }
+        }
+        public int Quantite_min
+        {
+            get { return quantite_min; }
+            set { quantite_min = value; }
+        }
+        public String Logo
+        {
+            get { return logo; }
+            set { logo = value; }
         }
 
         public override String ToString()
@@ -90,9 +104,11 @@ namespace GOS.Classes
         {
             int ID = -1;
             string name = "";
-            int quantite = 0;
+            string type = "";
             float prix = 0.0f;
-
+            int quantite = 0;
+            int quantite_min = 0;
+            string logo = "";
 
             #region BDD
 
@@ -107,8 +123,11 @@ namespace GOS.Classes
             {
                 ID = dataReader.GetInt32(0);
                 name = dataReader.GetString(1);
-                quantite = dataReader.GetInt32(2);
+                type = dataReader.GetString(2);
                 prix = dataReader.GetFloat(3);
+                quantite = dataReader.GetInt32(4);
+                quantite_min = dataReader.GetInt32(5);
+                logo = dataReader.GetString(6);
             }
 
             dataReader.Close();
@@ -116,11 +135,11 @@ namespace GOS.Classes
             #endregion
 
 
-            Produit p = new Produit(ID, name, quantite, prix);
+            Produit p = new Produit(ID, name, type, prix, quantite, quantite_min, logo);
             return p;
         }
 
-        public static List<Produit> getAllProduit()
+        public static List<Produit> getAllProduit(string where = "")
         {
             List<Produit> lp = new List<Produit>();
 
@@ -129,13 +148,42 @@ namespace GOS.Classes
             Connexion co = Connexion.getInstance();
 
             string query = "SELECT * FROM produit";
+            if (where.Length > 0)
+            {
+                query += " " + where;
+            }
 
             MySqlCommand cmd = new MySqlCommand(query, co.connexion);
             MySqlDataReader dataReader = cmd.ExecuteReader();
 
             while (dataReader.Read())
             {
-                lp.Add(new Produit(dataReader.GetInt32(0), dataReader.GetString(1), dataReader.GetInt32(2), dataReader.GetFloat(3)));
+                lp.Add(new Produit(dataReader.GetInt32(0), dataReader.GetString(1), dataReader.GetString(2), dataReader.GetFloat(3), dataReader.GetInt32(4), dataReader.GetInt32(5), dataReader.GetString(6)));
+            }
+
+            dataReader.Close();
+
+            #endregion
+
+            return lp;
+        }
+
+        public static List<String> getAllTypes()
+        {
+            List<String> lp = new List<String>();
+
+            #region BDD
+
+            Connexion co = Connexion.getInstance();
+
+            string query = "SELECT Distinct(type_produit) FROM produit";
+
+            MySqlCommand cmd = new MySqlCommand(query, co.connexion);
+            MySqlDataReader dataReader = cmd.ExecuteReader();
+
+            while (dataReader.Read())
+            {
+                lp.Add(dataReader.GetString(0));
             }
 
             dataReader.Close();
