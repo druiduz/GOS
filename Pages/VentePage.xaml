@@ -1,0 +1,21 @@
+﻿<Page x:Class="GOS.Pages.VentePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      mc:Ignorable="d" 
+      d:DesignHeight="366" d:DesignWidth="630"
+	Title="Vente">
+
+    <Grid>
+        <Label Content="Vente" Height="70" HorizontalAlignment="Left" Margin="80,20,0,0" Name="label1" VerticalAlignment="Top" Width="327" FontSize="26" />
+        <DataGrid AutoGenerateColumns="False" Height="224" HorizontalAlignment="Left" Margin="462,32,0,0" Name="grdPanier" VerticalAlignment="Top" Width="149"/>
+        <Button Content="Valider" Height="58" HorizontalAlignment="Left" Margin="462,296,0,0" Name="btnValider" VerticalAlignment="Top" Width="156" />
+        <Button Content="Quiter" Height="58" HorizontalAlignment="Left" Margin="299,296,0,0" Name="btnQuiter" VerticalAlignment="Top" Width="156" />
+        <TabControl Height="265" HorizontalAlignment="Left" Margin="12,73,0,0" Name="tabProduit" VerticalAlignment="Top" Width="281">
+            <TabItem Header="Tous les produits" Name="tabItem1">
+                <Grid Height="237" Width="267" Name="gridAllProduit" />
+            </TabItem>
+        </TabControl>
+    </Grid>
+</Page>

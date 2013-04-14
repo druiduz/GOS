@@ -79,6 +79,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Pages\GestionCartePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\GestionStock.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -95,12 +99,20 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\VentePage.xaml">
+    <Page Include="Pages\StockPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Pages\VentePage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Pages\GestionCartePage.xaml.cs">
+      <DependentUpon>GestionCartePage.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Pages\GestionStock.xaml.cs">
       <DependentUpon>GestionStock.xaml</DependentUpon>
     </Compile>
@@ -112,6 +124,10 @@
     </Compile>
     <Compile Include="Pages\PaiementCartePage.xaml.cs">
       <DependentUpon>PaiementCartePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\StockPage.xaml.cs">
+      <DependentUpon>StockPage.xaml</DependentUpon>
+      <SubType>Code</SubType>
     </Compile>
     <Compile Include="Pages\VentePage.xaml.cs">
       <DependentUpon>VentePage.xaml</DependentUpon>
