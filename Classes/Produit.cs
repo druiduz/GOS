@@ -7,7 +7,7 @@ using MySql.Data.MySqlClient;
 
 namespace GOS.Classes
 {
-    class Produit : IComparable
+    public class Produit : IComparable
     {
         private int _ID;
         private String name;

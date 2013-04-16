@@ -27,12 +27,17 @@ namespace GOS.Classes
             set { prenom = value; }
         }
 
-        public Client(String nom, String prenom)
+        public float getCapital()
+        {
+            return this.capital;
+        }
+
+        public Client(String nom, String prenom, float solde)
         {
             this.ID = this.generateID();
             this.nom = nom;
             this.prenom = prenom;
-            this.capital = 0.0f;
+            this.capital = solde;
         }
 
         private int generateID()
@@ -73,6 +78,14 @@ namespace GOS.Classes
             }
 
             #endregion
+        }
+
+
+        public static Client getUserByRFID()
+        {
+            Client c = new Client("testNom", "testPrenom");
+
+            return c;
         }
     }
 }

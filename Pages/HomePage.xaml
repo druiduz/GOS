@@ -4,13 +4,13 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       mc:Ignorable="d" 
-      d:DesignHeight="346" d:DesignWidth="568"
+      d:DesignHeight="532" d:DesignWidth="917"
 	Title="HomePage">
 
     <Grid>
-        <Button Content="Gestion carte magnetique" Height="56" HorizontalAlignment="Left" Margin="85,255,0,0" Name="btnCarte" VerticalAlignment="Top" Width="177" />
-        <Button Content="Rapport vente" Height="56" HorizontalAlignment="Left" Margin="310,255,0,0" Name="btnRapport" VerticalAlignment="Top" Width="177" />
-        <Button Content="Vente" Height="56" HorizontalAlignment="Left" Margin="85,181,0,0" Name="btnVente" VerticalAlignment="Top" Width="177" Click="btnVente_Click" />
-        <Button Content="Gestion Stock" Height="56" HorizontalAlignment="Left" Margin="310,181,0,0" Name="btnStock" VerticalAlignment="Top" Width="177" />
+        <Button Content="Gestion carte magnetique" Height="56" HorizontalAlignment="Left" Margin="246,359,0,0" Name="btnCarte" VerticalAlignment="Top" Width="177" Click="btnCarte_Click" />
+        <Button Content="Rapport vente" Height="56" HorizontalAlignment="Left" Margin="471,359,0,0" Name="btnRapport" VerticalAlignment="Top" Width="177" />
+        <Button Content="Vente" Height="56" HorizontalAlignment="Left" Margin="246,285,0,0" Name="btnVente" VerticalAlignment="Top" Width="177" Click="btnVente_Click" />
+        <Button Content="Gestion Stock" Height="56" HorizontalAlignment="Left" Margin="471,285,0,0" Name="btnStock" VerticalAlignment="Top" Width="177" />
     </Grid>
 </Page>

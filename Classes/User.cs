@@ -103,5 +103,10 @@ namespace GOS.Classes
         {
 
         }
+
+        public int getId()
+        {
+            return this.id;
+        }
     }
 }

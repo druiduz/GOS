@@ -7,13 +7,15 @@ using System.Windows.Forms;
 
 namespace GOS.Classes
 {
-    class Vente
+    public class Vente
     {
         private Dictionary<Produit, int> panier;
+        private float total;
         
         public Vente()
         {
-
+            panier = new Dictionary<Produit,int>();
+            total = 0.0f;
         }
 
         public void ajoutPanier(Produit p, int q)
@@ -21,7 +23,7 @@ namespace GOS.Classes
             panier.Add(p, q);
         }
 
-        public void addVente(int idUser)
+        public void store(int idUser)
         {
             #region BDD
 
@@ -46,6 +48,23 @@ namespace GOS.Classes
             }
 
             #endregion
+        }
+
+        private void calculTotal()
+        {
+            float t = 0.0f;
+
+            foreach (KeyValuePair<Produit, int> p in panier)
+            {
+                t += p.Value * p.Key.Prix;
+            }
+
+            this.total = t;
+        }
+
+        public float getTotal()
+        {
+            return this.total;
         }
     }
 }

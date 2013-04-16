@@ -29,5 +29,11 @@ namespace GOS.Pages
             MainWindow main = (MainWindow)this.Parent;
             main.Content = new VentePage();
         }
+
+        private void btnCarte_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow main = (MainWindow)this.Parent;
+            main.Content = new GestionCartePage();
+        }
     }
 }

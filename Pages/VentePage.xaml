@@ -4,18 +4,19 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       mc:Ignorable="d" 
-      d:DesignHeight="366" d:DesignWidth="630"
+      d:DesignHeight="529" d:DesignWidth="896"
 	Title="Vente">
 
-    <Grid>
-        <Label Content="Vente" Height="70" HorizontalAlignment="Left" Margin="80,20,0,0" Name="label1" VerticalAlignment="Top" Width="327" FontSize="26" />
-        <DataGrid AutoGenerateColumns="False" Height="224" HorizontalAlignment="Left" Margin="462,32,0,0" Name="grdPanier" VerticalAlignment="Top" Width="149"/>
-        <Button Content="Valider" Height="58" HorizontalAlignment="Left" Margin="462,296,0,0" Name="btnValider" VerticalAlignment="Top" Width="156" />
-        <Button Content="Quiter" Height="58" HorizontalAlignment="Left" Margin="299,296,0,0" Name="btnQuiter" VerticalAlignment="Top" Width="156" />
-        <TabControl Height="265" HorizontalAlignment="Left" Margin="12,73,0,0" Name="tabProduit" VerticalAlignment="Top" Width="281">
+    <Grid Loaded="Grid_Loaded">
+        <Label Content="Vente" Height="47" HorizontalAlignment="Left" Margin="386,12,0,0" Name="label1" VerticalAlignment="Top" Width="80" FontSize="26" />
+        <DataGrid AutoGenerateColumns="False" Height="308" HorizontalAlignment="Left" Margin="555,73,0,0" Name="grdPanier" VerticalAlignment="Top" Width="329"/>
+        <Button Content="Carte" Height="52" HorizontalAlignment="Left" Margin="555,404,0,0" Name="btnCarte" VerticalAlignment="Top" Width="156" Click="btnCarte_Click" />
+        <Button Content="Retour" Height="36" HorizontalAlignment="Left" Margin="772,481,0,0" Name="btnRetour" VerticalAlignment="Top" Width="112" Click="btnRetour_Click" />
+        <TabControl Height="414" HorizontalAlignment="Left" Margin="12,73,0,0" Name="tabProduit" VerticalAlignment="Top" Width="473">
             <TabItem Header="Tous les produits" Name="tabItem1">
-                <Grid Height="237" Width="267" Name="gridAllProduit" />
+                <Grid Height="389" Width="467" Name="gridAllProduit" />
             </TabItem>
         </TabControl>
+        <Button Content="Especes" Height="52" HorizontalAlignment="Left" Margin="728,404,0,0" Name="btnEspeces" VerticalAlignment="Top" Width="156" Click="btnEspeces_Click" />
     </Grid>
 </Page>
