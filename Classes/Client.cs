@@ -83,7 +83,7 @@ namespace GOS.Classes
 
         public static Client getUserByRFID()
         {
-            Client c = new Client("testNom", "testPrenom");
+            Client c = new Client("testNom", "testPrenom", 50.0f);
 
             return c;
         }
