@@ -7,7 +7,7 @@ using System.Windows.Forms;
 
 namespace GOS.Classes
 {
-    class Client
+    public class Client
     {
 
         private int ID;
@@ -40,6 +40,14 @@ namespace GOS.Classes
             this.capital = solde;
         }
 
+        public Client(int id, String nom, String prenom, float solde)
+        {
+            this.ID = id;
+            this.nom = nom;
+            this.prenom = prenom;
+            this.capital = solde;
+        }
+
         private int generateID()
         {
             return 0;
@@ -55,7 +63,53 @@ namespace GOS.Classes
             this.capital -= val;
         }
 
-        public void updateClient()
+        public static Client getClientById(int id)
+        {
+            Client c = null;
+
+            #region BDD
+
+            try
+            {
+                Connexion co = Connexion.getInstance();
+
+                string query = "SELECT id, nom, prenom, solde FROM client WHERE id = @id";
+
+                MySqlCommand cmd = new MySqlCommand(query, co.connexion);
+                cmd.Parameters.AddWithValue("@id", id);
+
+                MySqlDataReader dataReader = cmd.ExecuteReader();
+
+                try
+                {
+
+                    if (dataReader.HasRows)
+                    {
+                        if (dataReader.Read())
+                        {
+                            c = new Client(dataReader.GetInt32(0), dataReader.GetString(1), dataReader.GetString(2), dataReader.GetFloat(3));
+                        }
+                    }
+
+                    dataReader.Close();
+                    return c;
+                }
+                catch (Exception e)
+                {
+                    dataReader.Close();
+                }
+            }
+            catch (InvalidConnexion e)
+            {
+                throw e;
+            }
+
+            #endregion
+
+            return null;
+        }
+
+        public bool updateClient()
         {
             #region BDD
 
@@ -63,27 +117,35 @@ namespace GOS.Classes
             {
                 Connexion co = Connexion.getInstance();
                 
-                string query = "UPDATE client SET nom = @nom, prenom = @prenom, solde = @solde WHERE idClient = @id";
+                string query = "UPDATE client SET nom = @nom, prenom = @prenom, solde = @solde WHERE id = @id";
 
                 MySqlCommand cmd = new MySqlCommand(query, co.connexion);
                 cmd.Parameters.AddWithValue("@nom", this.nom);
                 cmd.Parameters.AddWithValue("@prenom", this.prenom);
                 cmd.Parameters.AddWithValue("@solde", this.capital);
-                cmd.Parameters.AddWithValue("@solde", this.ID);
+                cmd.Parameters.AddWithValue("@id", this.ID);
                 cmd.ExecuteScalar();
+
+                return true;
             }
-            catch (InvalidConnexion a)
+            catch (InvalidConnexion e)
             {
                 MessageBox.Show("Connexion avec la base de donnée perdu");
+                throw e;
             }
 
             #endregion
+
         }
 
 
         public static Client getUserByRFID()
         {
-            Client c = new Client("testNom", "testPrenom", 50.0f);
+            //Client c = new Client("testNom", "testPrenom", 50.0f);
+            //int idClient = rfidGetId();
+            int idClient = 1;
+
+            Client c = Client.getClientById(idClient);
 
             return c;
         }

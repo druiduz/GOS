@@ -11,6 +11,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using GOS.Classes;
 
 namespace GOS.Pages
 {
@@ -19,9 +20,12 @@ namespace GOS.Pages
     /// </summary>
     public partial class PaiementEspecesPage : Page
     {
-        public PaiementEspecesPage()
+        Vente panier;
+
+        public PaiementEspecesPage(Vente panier)
         {
             InitializeComponent();
+            this.panier = panier;
         }
     }
 }

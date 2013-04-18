@@ -48,12 +48,20 @@ namespace GOS.Pages
 
         private void btnValider_Click(object sender, RoutedEventArgs e)
         {
-            curClient.subCapital(panier.getTotal());
-            curClient.updateClient();
 
             MainWindow main = (MainWindow)this.Parent;
 
-            panier.store(main.vendeur.getId());
+            if (panier.finishVente(curClient, main.vendeur))
+            {
+                MessageBox.Show("Vente reussi");
+            }
+            else
+            {
+                MessageBox.Show("Echec de la vente");
+            }
+
+            HomePage home = new HomePage();
+            main.Content = home;
         }
     }
 }

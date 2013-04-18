@@ -33,7 +33,11 @@ namespace GOS.Classes
             this.prix = prix;
             this.quantite = quantite;
             this.quantite_min = quantite_min;
-            this.logo = logo;
+
+            if (!logo.Equals("")) 
+            {
+                this.logo = "E:/Codage/GOS/Images/" + logo;
+            }
         }
 
         public int ID

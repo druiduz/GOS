@@ -29,121 +29,6 @@ namespace GOS.Pages
             curPanier = new Vente();
         }
 
-        /*private void Grid_Loaded(object sender, RoutedEventArgs e)
-        {
-
-            TabControl tabProduit = this.tabProduit;
-            List<String> allTypes = Produit.getAllTypes();
-
-            int nbColMax = 4, nbCol = 0;
-            int nbRow = 0;
-            int row = 0, col = 0;
-
-            foreach (String type in allTypes)
-            {
-                row = 0;
-                col = 0;
-                List<Produit> produitByTypes = Produit.getAllProduit("where type_produit = '" + type + "'");
-
-                if (produitByTypes.Count() > nbColMax)
-                {
-                    nbCol = nbColMax;
-                    nbRow = (nbCol / nbColMax) + 1;
-                }
-                else
-                {
-                    nbCol = produitByTypes.Count();
-                    nbRow = 1;
-                }
-
-                TabItem tabAdd = new TabItem();
-                tabAdd.Header = type;
-                Grid newGrid = new Grid();
-                newGrid.ShowGridLines = true;
-
-
-                for (int i = 0; i < nbCol; i++)
-                {
-                    ColumnDefinition colDef = new ColumnDefinition();
-                    newGrid.ColumnDefinitions.Add(colDef);
-                }
-                for (int i = 0; i < nbRow; i++)
-                {
-                    RowDefinition rowDef = new RowDefinition();
-                    newGrid.RowDefinitions.Add(rowDef);
-                }
-                foreach (Produit p in produitByTypes)
-                {
-                    this.addProduit(newGrid, p, row, col);
-
-                    col++;
-
-                    if (col >= nbCol)
-                    {
-                        col = 0;
-                        row++;
-                    }
-                }
-               
-
-                tabAdd.Content = newGrid;
-                tabProduit.Items.Add(tabAdd);
-            }
-
-            List<Produit> allProduit = Produit.getAllProduit();
-            TabItem tabAll = (TabItem) tabProduit.Items.GetItemAt(0);
-            Grid allGrid = (Grid) tabAll.Content;
-            allGrid.ShowGridLines = true;
-
-            if (allProduit.Count() > nbColMax)
-            {
-                nbCol = nbColMax;
-                nbRow = (nbCol / nbColMax) + 1;
-            }
-            else
-            {
-                nbCol = allProduit.Count();
-                nbRow = 1;
-            }
-
-            col = 0;
-            row = 0;
-
-            for (int i = 0; i < nbCol; i++)
-            {
-                ColumnDefinition colDef = new ColumnDefinition();
-                allGrid.ColumnDefinitions.Add(colDef);
-            }
-            for (int i = 0; i < nbRow; i++)
-            {
-                RowDefinition rowDef = new RowDefinition();
-                allGrid.RowDefinitions.Add(rowDef);
-            }
-
-            foreach (Produit p in allProduit)
-            {
-
-                this.addProduit(allGrid, p, row, col);
-
-                col++;
-
-                if (col >= nbCol)
-                {
-                    col = 0;
-                    row++;
-                }
-            }
-        }
-
-        private void addProduit(Grid g, Produit p, int row, int col)
-        {
-            TextBlock text = new TextBlock();
-            text.Text = p.Name;
-            Grid.SetColumn(text, col);
-            Grid.SetRow(text, row);
-            g.Children.Add(text);
-        }*/
-
         private void Grid_Loaded(object sender, RoutedEventArgs e)
         {
             loadTabAllProduit();
@@ -237,12 +122,42 @@ namespace GOS.Pages
 
         private void addProduit(Grid g, Produit p, int i, int j)
         {
-            Label l = new Label();
-            l.Content = p.Name;
+            if (p.Logo != "")
+            {
+                //MessageBox.Show(p.Logo);
+                try
+                {
 
-            Grid.SetRow(l, j);
-            Grid.SetColumn(l, i);
-            g.Children.Add(l);
+                    ProduitButton child = new ProduitButton(p);
+                    child.Click += new RoutedEventHandler(newBtn_Click);
+
+                    Grid.SetRow(child, j);
+                    Grid.SetColumn(child, i);
+                    g.Children.Add(child);
+                }
+                catch (Exception e)
+                {
+                    //MessageBox.Show(e.Message);
+                    ProduitButton child = new ProduitButton(p);
+                    child.Click += new RoutedEventHandler(newBtn_Click);
+
+                    Grid.SetRow(child, j);
+                    Grid.SetColumn(child, i);
+                    g.Children.Add(child);
+                }
+
+            }
+            else
+            {
+                Label child = new Label();
+                child.Content = p.Name;
+
+                Grid.SetRow(child, j);
+                Grid.SetColumn(child, i);
+                g.Children.Add(child);
+            }
+
+
         }
 
         private void btnRetour_Click(object sender, RoutedEventArgs e)
@@ -259,7 +174,16 @@ namespace GOS.Pages
 
         private void btnEspeces_Click(object sender, RoutedEventArgs e)
         {
+            MainWindow main = (MainWindow)this.Parent;
+            main.Content = new PaiementEspecesPage(this.curPanier);
+        }
 
+        private void newBtn_Click(object sender, RoutedEventArgs e)
+        {
+            ProduitButton button = (ProduitButton)sender;
+            //MessageBox.Show(button.produit.Name);
+
+            this.curPanier.ajoutPanier(button.produit, 1);
         }
     }
 }

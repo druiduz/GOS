@@ -42,9 +42,10 @@ namespace GOS.Classes
                     cmd.ExecuteScalar();
                 }
             }
-            catch (InvalidConnexion a)
+            catch (InvalidConnexion e)
             {
                 MessageBox.Show("Connexion avec la base de donnée perdu");
+                throw e;
             }
 
             #endregion
@@ -65,6 +66,30 @@ namespace GOS.Classes
         public float getTotal()
         {
             return this.total;
+        }
+
+        public bool finishVente(Client c, User u)
+        {
+            try
+            {
+                c.subCapital(this.getTotal());
+                c.updateClient();
+
+                this.store(u.getId());
+            }
+            catch (InvalidConnexion e)
+            {
+                return false;
+            }
+
+            return true;
+        }
+
+        public static List<Vente> getVenteByPeriod(DateTime debut, DateTime fin)
+        {
+            List<Vente> listVente = null;
+
+            return listVente;
         }
     }
 }
