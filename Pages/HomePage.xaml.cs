@@ -35,5 +35,10 @@ namespace GOS.Pages
             MainWindow main = (MainWindow)this.Parent;
             main.Content = new GestionCartePage();
         }
+
+        private void btnRapport_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

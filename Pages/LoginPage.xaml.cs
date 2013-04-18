@@ -39,5 +39,25 @@ namespace GOS.Pages
                 MessageBox.Show("Login / mdp incorrecte !!");
             }
         }
+
+        private void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void image1_ImageFailed(object sender, ExceptionRoutedEventArgs e)
+        {
+
+        }
+
+        private void image1_ImageFailed_1(object sender, ExceptionRoutedEventArgs e)
+        {
+
+        }
+
+        private void image1_ImageFailed_2(object sender, ExceptionRoutedEventArgs e)
+        {
+
+        }
     }
 }

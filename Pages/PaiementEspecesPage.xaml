@@ -7,7 +7,7 @@
       d:DesignHeight="545" d:DesignWidth="903"
 	Title="PaiementEspecesPage">
 
-    <Grid>
+    <Grid Background="#FFF2F2F2">
         
     </Grid>
 </Page>

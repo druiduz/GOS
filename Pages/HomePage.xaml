@@ -7,10 +7,16 @@
       d:DesignHeight="532" d:DesignWidth="917"
 	Title="HomePage">
 
-    <Grid>
-        <Button Content="Gestion carte magnetique" Height="56" HorizontalAlignment="Left" Margin="246,359,0,0" Name="btnCarte" VerticalAlignment="Top" Width="177" Click="btnCarte_Click" />
-        <Button Content="Rapport vente" Height="56" HorizontalAlignment="Left" Margin="471,359,0,0" Name="btnRapport" VerticalAlignment="Top" Width="177" />
-        <Button Content="Vente" Height="56" HorizontalAlignment="Left" Margin="246,285,0,0" Name="btnVente" VerticalAlignment="Top" Width="177" Click="btnVente_Click" />
-        <Button Content="Gestion Stock" Height="56" HorizontalAlignment="Left" Margin="471,285,0,0" Name="btnStock" VerticalAlignment="Top" Width="177" />
+    <Grid Background="#FFF2F2F2" AllowDrop="False">
+        <Grid.OpacityMask>
+            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                <GradientStop Color="Black" Offset="0" />
+                <GradientStop Color="White" Offset="1" />
+            </LinearGradientBrush>
+        </Grid.OpacityMask>
+        <Button Content="Gestion carte magnetique" Height="56" HorizontalAlignment="Left" Margin="255,359,0,0" Name="btnCarte" VerticalAlignment="Top" Width="177" Click="btnCarte_Click" Background="#FFFFF70D" />
+        <Button Content="Rapport vente" Height="56" HorizontalAlignment="Left" Margin="480,359,0,0" Name="btnRapport" VerticalAlignment="Top" Width="177" Click="btnRapport_Click" />
+        <Button Content="Vente" Height="56" HorizontalAlignment="Left" Margin="255,285,0,0" Name="btnVente" VerticalAlignment="Top" Width="177" Click="btnVente_Click" Background="#FFFFF70D" />
+        <Button Content="Gestion Stock" Height="56" HorizontalAlignment="Left" Margin="480,285,0,0" Name="btnStock" VerticalAlignment="Top" Width="177" Background="#FFFFF70D" />
     </Grid>
 </Page>
