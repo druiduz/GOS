@@ -38,7 +38,8 @@ namespace GOS.Pages
 
         private void btnRapport_Click(object sender, RoutedEventArgs e)
         {
-
+            MainWindow main = (MainWindow)this.Parent;
+            main.Content = new RapportPage();
         }
     }
 }
