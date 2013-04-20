@@ -20,25 +20,52 @@ namespace GOS.Classes
 
         public void ajoutPanier(Produit p, int q)
         {
-            panier.Add(p, q);
+            if (panier.ContainsKey(p))
+            {
+                panier[p] += q;
+            }
+            else
+            {
+                panier.Add(p, q);
+            }
+            this.calculTotal();
         }
 
-        public void store(int idUser)
+        public void store(int idClient, int idUser)
         {
             #region BDD
 
             try
             {
+
+                int idvente = 0;
                 Connexion co = Connexion.getInstance();
+
+                string query = "INSERT INTO vente SET client_id = @client_id, vendeur_id = @vendeur_id, Date_Vente = NOW()";
+
+                MySqlCommand cmd = new MySqlCommand(query, co.connexion);
+                cmd.Parameters.AddWithValue("@client_id", idClient);
+                cmd.Parameters.AddWithValue("@vendeur_id", idUser);
+                cmd.ExecuteScalar();
+
+                query = "SELECT id FROM vente ORDER BY id DESC LIMIT 1";
+                cmd = new MySqlCommand(query, co.connexion);
+                MySqlDataReader dataReader = cmd.ExecuteReader();
+
+                while (dataReader.Read())
+                {
+                    idvente = dataReader.GetInt32(0);
+                }
+
+                dataReader.Close();
 
                 foreach (KeyValuePair<Produit, int> p in panier)
                 {
-                    string query = "INSERT INTO vente SET User_idUser = @userid, Produit_idProduit = @produit, Quantite_vente = @quantite, Date_Vente = NOW()";
-
-                    MySqlCommand cmd = new MySqlCommand(query, co.connexion);
-                    cmd.Parameters.AddWithValue("@userid", idUser);
-                    cmd.Parameters.AddWithValue("@produit", p.Value);
-                    cmd.Parameters.AddWithValue("@quantite", p.Key);
+                    query = "INSERT INTO ventedetails SET vente_id = @idvente, produit_id = @idproduit, quantite = @quantite";
+                    cmd = new MySqlCommand(query, co.connexion);
+                    cmd.Parameters.AddWithValue("@idvente", idvente);
+                    cmd.Parameters.AddWithValue("@idProduit", p.Key.ID);
+                    cmd.Parameters.AddWithValue("@quantite", p.Value);
                     cmd.ExecuteScalar();
                 }
             }
@@ -72,10 +99,16 @@ namespace GOS.Classes
         {
             try
             {
+
+                this.store(c.getId(), u.getId());
                 c.subCapital(this.getTotal());
                 c.updateClient();
 
-                this.store(u.getId());
+                foreach (KeyValuePair<Produit, int> p in panier)
+                {
+                    p.Key.Quantite -= p.Value;
+                    p.Key.update();
+                }
             }
             catch (InvalidConnexion e)
             {

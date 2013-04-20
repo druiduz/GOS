@@ -181,9 +181,19 @@ namespace GOS.Pages
         private void newBtn_Click(object sender, RoutedEventArgs e)
         {
             ProduitButton button = (ProduitButton)sender;
+            Produit p = button.produit;
             //MessageBox.Show(button.produit.Name);
 
-            this.curPanier.ajoutPanier(button.produit, 1);
+            if (p.Quantite <= 0)
+            {
+                MessageBox.Show("Nombre de " + p.Name + " insufisant");
+            }
+            else if (!p.checkQuantite())
+            {
+                Stock.approvisionnement(p);
+            }
+
+            this.curPanier.ajoutPanier(p, 1);
         }
     }
 }

@@ -36,7 +36,7 @@ namespace GOS.Classes
 
             if (!logo.Equals("")) 
             {
-                this.logo = "E:/Codage/GOS/Images/" + logo;
+                this.logo = "E:/Codage/GOS/Images/logo-produit/" + logo;
             }
         }
 
@@ -92,13 +92,13 @@ namespace GOS.Classes
             #region BDD
             Connexion co = Connexion.getInstance();
 
-            string query = "UPDATE produit SET name = @name, quantite = @quantite, prix = @prix WHERE id = @id";
+            string query = "UPDATE produit SET nom_produit = @nom, prix_produit = @prix, quantite = @quantite WHERE idProduit = @idproduit";
 
             MySqlCommand cmd = new MySqlCommand(query, co.connexion);
-            cmd.Parameters.AddWithValue("@name", this.name);
+            cmd.Parameters.AddWithValue("@nom", this.name);
             cmd.Parameters.AddWithValue("@quantite", this.quantite);
             cmd.Parameters.AddWithValue("@prix", this.prix);
-            cmd.Parameters.AddWithValue("@id", this.ID);
+            cmd.Parameters.AddWithValue("@idproduit", this.ID);
             cmd.ExecuteScalar();
 
             #endregion
@@ -214,6 +214,11 @@ namespace GOS.Classes
             #endregion
 
             return true;
+        }
+
+        public bool checkQuantite()
+        {
+            return this.quantite <= this.Quantite_min;
         }
 
         public int CompareTo(object o)

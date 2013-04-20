@@ -15,6 +15,11 @@ namespace GOS.Classes
         private String prenom;
         private float capital;
 
+        public int getId()
+        {
+            return ID;
+        }
+
         public String Nom
         {
             get { return nom; }
@@ -96,11 +101,13 @@ namespace GOS.Classes
                 }
                 catch (Exception e)
                 {
+                    MessageBox.Show(e.Message);
                     dataReader.Close();
                 }
             }
             catch (InvalidConnexion e)
             {
+                MessageBox.Show("Connexion avec la base de donnée perdu");
                 throw e;
             }
 
@@ -145,9 +152,17 @@ namespace GOS.Classes
             //int idClient = rfidGetId();
             int idClient = 1;
 
-            Client c = Client.getClientById(idClient);
+            try
+            {
+                Client cl = Client.getClientById(idClient);
+                return cl;
+            }
+            catch (InvalidConnexion e)
+            {
+                MessageBox.Show("Connexion avec la base de donnée perdu");
+            }
 
-            return c;
+            return null;
         }
     }
 }

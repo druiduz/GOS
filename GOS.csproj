@@ -104,6 +104,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Pages\RapportPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\StockPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -132,6 +136,9 @@
     </Compile>
     <Compile Include="Pages\PaiementEspecesPage.xaml.cs">
       <DependentUpon>PaiementEspecesPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\RapportPage.xaml.cs">
+      <DependentUpon>RapportPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\StockPage.xaml.cs">
       <DependentUpon>StockPage.xaml</DependentUpon>

@@ -47,7 +47,12 @@ namespace GOS.Classes
             return idOut;
         }
 
-        private void approvisionnement()
+        public static void approvisionnement(Produit p)
+        {
+
+        }
+
+        private void doAllApprovisionnement()
         {
 
         }

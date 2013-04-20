@@ -14,7 +14,7 @@
         <Button Content="Retour" Height="36" HorizontalAlignment="Left" Margin="772,481,0,0" Name="btnRetour" VerticalAlignment="Top" Width="112" Click="btnRetour_Click" />
         <TabControl Height="414" HorizontalAlignment="Left" Margin="12,73,0,0" Name="tabProduit" VerticalAlignment="Top" Width="473">
             <TabItem Header="Tous les produits" Name="tabItem1">
-                <Grid Height="389" Width="467" Name="gridAllProduit" />
+                <Grid Height="383" Width="464" Name="gridAllProduit" />
             </TabItem>
         </TabControl>
         <Button Content="Especes" Height="52" HorizontalAlignment="Left" Margin="728,404,0,0" Name="btnEspeces" VerticalAlignment="Top" Width="156" Click="btnEspeces_Click" />
