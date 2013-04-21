@@ -8,11 +8,16 @@ namespace GOS.Classes
 {
     static class Repporting
     {
-        public static bool repport()
+        public static bool repportCsv(DateTime debut, DateTime fin, string path)
         {
+            List<Vente> listVente = Vente.getVentesByPeriod(debut, fin);
 
-            DateTime debut = new DateTime(), fin = new DateTime();
-            List<Vente> listVente = Vente.getVenteByPeriod(debut, fin);
+
+            return true;
+        }
+
+        public static bool repportMail(DateTime debut, DateTime fin, string email)
+        {
 
             return true;
         }

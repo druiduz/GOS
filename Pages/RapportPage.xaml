@@ -8,11 +8,17 @@
 	Title="RapportPage">
 
     <Grid>
-        <DatePicker Height="25" HorizontalAlignment="Left" Margin="445,220,0,0" Name="datePicker1" VerticalAlignment="Top" Width="115" />
-        <DatePicker Height="25" HorizontalAlignment="Left" Margin="445,270,0,0" Name="datePicker2" VerticalAlignment="Top" Width="115" />
-        <Button Content="Créer" Height="38" HorizontalAlignment="Left" Margin="250,418,0,0" Name="btnCreer" VerticalAlignment="Top" Width="153" />
-        <Button Content="Retour" Height="38" HorizontalAlignment="Left" Margin="445,418,0,0" Name="btnRetour" VerticalAlignment="Top" Width="153" />
-        <Label Content="Date de début" Height="28" HorizontalAlignment="Left" Margin="250,217,0,0" Name="labelDateDebut" VerticalAlignment="Top" Width="153" />
-        <Label Content="Date de fin" Height="28" HorizontalAlignment="Left" Margin="250,267,0,0" Name="labelDateFin" VerticalAlignment="Top" Width="153" />
+        <DatePicker Height="25" HorizontalAlignment="Left" Margin="445,163,0,0" Name="datePickerDebut" VerticalAlignment="Top" Width="115" />
+        <DatePicker Height="25" HorizontalAlignment="Left" Margin="445,213,0,0" Name="datePickerFin" VerticalAlignment="Top" Width="115" />
+        <Button Content="Créer" Height="38" HorizontalAlignment="Left" Margin="250,418,0,0" Name="btnCreer" VerticalAlignment="Top" Width="153" Click="btnCreer_Click" />
+        <Button Content="Retour" Height="38" HorizontalAlignment="Left" Margin="445,418,0,0" Name="btnRetour" VerticalAlignment="Top" Width="153" Click="btnRetour_Click" />
+        <Label Content="Date de début" Height="28" HorizontalAlignment="Left" Margin="250,160,0,0" Name="labelDateDebut" VerticalAlignment="Top" Width="153" />
+        <Label Content="Date de fin" Height="28" HorizontalAlignment="Left" Margin="250,210,0,0" Name="labelDateFin" VerticalAlignment="Top" Width="153" />
+        <RadioButton Content="Export csv" Height="22" HorizontalAlignment="Left" Margin="250,282,0,0" Name="radioCsv" VerticalAlignment="Top" Width="94" Checked="radioCsv_Checked" />
+        <RadioButton Content="Export mail" Height="24" HorizontalAlignment="Left" Margin="250,315,0,0" Name="radioMail" VerticalAlignment="Top" Checked="radioMail_Checked" />
+        <TextBox Height="23" HorizontalAlignment="Left" Margin="445,312,0,0" Name="txtMail" VerticalAlignment="Top" Width="153" IsEnabled="False" />
+        <Label Content="Email : " Height="28" HorizontalAlignment="Left" Margin="385,310,0,0" Name="labelMail" VerticalAlignment="Top" Width="54" />
+        <TextBox Height="23" HorizontalAlignment="Left" IsEnabled="False" Margin="445,278,0,0" Name="txtPath" VerticalAlignment="Top" Width="153" />
+        <Label Content="Destination : " Height="28" HorizontalAlignment="Left" Margin="350,276,0,0" Name="labelPath" VerticalAlignment="Top" Width="79" />
     </Grid>
 </Page>

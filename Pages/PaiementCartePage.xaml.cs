@@ -38,6 +38,19 @@ namespace GOS.Pages
             this.textPrenom.Text = curClient.Prenom;
             this.textSolde.Text = curClient.getCapital().ToString();
             this.textNewSolde.Text = (curClient.getCapital()-panier.getTotal()).ToString();
+
+            this.initRecapPanier();
+        }
+
+        private void initRecapPanier()
+        {
+            this.grdRecap.Columns.Add(new DataGridTextColumn { Header = "Produit", Width = 200, Binding = new Binding("produit") });
+            this.grdRecap.Columns.Add(new DataGridTextColumn { Header = "Quantite", Binding = new Binding("quantite") });
+
+            foreach (KeyValuePair<Produit, int> p in this.panier.getPanier())
+            {
+                this.grdRecap.Items.Add(new { produit = p.Key.Name, quantite = p.Value });
+            }
         }
 
         private void btnAnnuler_Click(object sender, RoutedEventArgs e)

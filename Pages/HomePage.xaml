@@ -17,6 +17,6 @@
         <Button Content="Gestion carte magnetique" Height="56" HorizontalAlignment="Left" Margin="255,359,0,0" Name="btnCarte" VerticalAlignment="Top" Width="177" Click="btnCarte_Click" Background="#FFFFF70D" />
         <Button Content="Rapport vente" Height="56" HorizontalAlignment="Left" Margin="480,359,0,0" Name="btnRapport" VerticalAlignment="Top" Width="177" Click="btnRapport_Click" />
         <Button Content="Vente" Height="56" HorizontalAlignment="Left" Margin="255,285,0,0" Name="btnVente" VerticalAlignment="Top" Width="177" Click="btnVente_Click" Background="#FFFFF70D" />
-        <Button Content="Gestion Stock" Height="56" HorizontalAlignment="Left" Margin="480,285,0,0" Name="btnStock" VerticalAlignment="Top" Width="177" Background="#FFFFF70D" />
+        <Button Content="Gestion Stock" Height="56" HorizontalAlignment="Left" Margin="480,285,0,0" Name="btnStock" VerticalAlignment="Top" Width="177" Background="#FFFFF70D" Click="btnStock_Click" />
     </Grid>
 </Page>

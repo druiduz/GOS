@@ -28,7 +28,7 @@ namespace GOS.Pages
         private void btnConnexion_Click(object sender, RoutedEventArgs e)
         {
             MainWindow main = (MainWindow)this.Parent;
-            main.vendeur = User.Login(this.inputLogin.Text, this.inputPass.Text);
+            main.vendeur = User.Login(this.inputLogin.Text, this.inputPass.Password);
             if (main.vendeur != null)
             {
                 HomePage home = new HomePage();
@@ -42,7 +42,7 @@ namespace GOS.Pages
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-
+            this.inputLogin.Focus();
         }
 
         private void image1_ImageFailed(object sender, ExceptionRoutedEventArgs e)

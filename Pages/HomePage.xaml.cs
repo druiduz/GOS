@@ -41,5 +41,11 @@ namespace GOS.Pages
             MainWindow main = (MainWindow)this.Parent;
             main.Content = new RapportPage();
         }
+
+        private void btnStock_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow main = (MainWindow)this.Parent;
+            main.Content = new GestionStock();
+        }
     }
 }

@@ -22,11 +22,13 @@ namespace GOS.Pages
     {
 
         private Vente curPanier;
+        List<RecapPanier> recapPanier;
 
         public VentePage()
         {
             InitializeComponent();
             curPanier = new Vente();
+            List<RecapPanier> recapPanier = new List<RecapPanier>();
         }
 
         private void Grid_Loaded(object sender, RoutedEventArgs e)
@@ -41,6 +43,9 @@ namespace GOS.Pages
                 loadTabType(type, indexTab);
                 indexTab++;
             }
+
+            this.grdPanier.Columns.Add(new DataGridTextColumn { Header = "Produit", Width = 200, Binding = new Binding("produit") });
+            this.grdPanier.Columns.Add(new DataGridTextColumn { Header = "Quantite", Binding = new Binding("quantite") });
         }
 
         private void loadTabAllProduit()
@@ -190,10 +195,50 @@ namespace GOS.Pages
             }
             else if (!p.checkQuantite())
             {
-                Stock.approvisionnement(p);
+                //Stock.approvisionnement(p);
             }
 
             this.curPanier.ajoutPanier(p, 1);
+
+
+            #region ajout vue panier
+            this.grdPanier.Items.Add(new { produit = p.Name, quantite = this.curPanier.getQuantite(p) });
+
+            /*object t = new { produit = p.Name, quantite = this.curPanier.getQuantite(p) };
+            this.recapPanier.Add(t);
+            this.grdPanier.Items.Add(new { produit = p.Name, quantite = this.curPanier.getQuantite(p) });*/
+            //this.grdPanier.Items.Insert(p.ID, new { produit = p.Name, quantite = this.curPanier.getQuantite(p) });
+
+
+            /*if (recapPanier.ContainsKey(p))
+            {
+                panier[p] += q;
+            }
+            else
+            {
+                panier.Add(p, q);
+            }
+            
+            this.grdPanier.Items.Insert(p.ID, new RecapPanier(p.Name, this.curPanier.getQuantite(p)));
+
+            if (this.grdPanier.Items.GetItemAt(p.ID) != null)
+            {
+                RecapPanier tmp = (RecapPanier) this.grdPanier.Items.GetItemAt(p.ID);
+                tmp.quantite += 1;
+            }*/
+
+            #endregion
+        }
+    }
+
+    public class RecapPanier
+    {
+        public string name;
+        public int quantite;
+        public RecapPanier(string name, int quantite)
+        {
+            this.name = name;
+            this.quantite = quantite;
         }
     }
 }
