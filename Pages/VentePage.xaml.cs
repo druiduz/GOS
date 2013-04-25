@@ -23,12 +23,30 @@ namespace GOS.Pages
 
         private Vente curPanier;
         List<RecapPanier> recapPanier;
+        List<Produit> liaisonPanier = new List<Produit>(); //id, produit
+        private int curIndex = 0;
 
         public VentePage()
         {
             InitializeComponent();
             curPanier = new Vente();
             List<RecapPanier> recapPanier = new List<RecapPanier>();
+        }
+
+        public VentePage(Vente v)
+        {
+            InitializeComponent();
+            curPanier = v;
+
+            loadPanier();
+        }
+
+        private void loadPanier()
+        {
+            foreach (KeyValuePair<Produit, int> p in curPanier.getPanier())
+            {
+                this.grdPanier.Items.Add(new { produit = p.Key.Name, quantite = p.Value });
+            }
         }
 
         private void Grid_Loaded(object sender, RoutedEventArgs e)
@@ -46,6 +64,10 @@ namespace GOS.Pages
 
             this.grdPanier.Columns.Add(new DataGridTextColumn { Header = "Produit", Width = 200, Binding = new Binding("produit") });
             this.grdPanier.Columns.Add(new DataGridTextColumn { Header = "Quantite", Binding = new Binding("quantite") });
+            //this.grdPanier.Columns.Add(new DataGridTextColumn { Header = "Supprimer", Binding = new Binding("removeButt") });
+            this.grdPanier.IsEnabled = false;
+            this.grdPanier.CanUserSortColumns = true;
+            //this.grdPanier.ItemsSource = curPanier.getPanier();
         }
 
         private void loadTabAllProduit()
@@ -129,7 +151,6 @@ namespace GOS.Pages
         {
             if (p.Logo != "")
             {
-                //MessageBox.Show(p.Logo);
                 try
                 {
 
@@ -191,7 +212,7 @@ namespace GOS.Pages
 
             if (p.Quantite <= 0)
             {
-                MessageBox.Show("Nombre de " + p.Name + " insufisant");
+                MessageBox.Show("Nombre de '" + p.Name + "' insufisant");
             }
             else if (!p.checkQuantite())
             {
@@ -199,11 +220,38 @@ namespace GOS.Pages
             }
 
             this.curPanier.ajoutPanier(p, 1);
+            if (!liaisonPanier.Contains(p))
+            {
+                liaisonPanier.Add(p);
+            }
 
+            //this.grdPanier.Items.Refresh();
 
             #region ajout vue panier
-            this.grdPanier.Items.Add(new { produit = p.Name, quantite = this.curPanier.getQuantite(p) });
+            
+            int pindex = liaisonPanier.IndexOf(p);
+            if (!this.grdPanier.Items.IsEmpty && pindex < this.grdPanier.Items.Count)
+            {
+                object tempObject = this.grdPanier.Items.GetItemAt(pindex);
+                if (tempObject != null)
+                {
+                    this.grdPanier.Items.RemoveAt(pindex);
+                    this.grdPanier.Items.Insert(pindex, new { produit = p.Name, quantite = this.curPanier.getQuantite(p) });
+                }
+                else
+                {
+                    this.grdPanier.Items.Add(new { produit = p.Name, quantite = this.curPanier.getQuantite(p) });
+                }
+            }
+            else
+            {
+                this.grdPanier.Items.Add(new { produit = p.Name, quantite = this.curPanier.getQuantite(p) });
+            }
+            
 
+            #endregion
+
+            #region tmp
             /*object t = new { produit = p.Name, quantite = this.curPanier.getQuantite(p) };
             this.recapPanier.Add(t);
             this.grdPanier.Items.Add(new { produit = p.Name, quantite = this.curPanier.getQuantite(p) });*/
@@ -229,16 +277,24 @@ namespace GOS.Pages
 
             #endregion
         }
+
+        private void removeBtn_Click(object sender, RoutedEventArgs e)
+        {
+            
+        }
     }
 
     public class RecapPanier
     {
         public string name;
         public int quantite;
+        //public Button removeButt;
+
         public RecapPanier(string name, int quantite)
         {
             this.name = name;
             this.quantite = quantite;
+            //this.removeButt = new Button();
         }
     }
 }

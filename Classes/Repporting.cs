@@ -12,6 +12,12 @@ namespace GOS.Classes
         {
             List<Vente> listVente = Vente.getVentesByPeriod(debut, fin);
 
+            string csv = "";
+
+            foreach (Vente v in listVente)
+            {
+
+            }
 
             return true;
         }

@@ -9,7 +9,7 @@ namespace GOS.Classes
 {
     public class Vente
     {
-        private Dictionary<Produit, int> panier;
+        private Dictionary<Produit, int> panier; //produit, quantite
         private float total;
         private int vendeur_id;
         private int client_id;
@@ -153,8 +153,9 @@ namespace GOS.Classes
 
         public static List<Vente> getVentesByPeriod(DateTime debut, DateTime fin)
         {
-            Dictionary<Produit, int> tmpanier = new Dictionary<Produit, int>();
+            Dictionary<Produit, int> tmpanier = null;
             List<Vente> listVente = null;
+            Vente tmpvente = null;
 
             #region bdd
 
@@ -173,13 +174,14 @@ namespace GOS.Classes
                                "vd.quantite, "+
                                "c.nom nom_c, c.prenom prenom_c, "+
                                "vu.nom nom_v, vu.prenom prenom_v, "+
-                               "p.nom_Produit "+
+                               "p.nom_Produit, p.idProduit " +
                                     "FROM vente as ve "+
                                     "JOIN ventedetails as vd ON ve.id = vd.vente_id "+
                                     "JOIN client as c ON ve.client_id = c.id "+
                                     "JOIN vendeur as vu ON ve.vendeur_id = vu.id "+
                                     "JOIN produit as p ON vd.produit_id = p.idProduit "+
                                     "WHERE ve.date_vente BETWEEN '2013-04-18 22:55:00' AND '2013-04-18 23:14:50' "+
+                                    "GROUP BY ve.id, p.idProduit "+
                                     "ORDER BY ve.id ASC";
 
 
@@ -187,10 +189,26 @@ namespace GOS.Classes
                 cmd.Parameters.AddWithValue("@date_debut", debut.ToString());
                 cmd.Parameters.AddWithValue("@date_fin", fin.ToString());
                 MySqlDataReader dataReader = cmd.ExecuteReader();
-                
+
+                int curVenteId = -1;
+
                 while (dataReader.Read())
                 {
-                    //tmpanier.Add(p
+
+                    if (dataReader.GetInt32(0) != curVenteId)
+                    {
+                        if (tmpvente != null && tmpanier != null)
+                        {
+                            listVente.Add(tmpvente);
+                        }
+
+                        curVenteId = dataReader.GetInt32(0);
+                        tmpanier = new Dictionary<Produit, int>();
+                        tmpvente = new Vente(dataReader.GetFloat(3), 0, 0, dataReader.GetDateTime(1));
+                    }
+
+                    tmpanier.Add(Produit.getProduit(dataReader.GetInt32(8)), dataReader.GetInt32(3));
+
                 }
 
                 dataReader.Close();

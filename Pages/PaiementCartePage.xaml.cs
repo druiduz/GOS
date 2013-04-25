@@ -56,7 +56,7 @@ namespace GOS.Pages
         private void btnAnnuler_Click(object sender, RoutedEventArgs e)
         {
             MainWindow main = (MainWindow)this.Parent;
-            main.Content = new HomePage();
+            main.Content = new VentePage(this.panier);
         }
 
         private void btnValider_Click(object sender, RoutedEventArgs e)

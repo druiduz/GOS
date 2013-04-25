@@ -40,6 +40,12 @@ namespace GOS.Classes
             }
         }
 
+        public Produit(int id, string name)
+        {
+            this._ID = id;
+            this.name = name;
+        }
+
         public int ID
         {
             get { return _ID; }

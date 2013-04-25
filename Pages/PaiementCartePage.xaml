@@ -18,7 +18,7 @@
         <Label Content="Futur solde" Height="28" HorizontalAlignment="Left" Margin="235,285,0,0" Name="label4" VerticalAlignment="Top" Width="120" FontWeight="SemiBold" HorizontalContentAlignment="Center" />
         <Button Content="Approvisionnement" Height="98" HorizontalAlignment="Left" Margin="44,421,0,0" Name="btnApprovisionnement" VerticalAlignment="Top" Width="271" />
         <Button Content="Valider" Height="46" HorizontalAlignment="Left" Margin="600,406,0,0" Name="btnValider" VerticalAlignment="Top" Width="271" Click="btnValider_Click" />
-        <Button Content="Annuler" Height="46" HorizontalAlignment="Left" Margin="600,473,0,0" Name="btnAnnuler" VerticalAlignment="Top" Width="271" Click="btnAnnuler_Click" />
+        <Button Content="Retour" Height="46" HorizontalAlignment="Left" Margin="600,473,0,0" Name="btnRetour" VerticalAlignment="Top" Width="271" Click="btnAnnuler_Click" />
         <DataGrid AutoGenerateColumns="False" Height="227" HorizontalAlignment="Left" Margin="518,127,0,0" Name="grdRecap" VerticalAlignment="Top" Width="353" />
     </Grid>
 </Page>
