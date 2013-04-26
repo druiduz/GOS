@@ -11,6 +11,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using GOS.Classes;
 
 namespace GOS.Pages
 {
@@ -22,6 +23,11 @@ namespace GOS.Pages
         public GestionStock()
         {
             InitializeComponent();
+        }
+
+        private void btnExport_Click(object sender, RoutedEventArgs e)
+        {
+            Repporting.Export(true, Produit.getAllProduit());
         }
     }
 }

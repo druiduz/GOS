@@ -19,6 +19,7 @@
         <Button Content="Approvisionnement" Height="98" HorizontalAlignment="Left" Margin="44,421,0,0" Name="btnApprovisionnement" VerticalAlignment="Top" Width="271" />
         <Button Content="Valider" Height="46" HorizontalAlignment="Left" Margin="600,406,0,0" Name="btnValider" VerticalAlignment="Top" Width="271" Click="btnValider_Click" />
         <Button Content="Retour" Height="46" HorizontalAlignment="Left" Margin="600,473,0,0" Name="btnRetour" VerticalAlignment="Top" Width="271" Click="btnAnnuler_Click" />
-        <DataGrid AutoGenerateColumns="False" Height="227" HorizontalAlignment="Left" Margin="518,127,0,0" Name="grdRecap" VerticalAlignment="Top" Width="353" />
+        <DataGrid AutoGenerateColumns="False" Height="374" HorizontalAlignment="Left" Margin="489,12,0,0" Name="grdRecap" VerticalAlignment="Top" Width="382" />
+        <Label Content="Paiement par carte" FontSize="48" FontWeight="Bold" Height="68" HorizontalAlignment="Left" Margin="44,37,0,0" Name="label5" VerticalAlignment="Top" Width="519" />
     </Grid>
 </Page>
