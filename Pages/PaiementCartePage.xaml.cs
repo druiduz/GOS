@@ -62,6 +62,12 @@ namespace GOS.Pages
         private void btnValider_Click(object sender, RoutedEventArgs e)
         {
 
+            if (curClient.getCapital() < panier.getTotal())
+            {
+                MessageBox.Show("Solde insufisant, veuillez réaprovisionner le compte");
+                return;
+            }
+
             MainWindow main = (MainWindow)this.Parent;
 
             if (panier.finishVente(curClient, main.vendeur))

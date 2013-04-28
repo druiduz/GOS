@@ -64,8 +64,9 @@ namespace GOS.Classes
             }
         }
 
-        public void store(int idClient, int idUser)
+        public void store(int idClient, int idUser, string typeVente="carte", float rendu=0.0f)
         {
+
             #region BDD
 
             try
@@ -74,11 +75,20 @@ namespace GOS.Classes
                 int idvente = 0;
                 Connexion co = Connexion.getInstance();
 
-                string query = "INSERT INTO vente SET client_id = @client_id, vendeur_id = @vendeur_id, Date_Vente = NOW()";
+                string query = "INSERT INTO vente "+
+                                "SET client_id = @client_id, "+
+                                "vendeur_id = @vendeur_id, "+
+                                "Date_Vente = NOW(), "+
+                                "total = @total, "+
+                                "type = @typeVente, " +
+                                "rendu = @rendu";
 
                 MySqlCommand cmd = new MySqlCommand(query, co.connexion);
                 cmd.Parameters.AddWithValue("@client_id", idClient);
                 cmd.Parameters.AddWithValue("@vendeur_id", idUser);
+                cmd.Parameters.AddWithValue("@total", this.total);
+                cmd.Parameters.AddWithValue("@typeVente", typeVente);
+                cmd.Parameters.AddWithValue("@rendu", rendu);
                 cmd.ExecuteScalar();
 
                 query = "SELECT id FROM vente ORDER BY id DESC LIMIT 1";
@@ -128,15 +138,20 @@ namespace GOS.Classes
             return this.total;
         }
 
-        public bool finishVente(Client c, User u)
+        public bool finishVente(Client c, User u, float rendu=0.0f)
         {
             try
             {
-
-                this.store(c.getId(), u.getId());
-                c.subCapital(this.getTotal());
-                c.updateClient();
-
+                if (c != null)
+                {
+                    this.store(c.getId(), u.getId());
+                    c.subCapital(this.getTotal());
+                    c.updateClient();
+                }
+                else
+                {
+                    this.store(0, u.getId(), "espece", rendu); //client anonym
+                }
                 foreach (KeyValuePair<Produit, int> p in panier)
                 {
                     p.Key.Quantite -= p.Value;
