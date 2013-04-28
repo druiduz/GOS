@@ -37,9 +37,11 @@ namespace GOS.Pages
             this.textNom.Text = curClient.Nom;
             this.textPrenom.Text = curClient.Prenom;
             this.textSolde.Text = curClient.getCapital().ToString();
-            this.textNewSolde.Text = (curClient.getCapital()-panier.getTotal()).ToString();
+            this.textNewSolde.Text = (curClient.getCapital() - panier.getTotal()).ToString();
 
             this.initRecapPanier();
+
+            /****/
         }
 
         private void initRecapPanier()
@@ -51,6 +53,9 @@ namespace GOS.Pages
             {
                 this.grdRecap.Items.Add(new { produit = p.Key.Name, quantite = p.Value });
             }
+
+
+
         }
 
         private void btnAnnuler_Click(object sender, RoutedEventArgs e)

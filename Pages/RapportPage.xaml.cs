@@ -51,7 +51,7 @@ namespace GOS.Pages
             }
 
 
-            return;
+            //return;
 
             switch(typeExport)
             {
@@ -68,6 +68,8 @@ namespace GOS.Pages
                     MessageBox.Show("Veuillez specifié le type d'export");
                     break;
             }
+
+            return;
         }
 
         private void btnRetour_Click(object sender, RoutedEventArgs e)
