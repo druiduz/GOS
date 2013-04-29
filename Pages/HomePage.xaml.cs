@@ -53,5 +53,11 @@ namespace GOS.Pages
             MainWindow main = (MainWindow)this.Parent;
             main.Content = new LoginPage();
         }
+
+        private void btnClients_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow main = (MainWindow)this.Parent;
+            main.Content = new ClientsPage();
+        }
     }
 }

@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using MySql.Data.MySqlClient;
 using System.Windows.Forms;
+using System.Security.Cryptography;
+using System.Configuration;
 
 namespace GOS.Classes
 {
@@ -13,11 +15,6 @@ namespace GOS.Classes
         private string nom;
         private string prenom;
         private string login;
-
-        public User(string pp)
-        {
-
-        }
 
         public User(int id, String nom, String prenom, String login)
         {
@@ -31,6 +28,7 @@ namespace GOS.Classes
         {
 
             User u = null;
+            string mdpHash = Utils.EncodePassword(mdp);
 
             #region BDD
 
@@ -42,27 +40,31 @@ namespace GOS.Classes
 
                 MySqlCommand cmd = new MySqlCommand(query, co.connexion);
                 cmd.Parameters.AddWithValue("@login", login);
-                cmd.Parameters.AddWithValue("@mdp", mdp);
+                cmd.Parameters.AddWithValue("@mdp", mdpHash);
 
                 MySqlDataReader dataReader = cmd.ExecuteReader();
 
                 try
                 {
-
                     if (dataReader.HasRows)
                     {
                         if (dataReader.Read())
                         {
+                            MessageBox.Show("User trouvé");
                             u = new User(dataReader.GetInt32(0), dataReader.GetString(1), dataReader.GetString(2), dataReader.GetString(3));
-                            //u.updateDerniereConnexion();
+                            u.updateDerniereConnexion();
                         }
                     }
 
                     dataReader.Close();
                     return u;
                 }
-                catch (Exception e)
+                catch (Exception any)
                 {
+                    if (ConfigurationManager.AppSettings["debugmode"] == "true")
+                    {
+                        MessageBox.Show(any.Message);
+                    }
                     dataReader.Close();
                 }
             }
@@ -97,11 +99,6 @@ namespace GOS.Classes
             }
 
             #endregion
-        }
-
-        public void logout()
-        {
-
         }
 
         public int getId()

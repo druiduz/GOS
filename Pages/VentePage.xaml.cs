@@ -212,6 +212,7 @@ namespace GOS.Pages
             if (p.Quantite <= 0)
             {
                 MessageBox.Show("Nombre de '" + p.Name + "' insufisant");
+                return;
             }
 
             this.curPanier.ajoutPanier(p, 1);

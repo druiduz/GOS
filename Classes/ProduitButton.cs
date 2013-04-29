@@ -24,7 +24,7 @@ namespace GOS.Classes
             {
                 BitmapImage biImage = new BitmapImage();
                 biImage.BeginInit();
-                biImage.UriSource = new Uri(produit.Logo);
+                biImage.UriSource = new Uri(produit.LogoFull);
                 biImage.EndInit();
 
                 StackPanel spPanel = new StackPanel() { Orientation = System.Windows.Controls.Orientation.Vertical };

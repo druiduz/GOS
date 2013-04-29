@@ -18,6 +18,7 @@ namespace GOS.Classes
         private int quantite;
         private int quantite_min;
         private String logo;
+        private String logoFull;
 
         private bool newProduit;
 
@@ -43,7 +44,7 @@ namespace GOS.Classes
 
             if (!logo.Equals("")) 
             {
-                this.logo = "E:/Codage/GOS/Images/logo-produit/" + logo;
+                this.logoFull = "E:/Codage/GOS/Images/logo-produit/" + logo;
             }
             this.newProduit = false;
         }
@@ -90,12 +91,23 @@ namespace GOS.Classes
             set { logo = value; }
         }
 
+        public String LogoFull
+        {
+            get { return logoFull; }
+            set { logoFull = value; }
+        }
+
         public override String ToString()
         {
             String s = "";
 
-            s += "--Object 'Produit'--'\n";
-            s += "name: "+name+"\nquantite: "+quantite+"\nprix: "+prix;
+            s += "--Object 'Produit'--'"
+                + "\nId: " + this.ID
+                + "\nName: " + this.name
+                + "\nType: " + this.type
+                + "\nPrix: " + this.prix
+                + "\nQuantite: " + this.quantite
+                + "\nQuantite_min: "+this.quantite_min;
 
             return s;
         }
