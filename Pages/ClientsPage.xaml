@@ -6,7 +6,7 @@
       mc:Ignorable="d" Title="ClientsPage" Height="532" Width="932">
 
     <Grid>
-        <DataGrid AutoGenerateColumns="True" Height="325" HorizontalAlignment="Center" Margin="92,97,75,110" Name="clientsgrid" VerticalAlignment="Center" Width="765" />
+        <DataGrid AutoGenerateColumns="True" Height="325" HorizontalAlignment="Center" Margin="92,97,75,110" Name="grdClients" VerticalAlignment="Center" Width="765" />
         <Label Content="Liste des clients" Height="28" HorizontalAlignment="Left" Name="label1" VerticalAlignment="Top" FontWeight="Bold" FontFamily="Segoe UI" Margin="384,12,0,0" Width="162">
             <Label.BindingGroup>
                 <BindingGroup />

@@ -12,6 +12,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using GOS.Classes;
+
 namespace GOS.Pages
 {
     /// <summary>
@@ -20,16 +21,18 @@ namespace GOS.Pages
     public partial class ClientsPage : Page
     {
         public List<Client> clients;
-        public Client[] _clients;
+
         public ClientsPage()
         {
            
             InitializeComponent();
-            this.clientsgrid.ItemsSource = clients;
-            this.clientsgrid.Columns.Add(new DataGridTextColumn { Header = "ID", Width = 30, Binding = new Binding("ID"), IsReadOnly = true });
-            this.clientsgrid.Columns.Add(new DataGridTextColumn { Header = "Nom", Width = 90, Binding = new Binding("Nom") });
-            this.clientsgrid.Columns.Add(new DataGridTextColumn { Header = "Prenom", Width = 90, Binding = new Binding("Prenom") });
-            this.clientsgrid.Columns.Add(new DataGridTextColumn { Header = "Solde", Width = 90, Binding = new Binding("Solde") });
+
+            this.clients = Client.getAllClients();
+            this.grdClients.ItemsSource = this.clients;
+            this.grdClients.Columns.Add(new DataGridTextColumn { Header = "ID", Width = 30, Binding = new Binding("ID"), IsReadOnly = true });
+            this.grdClients.Columns.Add(new DataGridTextColumn { Header = "Nom", Width = 90, Binding = new Binding("Nom") });
+            this.grdClients.Columns.Add(new DataGridTextColumn { Header = "Prenom", Width = 90, Binding = new Binding("Prenom") });
+            this.grdClients.Columns.Add(new DataGridTextColumn { Header = "Solde", Width = 90, Binding = new Binding("Capital") });
    
         }
 

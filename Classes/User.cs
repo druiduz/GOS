@@ -28,7 +28,7 @@ namespace GOS.Classes
         {
 
             User u = null;
-            string mdpHash = Utils.EncodePassword(mdp);
+            string mdpHash = Utils.GetMd5Hash(mdp);
 
             #region BDD
 
@@ -50,7 +50,6 @@ namespace GOS.Classes
                     {
                         if (dataReader.Read())
                         {
-                            MessageBox.Show("User trouvé");
                             u = new User(dataReader.GetInt32(0), dataReader.GetString(1), dataReader.GetString(2), dataReader.GetString(3));
                             u.updateDerniereConnexion();
                         }
@@ -89,7 +88,7 @@ namespace GOS.Classes
                 string query = "UPDATE vendeur SET lastCo = NOW() WHERE id = @id";
 
                 MySqlCommand cmd = new MySqlCommand(query, co.connexion);
-                cmd.Parameters.AddWithValue("@id", id);
+                cmd.Parameters.AddWithValue("@id", this.id);
                 cmd.ExecuteScalar();
 
             }

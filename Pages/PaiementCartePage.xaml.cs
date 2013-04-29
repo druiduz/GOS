@@ -40,8 +40,8 @@ namespace GOS.Pages
 
                 this.textNom.Text = curClient.Nom;
                 this.textPrenom.Text = curClient.Prenom;
-                this.textSolde.Text = curClient.getCapital().ToString();
-                this.textNewSolde.Text = (curClient.getCapital() - panier.getTotal()).ToString();
+                this.textSolde.Text = curClient.Capital.ToString();
+                this.textNewSolde.Text = (curClient.Capital - panier.getTotal()).ToString();
 
             }
             catch (RFIDException excep)
@@ -70,7 +70,7 @@ namespace GOS.Pages
         private void btnValider_Click(object sender, RoutedEventArgs e)
         {
 
-            if (curClient.getCapital() < panier.getTotal())
+            if (curClient.Capital < panier.getTotal())
             {
                 MessageBox.Show("Solde insufisant, veuillez réaprovisionner le compte");
                 return;

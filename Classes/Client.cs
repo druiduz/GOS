@@ -46,9 +46,10 @@ namespace GOS.Classes
             set { prenom = value; }
         }
 
-        public float getCapital()
+        public float Capital
         {
-            return this.capital;
+            get { return capital; }
+            set { capital = value; }
         }
 
         public Client(String nom, String prenom, float solde)
@@ -112,6 +113,53 @@ namespace GOS.Classes
 
                     dataReader.Close();
                     return c;
+                }
+                catch (Exception e)
+                {
+                    MessageBox.Show(e.Message);
+                    dataReader.Close();
+                }
+            }
+            catch (InvalidConnexion e)
+            {
+                MessageBox.Show("Connexion avec la base de donnée perdu");
+                throw e;
+            }
+
+            #endregion
+
+            return null;
+        }
+
+
+        public static List<Client> getAllClients()
+        {
+            List<Client> lc = new List<Client>();
+
+            #region BDD
+
+            try
+            {
+                Connexion co = Connexion.getInstance();
+
+                string query = "SELECT id, nom, prenom, solde FROM client";
+
+                MySqlCommand cmd = new MySqlCommand(query, co.connexion);
+                MySqlDataReader dataReader = cmd.ExecuteReader();
+
+                try
+                {
+
+                    if (dataReader.HasRows)
+                    {
+                        while (dataReader.Read())
+                        {
+                            lc.Add(new Client(dataReader.GetInt32(0), dataReader.GetString(1), dataReader.GetString(2), dataReader.GetFloat(3)));
+                        }
+                    }
+
+                    dataReader.Close();
+                    return lc;
                 }
                 catch (Exception e)
                 {

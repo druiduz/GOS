@@ -12,6 +12,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using GOS.Classes;
+using System.Configuration;
 
 namespace GOS.Pages
 {
@@ -90,6 +91,23 @@ namespace GOS.Pages
             this.txtRendu.Text = this.rendu.ToString();
         }
 
+        private void updateRendu()
+        {
+            try
+            {
+                this.rendu = float.Parse(this.txtMonnaie.Text) - float.Parse(this.txtPrix.Text);
+            }
+            catch (Exception any)
+            {
+                if (ConfigurationManager.AppSettings["debugmode"] == "true")
+                {
+                    MessageBox.Show(any.Message);
+                }
+                return;
+            }
+            this.txtRendu.Text = this.rendu.ToString();
+        }
+
         private void btn1_Click(object sender, RoutedEventArgs e)
         {
             this.monnaieTxt += "1";
@@ -153,7 +171,6 @@ namespace GOS.Pages
         private void btnvirg_Click(object sender, RoutedEventArgs e)
         {
             this.monnaieTxt += ",";
-            //this.updateChamps();
         }
 
         private void btnC_Click(object sender, RoutedEventArgs e)
@@ -164,6 +181,14 @@ namespace GOS.Pages
             if (this.monnaieTxt != "")
             {
                 this.updateChamps();
+            }
+        }
+
+        private void txtMonnaie_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (this.monnaieTxt != "")
+            {
+                this.updateRendu();
             }
         }
 
