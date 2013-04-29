@@ -11,6 +11,9 @@ namespace GOS.Classes
 {
     static class Repporting
     {
+
+        static string exportPath = "E:/Codage/GOS";
+
         public static bool repportCsv(DateTime debut, DateTime fin, string path)
         {
             List<Vente> listVente = Vente.getVentesByPeriod(debut, fin);
@@ -32,7 +35,7 @@ namespace GOS.Classes
         }
 
         
-        public  static void Export(bool includeHeaderLine,List<Produit> stock)
+        public  static void Export(bool includeHeaderLine, List<Produit> stock)
         {
 
             StringBuilder sb = new StringBuilder();
@@ -60,7 +63,7 @@ namespace GOS.Classes
             }
 
             
-            File.WriteAllText("D:/Stocks_"+DateTime.Now.ToString()+".csv", sb.ToString());
+            File.WriteAllText(exportPath + "/Stocks_"+DateTime.Now.ToString()+".csv", sb.ToString());
         }
 
       

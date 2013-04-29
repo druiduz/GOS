@@ -2,13 +2,18 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Collections;
+using System.Windows.Forms;
+using MySql.Data.MySqlClient;
 
 namespace GOS.Classes
 {
-    class Stock
+    class Stock : IEnumerable
     {
 
         public List<Produit> stock;
+        public Produit[] _stock;
+        //TODO Utiliser une collection perso pour que tout se gère en auto
 
         public Stock()
         {
@@ -20,6 +25,7 @@ namespace GOS.Classes
         private void _init()
         {
             stock = Produit.getAllProduit();
+            _stock = Produit.getAllProduitArray();
         }
 
         public void afficher()
@@ -29,6 +35,35 @@ namespace GOS.Classes
         public void trier()
         {
 
+        }
+
+        public void store()
+        {
+            #region BDD
+
+            try
+            {
+
+                foreach (Produit p in stock)
+                {
+                    if (!p.store())
+                    {
+                        throw new Exception();
+                    }
+                }
+
+            }
+            catch (InvalidConnexion e)
+            {
+                MessageBox.Show("Connexion avec la base de donnée perdu");
+                throw e;
+            }
+            catch (Exception any)
+            {
+                throw any;
+            }
+
+            #endregion
         }
 
         public bool checkQuantite(int id)
@@ -47,7 +82,22 @@ namespace GOS.Classes
             return idOut;
         }
 
-        public static void approvisionnement(Produit p)
+        public static void checkApprovisionnement()
+        {
+            List<Produit> toApp = new List<Produit>();
+            List<Produit> listProduit = Produit.getAllProduit();
+            foreach (Produit p in listProduit)
+            {
+                if (p.Quantite <= p.Quantite_min)
+                {
+                    toApp.Add(p);
+                }
+            }
+
+            Stock.approvisionnement(toApp);
+        }
+
+        public static void approvisionnement(List<Produit> lp)
         {
 
         }
@@ -57,5 +107,62 @@ namespace GOS.Classes
 
         }
 
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return (IEnumerator)GetEnumerator();
+        }
+
+        public StockEnum GetEnumerator()
+        {
+            return new StockEnum(_stock);
+        }
+    }
+
+    public class StockEnum : IEnumerator
+    {
+
+        public Produit[] _produit;
+
+        int position = -1;
+
+        public StockEnum(Produit[] list)
+        {
+            _produit = list;
+        }
+
+        public bool MoveNext()
+        {
+            position++;
+            return (position < _produit.Length);
+        }
+
+        public void Reset()
+        {
+            position = -1;
+        }
+
+        object IEnumerator.Current
+        {
+            get
+            {
+                return Current;
+            }
+        }
+
+        public Produit Current
+        {
+            get
+            {
+                try
+                {
+                    return _produit[position];
+                }
+                catch (IndexOutOfRangeException)
+                {
+                    throw new InvalidOperationException();
+                }
+            }
+        }
     }
 }

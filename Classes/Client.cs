@@ -7,6 +7,20 @@ using System.Windows.Forms;
 
 namespace GOS.Classes
 {
+
+    public class RFIDException : Exception
+    {
+        new public string Message;
+        public RFIDException()
+        {
+            this.Message = "";
+        }
+        public RFIDException(string m)
+        {
+            this.Message = m;
+        }
+    }
+
     public class Client
     {
 

@@ -22,6 +22,17 @@ namespace GOS.Classes
         }
     }
 
+    public class QueryException : Exception
+    {
+        public string query;
+        new public string Message;
+        public QueryException(string query, string m)
+        {
+            this.query = query;
+            this.Message = m;
+        }
+    }
+
     class Connexion
     {
 

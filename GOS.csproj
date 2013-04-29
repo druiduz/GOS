@@ -70,7 +70,6 @@
     </Compile>
     <Compile Include="Classes\Client.cs" />
     <Compile Include="Classes\Connexion.cs" />
-    <Compile Include="Classes\Paiement.cs" />
     <Compile Include="Classes\Produit.cs" />
     <Compile Include="Classes\ProduitButton.cs" />
     <Compile Include="Classes\Repporting.cs" />
@@ -165,6 +164,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="app.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

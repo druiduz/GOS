@@ -32,14 +32,22 @@ namespace GOS.Pages
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            curClient = Client.getUserByRFID();
-
-            this.textNom.Text = curClient.Nom;
-            this.textPrenom.Text = curClient.Prenom;
-            this.textSolde.Text = curClient.getCapital().ToString();
-            this.textNewSolde.Text = (curClient.getCapital()-panier.getTotal()).ToString();
-
             this.initRecapPanier();
+
+            try
+            {
+                curClient = Client.getUserByRFID();
+
+                this.textNom.Text = curClient.Nom;
+                this.textPrenom.Text = curClient.Prenom;
+                this.textSolde.Text = curClient.getCapital().ToString();
+                this.textNewSolde.Text = (curClient.getCapital() - panier.getTotal()).ToString();
+
+            }
+            catch (RFIDException excep)
+            {
+                MessageBox.Show(excep.Message);
+            }
         }
 
         private void initRecapPanier()
@@ -73,6 +81,7 @@ namespace GOS.Pages
             if (panier.finishVente(curClient, main.vendeur))
             {
                 MessageBox.Show("Vente reussi");
+                Stock.checkApprovisionnement();
             }
             else
             {

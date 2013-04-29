@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Collections;
 using MySql.Data.MySqlClient;
+using System.Windows.Forms;
+using System.Configuration;
 
 namespace GOS.Classes
 {
@@ -17,12 +19,17 @@ namespace GOS.Classes
         private int quantite_min;
         private String logo;
 
+        private bool newProduit;
+
         public Produit()
         {
-            this._ID = -1;
+            this._ID = this.getNewProduitId();
             this.name = "undefined";
-            this.quantite = 0;
             this.prix = 0.0f;
+            this.quantite = 0;
+            this.quantite_min = 5;
+            this.logo = "";
+            this.newProduit = true;
         }
 
         public Produit(int id, String name, String type, float prix, int quantite, int quantite_min, String logo)
@@ -38,6 +45,7 @@ namespace GOS.Classes
             {
                 this.logo = "E:/Codage/GOS/Images/logo-produit/" + logo;
             }
+            this.newProduit = false;
         }
 
         public Produit(int id, string name)
@@ -92,22 +100,119 @@ namespace GOS.Classes
             return s;
         }
 
-
-        public void update()
+        /**
+         * Retourne l'id suivant de la table pour un nouveau produit
+         * 
+         */
+        public int getNewProduitId()
         {
+            int id = 0;
             #region BDD
             Connexion co = Connexion.getInstance();
 
-            string query = "UPDATE produit SET nom_produit = @nom, prix_produit = @prix, quantite = @quantite WHERE idProduit = @idproduit";
+            string query = "SELECT idProduit FROM Produit ORDER BY idProduit DESC LIMIT 1";
 
             MySqlCommand cmd = new MySqlCommand(query, co.connexion);
-            cmd.Parameters.AddWithValue("@nom", this.name);
-            cmd.Parameters.AddWithValue("@quantite", this.quantite);
-            cmd.Parameters.AddWithValue("@prix", this.prix);
-            cmd.Parameters.AddWithValue("@idproduit", this.ID);
-            cmd.ExecuteScalar();
+            MySqlDataReader dataReader = cmd.ExecuteReader();
+
+            while (dataReader.Read())
+            {
+                id = dataReader.GetInt32(0)+1;
+            }
+
+            dataReader.Close();
 
             #endregion
+
+            return id;
+        }
+
+        public bool store()
+        {
+            if (this.newProduit)
+            {
+                return this.create();
+            }
+            else
+            {
+                return this.update();
+            }
+        }
+
+        public bool create()
+        {
+            #region BDD
+            try
+            {
+                Connexion co = Connexion.getInstance();
+
+                string query = "INSERT INTO produit SET " +
+                                "idProduit = @id, " +
+                                "nom_produit = @nom, " +
+                                "type_produit = @type, " +
+                                "prix_produit = @prix, " +
+                                "quantite = @quantite, " +
+                                "quantite_mini = @quantite_min, " +
+                                "logo = @logo;";
+
+                MySqlCommand cmd = new MySqlCommand(query, co.connexion);
+                cmd.Parameters.AddWithValue("@id", this.ID);
+                cmd.Parameters.AddWithValue("@nom", this.name);
+                cmd.Parameters.AddWithValue("@type", this.type);
+                cmd.Parameters.AddWithValue("@prix", this.prix);
+                cmd.Parameters.AddWithValue("@quantite", this.quantite);
+                cmd.Parameters.AddWithValue("@quantite_min", this.quantite_min);
+                cmd.Parameters.AddWithValue("@logo", this.logo);
+                cmd.ExecuteScalar();
+            }
+            catch (Exception any)
+            {
+                MessageBox.Show(any.Message);
+                return false;
+            }
+            #endregion
+
+            return true;
+        }
+
+        public bool update()
+        {
+            #region BDD
+            try
+            {
+                Connexion co = Connexion.getInstance();
+
+                string query = "UPDATE produit SET " +
+                                "nom_produit = @nom, " +
+                                "type_produit = @type, " +
+                                "prix_produit = @prix, " +
+                                "quantite = @quantite, " +
+                                "quantite_mini = @quantite_min, " +
+                                "logo = @logo " +
+                                "WHERE idProduit = @idproduit";
+
+                MySqlCommand cmd = new MySqlCommand(query, co.connexion);
+                cmd.Parameters.AddWithValue("@nom", this.name);
+                cmd.Parameters.AddWithValue("@type", this.type);
+                cmd.Parameters.AddWithValue("@prix", this.prix);
+                cmd.Parameters.AddWithValue("@quantite", this.quantite);
+                cmd.Parameters.AddWithValue("@quantite_min", this.quantite_min);
+                cmd.Parameters.AddWithValue("@logo", this.logo);
+                cmd.Parameters.AddWithValue("@idproduit", this.ID);
+                cmd.ExecuteScalar();
+
+            }
+            catch (Exception any)
+            {
+                //if (DEBUG_MODE)
+                //{
+                    MessageBox.Show(any.Message);
+                //}
+                return false;
+            }
+            #endregion
+
+            return true;
         }
 
         public static Produit getProduit(int id)
@@ -178,6 +283,44 @@ namespace GOS.Classes
             return lp;
         }
 
+        public static Produit[] getAllProduitArray()
+        {
+
+            int taille = 0;
+            Produit[] ap;
+
+            Connexion co = Connexion.getInstance();
+
+            string query = "SELECT count(idProduit) FROM produit";
+            MySqlCommand cmd = new MySqlCommand(query, co.connexion);
+            MySqlDataReader dataReader = cmd.ExecuteReader();
+
+            while (dataReader.Read())
+            {
+                taille = dataReader.GetInt32(0);
+            }
+
+            dataReader.Close();
+
+            ap = new Produit[taille];
+
+
+            query = "SELECT * FROM produit";
+            cmd = new MySqlCommand(query, co.connexion);
+            dataReader = cmd.ExecuteReader();
+
+            int i = 0;
+            while (dataReader.Read())
+            {
+                ap[i] = new Produit(dataReader.GetInt32(0), dataReader.GetString(1), dataReader.GetString(2), dataReader.GetFloat(3), dataReader.GetInt32(4), dataReader.GetInt32(5), dataReader.GetString(6));
+                i++;
+            }
+
+            dataReader.Close();
+
+            return ap;
+        }
+
         public static List<String> getAllTypes()
         {
             List<String> lp = new List<String>();
@@ -201,25 +344,6 @@ namespace GOS.Classes
             #endregion
 
             return lp;
-        }
-
-        public static bool addProduit(Produit p)
-        {
-            #region BDD
-
-            Connexion co = Connexion.getInstance();
-
-            string query = "INSERT INTO produit SET name = @name, quantite = @quantite, prix = @prix";
-
-            MySqlCommand cmd = new MySqlCommand(query, co.connexion);
-            cmd.Parameters.AddWithValue("@name", p.name);
-            cmd.Parameters.AddWithValue("@quantite", p.quantite);
-            cmd.Parameters.AddWithValue("@prix", p.prix);
-            cmd.ExecuteScalar();
-
-            #endregion
-
-            return true;
         }
 
         public bool checkQuantite()

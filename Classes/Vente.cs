@@ -240,4 +240,17 @@ namespace GOS.Classes
             return listVente;
         }
     }
+
+    public class PanierItem
+    {
+
+        public Produit produit;
+        public int quantite;
+
+        public PanierItem(Produit p, int n)
+        {
+            this.produit = p;
+            this.quantite = n;
+        }
+    }
 }

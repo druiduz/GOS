@@ -104,7 +104,11 @@ namespace GOS.Pages
                 i++;
             }
         }
-
+        /**
+         * TODO: generer le meme item pour le meme produit en fonction des onglet
+         * Pour l'intant, un produit s'affichant dans "tout les produit" ne se stack pas avec le meme item d'un onglet spécifique
+         * 
+        **/
         private void loadTabType(String type, int indexTab)
         {
             List<Produit> listByType = Produit.getAllProduit("WHERE type_produit = '" + type + "'");
@@ -213,10 +217,6 @@ namespace GOS.Pages
             if (p.Quantite <= 0)
             {
                 MessageBox.Show("Nombre de '" + p.Name + "' insufisant");
-            }
-            else if (!p.checkQuantite())
-            {
-                //Stock.approvisionnement(p);
             }
 
             this.curPanier.ajoutPanier(p, 1);
