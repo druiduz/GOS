@@ -7,8 +7,8 @@
       d:DesignHeight="555" d:DesignWidth="927"
 	Title="GestionStock">
 
-    <Grid VerticalAlignment="Center">
-        <Button Content="Retour" Height="47" HorizontalAlignment="Left" Margin="671,483,0,0" Name="btnRetour" VerticalAlignment="Top" Width="229" />
+    <Grid VerticalAlignment="Center" Loaded="Grid_Loaded">
+        <Button Content="Retour" Height="47" HorizontalAlignment="Left" Margin="671,483,0,0" Name="btnRetour" VerticalAlignment="Top" Width="229" Click="btnRetour_Click" />
         <Button Content="Valider" Height="49" HorizontalAlignment="Left" Margin="671,411,0,0" Name="btnValider" VerticalAlignment="Top" Width="229" Click="btnValider_Click" />
         <Button Content="0" Height="31" HorizontalAlignment="Left" Margin="34,512,0,0" Name="btn0" VerticalAlignment="Top" Width="37" />
         <Button Content="7" Height="31" HorizontalAlignment="Left" Margin="34,466,0,0" Name="btn7" VerticalAlignment="Top" Width="37" />

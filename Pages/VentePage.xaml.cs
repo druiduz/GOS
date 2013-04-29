@@ -22,15 +22,12 @@ namespace GOS.Pages
     {
 
         private Vente curPanier;
-        List<RecapPanier> recapPanier;
         List<Produit> liaisonPanier = new List<Produit>(); //id, produit
-        private int curIndex = 0;
 
         public VentePage()
         {
             InitializeComponent();
             curPanier = new Vente();
-            List<RecapPanier> recapPanier = new List<RecapPanier>();
         }
 
         public VentePage(Vente v)
@@ -62,12 +59,11 @@ namespace GOS.Pages
                 indexTab++;
             }
 
+            //this.grdPanier.ItemsSource = this.liaisonPanier;
             this.grdPanier.Columns.Add(new DataGridTextColumn { Header = "Produit", Width = 200, Binding = new Binding("produit") });
             this.grdPanier.Columns.Add(new DataGridTextColumn { Header = "Quantite", Binding = new Binding("quantite") });
-            //this.grdPanier.Columns.Add(new DataGridTextColumn { Header = "Supprimer", Binding = new Binding("removeButt") });
             this.grdPanier.IsEnabled = false;
             this.grdPanier.CanUserSortColumns = true;
-            //this.grdPanier.ItemsSource = curPanier.getPanier();
         }
 
         private void loadTabAllProduit()
@@ -104,7 +100,11 @@ namespace GOS.Pages
                 i++;
             }
         }
-
+        /**
+         * TODO: generer le meme item pour le meme produit en fonction des onglet
+         * Pour l'intant, un produit s'affichant dans "tout les produit" ne se stack pas avec le meme item d'un onglet spécifique
+         * 
+        **/
         private void loadTabType(String type, int indexTab)
         {
             List<Produit> listByType = Produit.getAllProduit("WHERE type_produit = '" + type + "'");
@@ -163,7 +163,6 @@ namespace GOS.Pages
                 }
                 catch (Exception e)
                 {
-                    //MessageBox.Show(e.Message);
                     ProduitButton child = new ProduitButton(p);
                     child.Click += new RoutedEventHandler(newBtn_Click);
 
@@ -213,10 +212,7 @@ namespace GOS.Pages
             if (p.Quantite <= 0)
             {
                 MessageBox.Show("Nombre de '" + p.Name + "' insufisant");
-            }
-            else if (!p.checkQuantite())
-            {
-                //Stock.approvisionnement(p);
+                return;
             }
 
             this.curPanier.ajoutPanier(p, 1);
@@ -250,51 +246,11 @@ namespace GOS.Pages
             
 
             #endregion
-
-            #region tmp
-            /*object t = new { produit = p.Name, quantite = this.curPanier.getQuantite(p) };
-            this.recapPanier.Add(t);
-            this.grdPanier.Items.Add(new { produit = p.Name, quantite = this.curPanier.getQuantite(p) });*/
-            //this.grdPanier.Items.Insert(p.ID, new { produit = p.Name, quantite = this.curPanier.getQuantite(p) });
-
-
-            /*if (recapPanier.ContainsKey(p))
-            {
-                panier[p] += q;
-            }
-            else
-            {
-                panier.Add(p, q);
-            }
-            
-            this.grdPanier.Items.Insert(p.ID, new RecapPanier(p.Name, this.curPanier.getQuantite(p)));
-
-            if (this.grdPanier.Items.GetItemAt(p.ID) != null)
-            {
-                RecapPanier tmp = (RecapPanier) this.grdPanier.Items.GetItemAt(p.ID);
-                tmp.quantite += 1;
-            }*/
-
-            #endregion
         }
 
         private void removeBtn_Click(object sender, RoutedEventArgs e)
         {
             
-        }
-    }
-
-    public class RecapPanier
-    {
-        public string name;
-        public int quantite;
-        //public Button removeButt;
-
-        public RecapPanier(string name, int quantite)
-        {
-            this.name = name;
-            this.quantite = quantite;
-            //this.removeButt = new Button();
         }
     }
 }
