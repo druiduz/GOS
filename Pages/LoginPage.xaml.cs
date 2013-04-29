@@ -44,20 +44,5 @@ namespace GOS.Pages
         {
             this.inputLogin.Focus();
         }
-
-        private void image1_ImageFailed(object sender, ExceptionRoutedEventArgs e)
-        {
-
-        }
-
-        private void image1_ImageFailed_1(object sender, ExceptionRoutedEventArgs e)
-        {
-
-        }
-
-        private void image1_ImageFailed_2(object sender, ExceptionRoutedEventArgs e)
-        {
-
-        }
     }
 }
