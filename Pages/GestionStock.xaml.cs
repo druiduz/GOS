@@ -31,12 +31,13 @@ namespace GOS.Pages
             //this.grdstock.ItemsSource = s;
             //this.grdstock.ItemsSource = Produit.getAllProduit();
             this.grdstock.ItemsSource = s.stock;
-            this.grdstock.Columns.Add(new DataGridTextColumn { Header = "ID", Width = 10, Binding = new Binding("ID") });
+            this.grdstock.Columns.Add(new DataGridTextColumn { Header = "ID", Width = 10, Binding = new Binding("ID"), IsReadOnly = true });
             this.grdstock.Columns.Add(new DataGridTextColumn { Header = "Name", Width = 200, Binding = new Binding("Name") });
             this.grdstock.Columns.Add(new DataGridTextColumn { Header = "Type", Width = 200, Binding = new Binding("Type") });
             this.grdstock.Columns.Add(new DataGridTextColumn { Header = "Prix", Width = 100, Binding = new Binding("Prix") });
             this.grdstock.Columns.Add(new DataGridTextColumn { Header = "Quantite", Width = 100, Binding = new Binding("Quantite") });
             this.grdstock.Columns.Add(new DataGridTextColumn { Header = "Quantite_min", Width = 100, Binding = new Binding("Quantite_min") });
+            this.grdstock.Columns.Add(new DataGridTextColumn { Header = "Logo", Width = 100, Binding = new Binding("logo") });
         }
 
         private void btnExport_Click(object sender, RoutedEventArgs e)

@@ -229,29 +229,48 @@ namespace GOS.Classes
             string logo = "";
 
             #region BDD
-
-            Connexion co = Connexion.getInstance();
-
-            string query = "SELECT * FROM produit WHERE id = " + id;
-
-            MySqlCommand cmd = new MySqlCommand(query, co.connexion);
-            MySqlDataReader dataReader = cmd.ExecuteReader();
-
-            while (dataReader.Read())
+            try
             {
-                ID = dataReader.GetInt32(0);
-                name = dataReader.GetString(1);
-                type = dataReader.GetString(2);
-                prix = dataReader.GetFloat(3);
-                quantite = dataReader.GetInt32(4);
-                quantite_min = dataReader.GetInt32(5);
-                logo = dataReader.GetString(6);
+                Connexion co = Connexion.getInstance();
+
+                string query = "SELECT * FROM produit WHERE id = " + id;
+
+                MySqlCommand cmd = new MySqlCommand(query, co.connexion);
+                MySqlDataReader dataReader = cmd.ExecuteReader();
+                
+                try
+                {
+                    while (dataReader.Read())
+                    {
+                        ID = dataReader.GetInt32(0);
+                        name = dataReader.GetString(1);
+                        type = dataReader.GetString(2);
+                        prix = dataReader.GetFloat(3);
+                        quantite = dataReader.GetInt32(4);
+                        quantite_min = dataReader.GetInt32(5);
+                        logo = dataReader.GetString(6);
+                    }
+
+                    dataReader.Close();
+                }
+                catch (Exception any)
+                {
+                    if (ConfigurationManager.AppSettings["debugmode"] == "true")
+                    {
+                        MessageBox.Show(any.Message);
+                    }
+
+                    dataReader.Close();
+                }
+
+            }
+            catch (InvalidConnexion e)
+            {
+                MessageBox.Show("Connexion avec la base de donnée perdu");
+                throw e;
             }
 
-            dataReader.Close();
-
             #endregion
-
 
             Produit p = new Produit(ID, name, type, prix, quantite, quantite_min, logo);
             return p;
