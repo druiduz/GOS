@@ -32,7 +32,7 @@ CREATE TABLE `client` (
   `prenom` varchar(45) NOT NULL,
   `solde` float NOT NULL,
   PRIMARY KEY  (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `client`
@@ -41,7 +41,9 @@ CREATE TABLE `client` (
 /*!40000 ALTER TABLE `client` DISABLE KEYS */;
 INSERT INTO `client` (`id`,`nom`,`prenom`,`solde`) VALUES 
  (0,'anonymous','',0),
- (1,'client1_n','client1_p',8);
+ (1,'client1_n','client1_p',4.4),
+ (3,'Allier','Mikael',50),
+ (4,'Lavergne','Guillaume',25);
 /*!40000 ALTER TABLE `client` ENABLE KEYS */;
 
 
@@ -59,7 +61,7 @@ CREATE TABLE `produit` (
   `Quantite_mini` int(10) unsigned NOT NULL,
   `Logo` varchar(200) NOT NULL,
   PRIMARY KEY  (`idProduit`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `produit`
@@ -67,11 +69,14 @@ CREATE TABLE `produit` (
 
 /*!40000 ALTER TABLE `produit` DISABLE KEYS */;
 INSERT INTO `produit` (`idProduit`,`Nom_Produit`,`Type_Produit`,`Prix_Produit`,`Quantite`,`Quantite_mini`,`Logo`) VALUES 
- (1,'coca','boisson',0.6,45,5,'coca-cola-logo.jpg'),
- (2,'cafe','boisson',0.6,44,5,''),
- (3,'m&m','nourriture',0.6,50,5,''),
+ (1,'coca','boisson',0.6,43,5,'coca-cola-logo.jpg'),
+ (2,'cafe','boisson',0.6,41,5,''),
+ (3,'m&m','nourriture',0.6,50,5,'mms-logo.jpg'),
  (4,'lion','nourriture',0.6,50,5,''),
- (5,'pute','loisir',0.6,50,5,'');
+ (5,'redbull','autre',1,50,5,''),
+ (6,'test','test',0,0,5,''),
+ (7,'fanta','boisson',0.6,50,5,''),
+ (8,'m&m noir','nourriture',0.6,50,5,'mms-noir-logo.png');
 /*!40000 ALTER TABLE `produit` ENABLE KEYS */;
 
 
@@ -88,7 +93,7 @@ CREATE TABLE `vendeur` (
   `prenom` varchar(45) NOT NULL,
   `lastCo` date NOT NULL,
   PRIMARY KEY  (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `vendeur`
@@ -96,7 +101,8 @@ CREATE TABLE `vendeur` (
 
 /*!40000 ALTER TABLE `vendeur` DISABLE KEYS */;
 INSERT INTO `vendeur` (`id`,`login`,`mdp`,`nom`,`prenom`,`lastCo`) VALUES 
- (1,'admin','admin','vendeur','1','0000-00-00');
+ (1,'admin','21232f297a57a5a743894a0e4a801fc3','vendeur','1','0000-00-00'),
+ (2,'druiduz','63a9f0ea7bb98050796b649e85481845','Allier','Mikael','0000-00-00');
 /*!40000 ALTER TABLE `vendeur` ENABLE KEYS */;
 
 
@@ -118,7 +124,7 @@ CREATE TABLE `vente` (
   KEY `FK_client` (`client_id`),
   CONSTRAINT `FK_client` FOREIGN KEY (`client_id`) REFERENCES `client` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `FK_Vendeur` FOREIGN KEY (`vendeur_id`) REFERENCES `vendeur` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `vente`
@@ -136,7 +142,8 @@ INSERT INTO `vente` (`id`,`client_id`,`vendeur_id`,`date_vente`,`total`,`type`,`
  (8,1,1,'2013-04-18 23:15:35',0,'',0),
  (9,1,1,'2013-04-19 11:31:46',0,'',0),
  (10,0,1,'2013-04-28 16:53:04',0,'',0),
- (11,0,1,'2013-04-28 16:55:30',1.8,'',0);
+ (11,0,1,'2013-04-28 16:55:30',1.8,'',0),
+ (12,1,1,'2013-04-29 12:12:55',3.6,'carte',0);
 /*!40000 ALTER TABLE `vente` ENABLE KEYS */;
 
 
@@ -155,7 +162,7 @@ CREATE TABLE `ventedetails` (
   KEY `FK_ventedetails_produit_id` (`produit_id`),
   CONSTRAINT `FK_ventedetails_vente_id` FOREIGN KEY (`vente_id`) REFERENCES `vente` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `FK_ventedetails_produit_id` FOREIGN KEY (`produit_id`) REFERENCES `produit` (`idProduit`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `ventedetails`
@@ -181,7 +188,10 @@ INSERT INTO `ventedetails` (`id`,`vente_id`,`produit_id`,`quantite`) VALUES
  (16,9,2,1),
  (17,10,2,1),
  (18,10,1,2),
- (19,11,2,3);
+ (19,11,2,3),
+ (20,12,2,3),
+ (21,12,1,1),
+ (22,12,1,2);
 /*!40000 ALTER TABLE `ventedetails` ENABLE KEYS */;
 
 
