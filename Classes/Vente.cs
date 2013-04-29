@@ -1,10 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using MySql.Data.MySqlClient;
 using System.Windows.Forms;
-using System.Net.Mail;
 
 namespace GOS.Classes
 {
@@ -16,42 +13,8 @@ namespace GOS.Classes
         private int client_id;
         private DateTime date_vente;
         private string [] reassort = new string[50];
-        private int ligne = 0;
-        private string message;
+        private int nbReassort = 0;
 
-        public string EnvoisMails(string toList, string from, string ccList, string subject, string body)
-        {
-
-            MailMessage message = new MailMessage();
-            SmtpClient smtpClient = new SmtpClient();
-            string msg = string.Empty;
-            try
-            {
-                MailAddress fromAddress = new MailAddress(from);
-                message.From = fromAddress;
-                message.To.Add(toList);
-                if (ccList != null && ccList != string.Empty)
-                    message.CC.Add(ccList);
-                message.Subject = subject;
-                message.IsBodyHtml = true;
-                message.Body = body;
-                // We use gmail as our smtp client
-                smtpClient.Host = "smtp.gmail.com";
-                smtpClient.Port = 587;
-                smtpClient.EnableSsl = true;
-                smtpClient.UseDefaultCredentials = true;
-                smtpClient.Credentials = new System.Net.NetworkCredential(
-                    "Guigui778@gmail.com", "26081988");
-
-                smtpClient.Send(message);
-                msg = "Message envoyer<BR>";
-            }
-            catch (Exception ex)
-            {
-                msg = ex.Message;
-            }
-            return msg;
-        }
         public Dictionary<Produit, int> getPanier()
         {
             return panier;
@@ -189,28 +152,17 @@ namespace GOS.Classes
                 {
                     this.store(0, u.getId(), "espece", rendu); //client anonym
                 }
+
                 foreach (KeyValuePair<Produit, int> p in panier)
                 {
                     p.Key.Quantite -= p.Value;
                     if (p.Key.Quantite < p.Key.Quantite_min)
-                     {
-                        reassort[ligne] = p.Key.Name;
-                        ligne++;
-
-                      }
+                    {
+                        reassort[nbReassort] = p.Key.Name;
+                        nbReassort++;
+                    }
 
                     p.Key.update();
-                    if (ligne<0){
-                        message="Bonjour </BR></BR>Voici la liste des articles à recommander</BR></BR>";
-                        do {
-                            message=message+reassort[ligne]+"</BR></BR>";
-                            ligne--;
-                            }while(ligne>=0);
-
-                        EnvoisMails("Guigui778@gmail.com", "Guigui778@gmail.com", "bde-comin@gmail.com", "Article a recommander", message))
-                                 }
-
-                    
                 }
             }
             catch (InvalidConnexion e)
@@ -293,6 +245,22 @@ namespace GOS.Classes
             #endregion
 
             return listVente;
+        }
+
+        public void checkReassort()
+        {
+
+            if (nbReassort > 0)
+            {
+                string message = "Bonjour </BR></BR>Voici la liste des articles à recommander</BR></BR>";
+                do
+                {
+                    message = message + reassort[nbReassort] + "<br /><br />";
+                    nbReassort--;
+                } while (nbReassort >= 0);
+
+                Utils.EnvoisMails("Guigui778@gmail.com", "Guigui778@gmail.com", "bde-comin@gmail.com", "Article a recommander", message);
+            }
         }
         
     }

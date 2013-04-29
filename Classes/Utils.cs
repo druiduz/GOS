@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Security.Cryptography;
+using System.Net.Mail;
+using System.Configuration;
+using System.Windows.Forms;
 
 namespace GOS.Classes
 {
@@ -28,6 +31,44 @@ namespace GOS.Classes
 
             // Return the hexadecimal string.
             return sBuilder.ToString();
+        }
+
+        public static bool EnvoisMails(string toList, string from, string ccList, string subject, string body)
+        {
+
+            MailMessage message = new MailMessage();
+            SmtpClient smtpClient = new SmtpClient();
+            string msg = string.Empty;
+            try
+            {
+                MailAddress fromAddress = new MailAddress(from);
+                message.From = fromAddress;
+                message.To.Add(toList);
+                if (ccList != null && ccList != string.Empty)
+                    message.CC.Add(ccList);
+                message.Subject = subject;
+                message.IsBodyHtml = true;
+                message.Body = body;
+                // We use gmail as our smtp client
+                smtpClient.Host = "smtp.gmail.com";
+                smtpClient.Port = 587;
+                smtpClient.EnableSsl = true;
+                smtpClient.UseDefaultCredentials = true;
+                smtpClient.Credentials = new System.Net.NetworkCredential(
+                    "Guigui778@gmail.com", "26081988");
+
+                smtpClient.Send(message);
+                msg = "Message envoyer<BR>";
+            }
+            catch (Exception any)
+            {
+                if (ConfigurationManager.AppSettings["debugmode"] == "true")
+                {
+                    MessageBox.Show(any.Message);
+                }
+                return false;
+            }
+            return true;
         }
     }
 }
