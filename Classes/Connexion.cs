@@ -5,6 +5,7 @@ using System.Text;
 using System.Data.SqlClient;
 using MySql.Data.MySqlClient;
 using System.Windows.Forms;
+using System.Configuration;
 
 namespace GOS.Classes
 {
@@ -68,13 +69,14 @@ namespace GOS.Classes
         //Initialize values
         private void Initialize()
         {
-            server = "localhost";
-            database = "GOS";
-            uid = "root";
-            password = "";
+
+            server = ConfigurationManager.AppSettings["bdd_server"];
+            database = ConfigurationManager.AppSettings["bdd_database"];
+            uid = ConfigurationManager.AppSettings["bdd_uid"];
+            password = ConfigurationManager.AppSettings["bdd_password"];
             string connectionString;
-            connectionString = "SERVER=" + server + ";" + "DATABASE=" + 
-		    database + ";" + "UID=" + uid + ";" + "PASSWORD=" + password + ";";
+            connectionString = "SERVER=" + server + ";" + "DATABASE=" +
+            database + ";" + "UID=" + uid + ";" + "PASSWORD=" + password + ";";
 
             connexion = new MySqlConnection(connectionString);
         }

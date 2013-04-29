@@ -167,7 +167,10 @@ namespace GOS.Classes
             }
             catch (Exception any)
             {
-                MessageBox.Show(any.Message);
+                if (ConfigurationManager.AppSettings["debugmode"] == "true")
+                {
+                    MessageBox.Show(any.Message);
+                }
                 return false;
             }
             #endregion
@@ -204,10 +207,10 @@ namespace GOS.Classes
             }
             catch (Exception any)
             {
-                //if (DEBUG_MODE)
-                //{
+                if (ConfigurationManager.AppSettings["debugmode"] == "true")
+                {
                     MessageBox.Show(any.Message);
-                //}
+                }
                 return false;
             }
             #endregion
