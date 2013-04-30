@@ -124,30 +124,6 @@ namespace GOS.Classes
             }
         }
 
-        public void select()
-        {
-            string query = "SELECT * FROM produit";
-
-            List< string >[] list = new List< string >[3];
-            list[0] = new List< string >();
-            list[1] = new List< string >();
-            list[2] = new List< string >();
-
-            if (this.OpenConnection() == true)
-            {
-                MySqlCommand cmd = new MySqlCommand(query, connexion);
-                MySqlDataReader dataReader = cmd.ExecuteReader();
-
-                while (dataReader.Read())
-                {
-                    
-                }
-
-                dataReader.Close();
-                this.CloseConnection();
-            }
-        }
-
         public bool checkCo()
         {
             return connexion.Ping();

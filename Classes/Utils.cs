@@ -72,6 +72,8 @@ namespace GOS.Classes
             return true;
         }
 
+
+        #region RFID
         /**
          * Lecture des informations de la carte RFID du client
          */
@@ -148,5 +150,59 @@ namespace GOS.Classes
             RFIDReader.Disconnect(SCardReaderDisposition.Reset);
 
         }
+
+        static void CardInserted(object sender, CardStatusEventArgs args)
+        {
+            SCardMonitor monitor = (SCardMonitor)sender;
+
+            Console.WriteLine(">> CardInserted Event for reader: "
+                + args.ReaderName);
+            Console.WriteLine("   ATR: " + StringAtr(args.Atr));
+            Console.WriteLine("   State: " + args.State + "\n");
+        }
+
+        static void CardRemoved(object sender, CardStatusEventArgs args)
+        {
+            SCardMonitor monitor = (SCardMonitor)sender;
+
+            Console.WriteLine(">> CardRemoved Event for reader: "
+                + args.ReaderName);
+            Console.WriteLine("   ATR: " + StringAtr(args.Atr));
+            Console.WriteLine("   State: " + args.State + "\n");
+        }
+
+        static void Initialized(object sender, CardStatusEventArgs args)
+        {
+            SCardMonitor monitor = (SCardMonitor)sender;
+
+            Console.WriteLine(">> Initialized Event for reader: "
+                + args.ReaderName);
+            Console.WriteLine("   ATR: " + StringAtr(args.Atr));
+            Console.WriteLine("   State: " + args.State + "\n");
+        }
+
+        static void StatusChanged(object sender, StatusChangeEventArgs args)
+        {
+            SCardMonitor monitor = (SCardMonitor)sender;
+
+            Console.WriteLine(">> StatusChanged Event for reader: "
+                + args.ReaderName);
+            Console.WriteLine("   ATR: " + StringAtr(args.ATR));
+            Console.WriteLine("   Last state: " + args.LastState
+                + "\n   New state: " + args.NewState + "\n");
+        }
+
+        static string StringAtr(byte[] atr)
+        {
+            if (atr == null)
+                return null;
+
+            StringBuilder sb = new StringBuilder();
+            foreach (byte b in atr)
+                sb.AppendFormat("{0:X2}", b);
+
+            return sb.ToString();
+        }
+        #endregion
     }
 }

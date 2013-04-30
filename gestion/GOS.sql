@@ -31,6 +31,7 @@ CREATE TABLE `client` (
   `nom` varchar(45) NOT NULL,
   `prenom` varchar(45) NOT NULL,
   `solde` float NOT NULL,
+  `rfid_ID` int(10) unsigned default NULL,
   PRIMARY KEY  (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
@@ -39,11 +40,11 @@ CREATE TABLE `client` (
 --
 
 /*!40000 ALTER TABLE `client` DISABLE KEYS */;
-INSERT INTO `client` (`id`,`nom`,`prenom`,`solde`) VALUES 
- (0,'anonymous','',0),
- (1,'client1_n','client1_p',4.4),
- (3,'Allier','Mikael',50),
- (4,'Lavergne','Guillaume',25);
+INSERT INTO `client` (`id`,`nom`,`prenom`,`solde`,`rfid_ID`) VALUES 
+ (0,'anonymous','',0,NULL),
+ (1,'client1_n','client1_p',4.4,NULL),
+ (3,'Allier','Mikael',50,NULL),
+ (4,'Lavergne','Guillaume',25,NULL);
 /*!40000 ALTER TABLE `client` ENABLE KEYS */;
 
 
