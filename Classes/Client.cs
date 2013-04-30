@@ -5,6 +5,8 @@ using System.Text;
 using MySql.Data.MySqlClient;
 using System.Windows.Forms;
 
+using PCSC;
+
 namespace GOS.Classes
 {
 
@@ -212,6 +214,8 @@ namespace GOS.Classes
         {
             //Client c = new Client("testNom", "testPrenom", 50.0f);
             //int idClient = rfidGetId();
+            //Client cl = Client.getUserByUniqID(idClient);
+            
             int idClient = 1;
 
             try
@@ -226,5 +230,71 @@ namespace GOS.Classes
 
             return null;
         }
+
+
+        /**
+         * Récupère le client grave à l'identifiant unique stocké sur la carte RFID
+         * 
+         */
+        public static Client getUserByUniqID()
+        {
+            Client c = null;
+
+            return c;
+        }
+
+        static void CardInserted(object sender, CardStatusEventArgs args)
+        {
+            SCardMonitor monitor = (SCardMonitor)sender;
+
+            Console.WriteLine(">> CardInserted Event for reader: "
+                + args.ReaderName);
+            Console.WriteLine("   ATR: " + StringAtr(args.Atr));
+            Console.WriteLine("   State: " + args.State + "\n");
+        }
+
+        static void CardRemoved(object sender, CardStatusEventArgs args)
+        {
+            SCardMonitor monitor = (SCardMonitor)sender;
+
+            Console.WriteLine(">> CardRemoved Event for reader: "
+                + args.ReaderName);
+            Console.WriteLine("   ATR: " + StringAtr(args.Atr));
+            Console.WriteLine("   State: " + args.State + "\n");
+        }
+
+        static void Initialized(object sender, CardStatusEventArgs args)
+        {
+            SCardMonitor monitor = (SCardMonitor)sender;
+
+            Console.WriteLine(">> Initialized Event for reader: "
+                + args.ReaderName);
+            Console.WriteLine("   ATR: " + StringAtr(args.Atr));
+            Console.WriteLine("   State: " + args.State + "\n");
+        }
+
+        static void StatusChanged(object sender, StatusChangeEventArgs args)
+        {
+            SCardMonitor monitor = (SCardMonitor)sender;
+
+            Console.WriteLine(">> StatusChanged Event for reader: "
+                + args.ReaderName);
+            Console.WriteLine("   ATR: " + StringAtr(args.ATR));
+            Console.WriteLine("   Last state: " + args.LastState
+                + "\n   New state: " + args.NewState + "\n");
+        }
+
+        static string StringAtr(byte[] atr)
+        {
+            if (atr == null)
+                return null;
+
+            StringBuilder sb = new StringBuilder();
+            foreach (byte b in atr)
+                sb.AppendFormat("{0:X2}", b);
+
+            return sb.ToString();
+        }
+
     }
 }

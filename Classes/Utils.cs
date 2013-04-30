@@ -6,6 +6,7 @@ using System.Security.Cryptography;
 using System.Net.Mail;
 using System.Configuration;
 using System.Windows.Forms;
+using PCSC;
 
 namespace GOS.Classes
 {
@@ -69,6 +70,83 @@ namespace GOS.Classes
                 return false;
             }
             return true;
+        }
+
+        /**
+         * Lecture des informations de la carte RFID du client
+         */
+        public static void readRFID()
+        {
+            /*** GET USER ID CARD ***/
+            SCardContext ctx = new SCardContext();
+            ctx.Establish(SCardScope.System);
+
+            string[] readernames = ctx.GetReaders();
+            ctx.Release();
+
+            if (readernames == null || readernames.Length < 1)
+                throw new Exception("You need at least one reader in order to run this example.");
+
+            // Create a monitor object with its own PC/SC context.
+            SCardMonitor monitor = new SCardMonitor(
+                new SCardContext(),
+                SCardScope.System);
+
+            string readername = readernames[1];
+
+            SCardReader RFIDReader = new SCardReader(ctx);
+            SCardError rc = RFIDReader.Connect(
+                readername,
+                SCardShareMode.Shared,
+                SCardProtocol.Any);
+
+            if (rc != SCardError.Success)
+            {
+                Console.WriteLine("Unable to connect to RFID card / chip. Error: " +
+                    SCardHelper.StringifyError(rc));
+            }
+
+            // prepare APDU
+            byte[] ucByteSend = new byte[] 
+            {
+                0xFF,   // the instruction class
+                0xCA,   // the instruction code 
+                0x00,   // parameter to the instruction
+                0x00,   // parameter to the instruction
+                0x00    // size of I/O transfer
+            };
+
+            byte[] ucByteReceive = new byte[10];
+
+            rc = RFIDReader.BeginTransaction();
+            if (rc != SCardError.Success)
+                throw new Exception("Could not begin transaction.");
+
+            SCardPCI ioreq = new SCardPCI();    /* creates an empty object (null).
+                                                 * IO returned protocol control information.
+                                                 */
+            IntPtr sendPci = SCardPCI.GetPci(RFIDReader.ActiveProtocol);
+            rc = RFIDReader.Transmit(
+                sendPci,    /* Protocol control information, T0, T1 and Raw
+                             * are global defined protocol header structures.
+                             */
+                ucByteSend, /* the actual data to be written to the card */
+                ioreq,      /* The returned protocol control information */
+                ref ucByteReceive);
+
+            if (rc == SCardError.Success)
+            {
+                /* on recupere l'id de la carte ici */
+                Console.WriteLine("Uid carte utilisateur: " + BitConverter.ToString(ucByteReceive)); /* check in dba */
+            }
+            else
+            {
+                Console.WriteLine("Error: " + SCardHelper.StringifyError(rc));
+            }
+
+            RFIDReader.EndTransaction(SCardReaderDisposition.Leave);
+            RFIDReader.Disconnect(SCardReaderDisposition.Reset);
+
         }
     }
 }
