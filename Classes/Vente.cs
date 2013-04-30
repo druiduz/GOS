@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using MySql.Data.MySqlClient;
 using System.Windows.Forms;
+using System.Configuration;
 
 namespace GOS.Classes
 {
@@ -150,7 +151,7 @@ namespace GOS.Classes
                 }
                 else
                 {
-                    this.store(0, u.getId(), "espece", rendu); //client anonym
+                    this.store(0, u.getId(), "espece", rendu); //client anonyme
                 }
 
                 foreach (KeyValuePair<Produit, int> p in panier)
@@ -259,10 +260,10 @@ namespace GOS.Classes
                     nbReassort--;
                 } while (nbReassort >= 0);
 
-                Utils.EnvoisMails("Guigui778@gmail.com", "Guigui778@gmail.com", "bde-comin@gmail.com", "Article a recommander", message);
+                Utils.EnvoisMails(ConfigurationManager.AppSettings["mailReassort"], ConfigurationManager.AppSettings["mailFrom"], ConfigurationManager.AppSettings["mailReassortCC"], "Article a recommander", message);
             }
         }
-        
+
     }
 
     public class PanierItem
