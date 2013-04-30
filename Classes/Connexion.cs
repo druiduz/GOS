@@ -124,9 +124,15 @@ namespace GOS.Classes
             }
         }
 
-        public bool checkCo()
+        /**
+         * Vérifie si la connexion est encore ouverte
+         */
+        public void checkConnexion()
         {
-            return connexion.Ping();
+            if (!connexion.Ping())
+            {
+                throw new InvalidConnexion();
+            }
         }
     }
 }

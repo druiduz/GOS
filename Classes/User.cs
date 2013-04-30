@@ -35,6 +35,7 @@ namespace GOS.Classes
             try
             {
                 Connexion co = Connexion.getInstance();
+                co.checkConnexion();
 
                 string query = "SELECT id, nom, prenom, login FROM vendeur WHERE login = @login AND mdp = @mdp";
 
@@ -51,11 +52,11 @@ namespace GOS.Classes
                         if (dataReader.Read())
                         {
                             u = new User(dataReader.GetInt32(0), dataReader.GetString(1), dataReader.GetString(2), dataReader.GetString(3));
-                            u.updateDerniereConnexion();
                         }
                     }
 
                     dataReader.Close();
+                    u.updateDerniereConnexion();
                     return u;
                 }
                 catch (Exception any)
@@ -69,7 +70,7 @@ namespace GOS.Classes
             }
             catch (InvalidConnexion a)
             {
-
+                throw a;
             }
             
             #endregion
@@ -84,6 +85,7 @@ namespace GOS.Classes
             try
             {
                 Connexion co = Connexion.getInstance();
+                co.checkConnexion();
 
                 string query = "UPDATE vendeur SET lastCo = NOW() WHERE id = @id";
 

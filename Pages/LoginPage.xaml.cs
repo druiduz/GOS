@@ -28,15 +28,22 @@ namespace GOS.Pages
         private void btnConnexion_Click(object sender, RoutedEventArgs e)
         {
             MainWindow main = (MainWindow)this.Parent;
-            main.vendeur = User.Login(this.inputLogin.Text, this.inputPass.Password);
-            if (main.vendeur != null)
+            try
             {
-                HomePage home = new HomePage();
-                main.Content = home;
+                main.vendeur = User.Login(this.inputLogin.Text, this.inputPass.Password);
+                if (main.vendeur != null)
+                {
+                    HomePage home = new HomePage();
+                    main.Content = home;
+                }
+                else
+                {
+                    MessageBox.Show("Login / mdp incorrect");
+                }
             }
-            else
+            catch (Exception exect)
             {
-                MessageBox.Show("Login / mdp incorrecte !!");
+
             }
         }
 

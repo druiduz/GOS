@@ -96,12 +96,11 @@ namespace GOS.Classes
             try
             {
                 Connexion co = Connexion.getInstance();
+                co.checkConnexion();
 
                 string query = "SELECT id, nom, prenom, solde FROM client WHERE id = @id";
-
                 MySqlCommand cmd = new MySqlCommand(query, co.connexion);
                 cmd.Parameters.AddWithValue("@id", id);
-
                 MySqlDataReader dataReader = cmd.ExecuteReader();
 
                 try
@@ -111,7 +110,7 @@ namespace GOS.Classes
                     {
                         if (dataReader.Read())
                         {
-                            c = new Client(dataReader.GetInt32(0), dataReader.GetString(1), dataReader.GetString(2), dataReader.GetFloat(3));
+                            c = new Client(dataReader.GetInt32(0), dataReader.GetString(1), dataReader.GetString(2), dataReader.GetFloat(3), 0);
                         }
                     }
 
@@ -145,9 +144,9 @@ namespace GOS.Classes
             try
             {
                 Connexion co = Connexion.getInstance();
+                co.checkConnexion();
 
-                string query = "SELECT id, nom, prenom, solde FROM client";
-
+                string query = "SELECT id, nom, prenom, solde, rfid_ID FROM client";
                 MySqlCommand cmd = new MySqlCommand(query, co.connexion);
                 MySqlDataReader dataReader = cmd.ExecuteReader();
 
@@ -158,7 +157,7 @@ namespace GOS.Classes
                     {
                         while (dataReader.Read())
                         {
-                            lc.Add(new Client(dataReader.GetInt32(0), dataReader.GetString(1), dataReader.GetString(2), dataReader.GetFloat(3)));
+                            lc.Add(new Client(dataReader.GetInt32(0), dataReader.GetString(1), dataReader.GetString(2), dataReader.GetFloat(3), dataReader.GetInt32(4)));
                         }
                     }
 
@@ -189,7 +188,8 @@ namespace GOS.Classes
             try
             {
                 Connexion co = Connexion.getInstance();
-                
+                co.checkConnexion();
+
                 string query = "UPDATE client SET nom = @nom, prenom = @prenom, solde = @solde WHERE id = @id";
 
                 MySqlCommand cmd = new MySqlCommand(query, co.connexion);

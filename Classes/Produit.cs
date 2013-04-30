@@ -119,9 +119,11 @@ namespace GOS.Classes
         public int getNewProduitId()
         {
             int id = 0;
-            #region BDD
-            Connexion co = Connexion.getInstance();
 
+            #region BDD
+
+            Connexion co = Connexion.getInstance();
+            co.checkConnexion();
             string query = "SELECT idProduit FROM Produit ORDER BY idProduit DESC LIMIT 1";
 
             MySqlCommand cmd = new MySqlCommand(query, co.connexion);
@@ -157,7 +159,7 @@ namespace GOS.Classes
             try
             {
                 Connexion co = Connexion.getInstance();
-
+                co.checkConnexion();
                 string query = "INSERT INTO produit SET " +
                                 "idProduit = @id, " +
                                 "nom_produit = @nom, " +
@@ -196,7 +198,7 @@ namespace GOS.Classes
             try
             {
                 Connexion co = Connexion.getInstance();
-
+                co.checkConnexion();
                 string query = "UPDATE produit SET " +
                                 "nom_produit = @nom, " +
                                 "type_produit = @type, " +
@@ -244,9 +246,9 @@ namespace GOS.Classes
             try
             {
                 Connexion co = Connexion.getInstance();
+                co.checkConnexion();
 
                 string query = "SELECT * FROM produit WHERE id = " + id;
-
                 MySqlCommand cmd = new MySqlCommand(query, co.connexion);
                 MySqlDataReader dataReader = cmd.ExecuteReader();
                 
@@ -295,6 +297,7 @@ namespace GOS.Classes
             #region BDD
 
             Connexion co = Connexion.getInstance();
+            co.checkConnexion();
 
             string query = "SELECT * FROM produit";
             if (where.Length > 0)
@@ -324,6 +327,7 @@ namespace GOS.Classes
             Produit[] ap;
 
             Connexion co = Connexion.getInstance();
+            co.checkConnexion();
 
             string query = "SELECT count(idProduit) FROM produit";
             MySqlCommand cmd = new MySqlCommand(query, co.connexion);
@@ -362,9 +366,9 @@ namespace GOS.Classes
             #region BDD
 
             Connexion co = Connexion.getInstance();
+            co.checkConnexion();
 
             string query = "SELECT Distinct(type_produit) FROM produit";
-
             MySqlCommand cmd = new MySqlCommand(query, co.connexion);
             MySqlDataReader dataReader = cmd.ExecuteReader();
 
