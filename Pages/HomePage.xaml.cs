@@ -60,30 +60,6 @@ namespace GOS.Pages
             main.Content = new ClientsPage();
         }
 
-
-        private void Grid_Initialized_GestionCarte(object sender, EventArgs e)
-        {
-            frameGestionCarte.Content = new GestionCartePage();
-        }
-
-
-        private void Grid_Initialized_Stock(object sender, EventArgs e)
-        {
-            frameStock.Content = new GestionStock();
-        }
-        
-
-        private void Grid_Initialized_Vente(object sender, EventArgs e)
-        {
-            frameVente.Content = new VentePage();
-        }
-
-        private void Grid_Initialized_Clients(object sender, EventArgs e)
-        {
-            frameClients.Content = new ClientsPage();
-
-        }
-
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
 

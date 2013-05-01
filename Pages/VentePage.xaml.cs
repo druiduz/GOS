@@ -199,8 +199,8 @@ namespace GOS.Pages
 
         private void btnEspeces_Click(object sender, RoutedEventArgs e)
         {
-            Frame framemain = (Frame)this.Parent;
-            framemain.Content = new PaiementEspecesPage(this.curPanier);
+            MainWindow main = (MainWindow)this.Parent;
+            main.Content = new PaiementEspecesPage(this.curPanier);
         }
 
         private void newBtn_Click(object sender, RoutedEventArgs e)
