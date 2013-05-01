@@ -193,12 +193,24 @@ namespace GOS.Pages
 
         private void btnCarte_Click(object sender, RoutedEventArgs e)
         {
+            if (curPanier.getPanier().Count() <= 0)
+            {
+                MessageBox.Show("Veuillez selectionner au moins un article");
+                return;
+            }
+
             MainWindow main = (MainWindow)this.Parent;
             main.Content = new PaiementCartePage(this.curPanier);
         }
 
         private void btnEspeces_Click(object sender, RoutedEventArgs e)
         {
+            if (curPanier.getPanier().Count() <= 0)
+            {
+                MessageBox.Show("Veuillez selectionner au moins un article");
+                return;
+            }
+
             MainWindow main = (MainWindow)this.Parent;
             main.Content = new PaiementEspecesPage(this.curPanier);
         }

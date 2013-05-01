@@ -5,7 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       mc:Ignorable="d" 
       d:DesignHeight="819" d:DesignWidth="1107"
-	Title="HomePage" Background="#FFF2F2F2" Loaded="Page_Loaded">
+	Title="HomePage" Background="#FFF2F2F2">
 
     <Grid Background="#FFF2F2F2" AllowDrop="False" HorizontalAlignment="Center" VerticalAlignment="Center">
         <Grid.OpacityMask>
@@ -14,11 +14,11 @@
                 <GradientStop Color="White" Offset="1" />
             </LinearGradientBrush>
         </Grid.OpacityMask>
-        <Button Content="Gestion carte magnetique" Height="56" HorizontalAlignment="Left" Margin="149,285,0,0" Name="btnCarte" VerticalAlignment="Top" Width="177" Click="btnCarte_Click" Background="#FFFFF70D" TabIndex="3" />
-        <Button Content="Rapport vente" Height="56" HorizontalAlignment="Left" Margin="656,359,0,0" Name="btnRapport" VerticalAlignment="Top" Width="177" Click="btnRapport_Click" TabIndex="4" Background="#FFFFF70D" />
-        <Button Content="Vente" Height="56" HorizontalAlignment="Left" Margin="149,359,0,0" Name="btnVente" VerticalAlignment="Top" Width="177" Click="btnVente_Click" Background="#FFFFF70D" TabIndex="1" />
-        <Button Content="Gestion Stock" Height="56" HorizontalAlignment="Left" Margin="656,285,0,0" Name="btnStock" VerticalAlignment="Top" Width="177" Background="#FFFFF70D" Click="btnStock_Click" TabIndex="2" />
-        <Button Content="Clients" Height="55" HorizontalAlignment="Left" Margin="400,321,0,0" Name="btnClients" VerticalAlignment="Top" Width="177" Click="btnClients_Click" Background="#FFFFF70D" />
-        <Button Content="Deconnexion" Height="49" HorizontalAlignment="Left" Margin="748,471,0,0" Name="btnDeco" VerticalAlignment="Top" Width="157" Click="btnDeco_Click" />
+        <Button Content="Gestion carte magnetique" Height="56" HorizontalAlignment="Left" Margin="149,285,0,0" Name="btnCarte" VerticalAlignment="Top" Width="177" Click="btnCarte_Click" Background="#FFFFF70D" TabIndex="1" />
+        <Button Content="Rapport vente" Height="56" HorizontalAlignment="Left" Margin="656,359,0,0" Name="btnRapport" VerticalAlignment="Top" Width="177" Click="btnRapport_Click" TabIndex="5" Background="#FFFFF70D" />
+        <Button Content="Vente" Height="56" HorizontalAlignment="Left" Margin="149,359,0,0" Name="btnVente" VerticalAlignment="Top" Width="177" Click="btnVente_Click" Background="#FFFFF70D" TabIndex="2" />
+        <Button Content="Gestion Stock" Height="56" HorizontalAlignment="Left" Margin="656,285,0,0" Name="btnStock" VerticalAlignment="Top" Width="177" Background="#FFFFF70D" Click="btnStock_Click" TabIndex="4" />
+        <Button Content="Clients" Height="55" HorizontalAlignment="Left" Margin="400,321,0,0" Name="btnClients" VerticalAlignment="Top" Width="177" Click="btnClients_Click" Background="#FFFFF70D" TabIndex="3" />
+        <Button Content="Deconnexion" Height="49" HorizontalAlignment="Left" Margin="748,471,0,0" Name="btnDeco" VerticalAlignment="Top" Width="157" Click="btnDeco_Click" TabIndex="6" />
     </Grid>
 </Page>

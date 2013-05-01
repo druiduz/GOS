@@ -59,27 +59,5 @@ namespace GOS.Pages
             MainWindow main = (MainWindow)this.Parent;
             main.Content = new ClientsPage();
         }
-
-        private void Page_Loaded(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void frameGestionCarte_Navigated(object sender, NavigationEventArgs e)
-        {
-
-        }
-
-        private void frameVenteCarte_Navigated(object sender, NavigationEventArgs e)
-        {
-
-        }
-
-
-
-    
-   
-
-     
     }
 }

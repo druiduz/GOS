@@ -44,7 +44,7 @@ namespace GOS.Classes
             
             if (!logo.Equals("")) 
             {
-                this.logoFull =System.IO.Path.GetFullPath("Images\\logo-produit\\"+logo);
+                this.logoFull = System.IO.Path.GetFullPath("..\\..\\Images\\logo-produit\\"+logo);
             }
             this.newProduit = false;
         }
@@ -145,7 +145,12 @@ namespace GOS.Classes
         {
             if (this.newProduit)
             {
-                return this.create();
+                bool retour = this.create();
+                if (retour)
+                {
+                    this.newProduit = false;
+                }
+                return retour;
             }
             else
             {
@@ -248,8 +253,9 @@ namespace GOS.Classes
                 Connexion co = Connexion.getInstance();
                 co.checkConnexion();
 
-                string query = "SELECT * FROM produit WHERE id = " + id;
+                string query = "SELECT * FROM produit WHERE id = @id";
                 MySqlCommand cmd = new MySqlCommand(query, co.connexion);
+                cmd.Parameters.AddWithValue("@id", id);
                 MySqlDataReader dataReader = cmd.ExecuteReader();
                 
                 try

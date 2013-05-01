@@ -145,9 +145,9 @@ namespace GOS.Classes
             {
                 if (c != null)
                 {
-                    this.store(c.getId(), u.getId());
+                    this.store(c.Id, u.getId());
                     c.subCapital(this.getTotal());
-                    c.updateClient();
+                    c.store();
                 }
                 else
                 {

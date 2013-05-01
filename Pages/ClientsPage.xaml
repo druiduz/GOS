@@ -5,13 +5,10 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       mc:Ignorable="d" Title="ClientsPage" Height="532" Width="932">
 
-    <Grid>
-        <DataGrid AutoGenerateColumns="True" Height="388" HorizontalAlignment="Center" Margin="0,46,0,98" Name="grdClients" VerticalAlignment="Center" Width="932" />
-        <Label Content="Liste des clients" Height="28" HorizontalAlignment="Left" Name="label1" VerticalAlignment="Top" FontWeight="Bold" FontFamily="Segoe UI" Margin="384,12,0,0" Width="162">
-            <Label.BindingGroup>
-                <BindingGroup />
-            </Label.BindingGroup>
-        </Label>
-        <Button Content="Retour" Height="52" HorizontalAlignment="Left" Margin="668,456,0,0" Name="btnRetour" VerticalAlignment="Top" Width="189" Click="btnRetour_Click" />
+    <Grid Loaded="Grid_Loaded">
+        <DataGrid AutoGenerateColumns="True" Height="365" HorizontalAlignment="Center" Margin="26,69,28,98" Name="grdClients" VerticalAlignment="Center" Width="878" />
+        <Label Content="Liste des clients" Height="39" HorizontalAlignment="Left" Name="label1" VerticalAlignment="Top" FontWeight="Bold" FontFamily="Segoe UI" Margin="359,12,0,0" Width="204" FontSize="24"></Label>
+        <Button Content="Retour" Height="52" HorizontalAlignment="Left" Margin="715,456,0,0" Name="btnRetour" VerticalAlignment="Top" Width="189" Click="btnRetour_Click" TabIndex="3" />
+        <Button Content="Enregistrer" Height="52" HorizontalAlignment="Left" Margin="505,456,0,0" Name="btnSave" VerticalAlignment="Top" Width="189" Click="btnSave_Click" TabIndex="2" />
     </Grid>
 </Page>
