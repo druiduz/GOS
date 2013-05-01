@@ -5,9 +5,9 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       mc:Ignorable="d" 
       d:DesignHeight="532" d:DesignWidth="917"
-	Title="HomePage">
+	Title="HomePage" Background="#FFF2F2F2">
 
-    <Grid Background="#FFF2F2F2" AllowDrop="False">
+    <Grid Background="#FFF2F2F2" AllowDrop="False" HorizontalAlignment="Center" VerticalAlignment="Center">
         <Grid.OpacityMask>
             <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                 <GradientStop Color="Black" Offset="0" />
@@ -15,10 +15,58 @@
             </LinearGradientBrush>
         </Grid.OpacityMask>
         <Button Content="Gestion carte magnetique" Height="56" HorizontalAlignment="Left" Margin="255,359,0,0" Name="btnCarte" VerticalAlignment="Top" Width="177" Click="btnCarte_Click" Background="#FFFFF70D" TabIndex="3" />
-        <Button Content="Rapport vente" Height="56" HorizontalAlignment="Left" Margin="480,359,0,0" Name="btnRapport" VerticalAlignment="Top" Width="177" Click="btnRapport_Click" TabIndex="4" />
+        <Button Content="Rapport vente" Height="56" HorizontalAlignment="Left" Margin="480,359,0,0" Name="btnRapport" VerticalAlignment="Top" Width="177" Click="btnRapport_Click" TabIndex="4" Background="#FFFFF70D" />
         <Button Content="Vente" Height="56" HorizontalAlignment="Left" Margin="255,285,0,0" Name="btnVente" VerticalAlignment="Top" Width="177" Click="btnVente_Click" Background="#FFFFF70D" TabIndex="1" />
         <Button Content="Gestion Stock" Height="56" HorizontalAlignment="Left" Margin="480,285,0,0" Name="btnStock" VerticalAlignment="Top" Width="177" Background="#FFFFF70D" Click="btnStock_Click" TabIndex="2" />
         <Button Content="Clients" Height="55" HorizontalAlignment="Left" Margin="383,454,0,0" Name="btnClients" VerticalAlignment="Top" Width="177" Click="btnClients_Click" Background="#FFFFF70D" />
-        <Button Content="Deconnexion" Height="49" HorizontalAlignment="Left" Margin="748,471,0,0" Name="btnDeco" VerticalAlignment="Top" Width="157" Click="btnDeco_Click" />
+        <TabControl Height="509" HorizontalAlignment="Left" Name="tabControl1" VerticalAlignment="Top" Width="905">
+            <TabItem Header="Gestion carte magnetique" Name="Gestion_carte_magnetique">
+                <Grid Height="502">
+                    <TextBox Height="29" HorizontalAlignment="Left" Margin="345,155,0,0" Name="txtNom" VerticalAlignment="Top" Width="255" />
+                    <TextBox Height="27" HorizontalAlignment="Left" Margin="345,269,0,0" Name="txtSolde" VerticalAlignment="Top" Width="255" />
+                    <TextBox Height="27" HorizontalAlignment="Left" Margin="345,210,0,0" Name="txtPrenom" VerticalAlignment="Top" Width="255" />
+                    <Button Content="Créer" Height="38" HorizontalAlignment="Left" Margin="277,356,0,0" Name="btnCreer" VerticalAlignment="Top" Width="153" Click="btnCreer_Click" />
+                    <Button Content="Retour" Height="38" HorizontalAlignment="Left" Margin="472,356,0,0" Name="btnRetour" VerticalAlignment="Top" Width="153" Click="btnRetour_Click" />
+                    <Label Content="Nom" Height="28" HorizontalAlignment="Left" Margin="260,153,0,0" Name="Nom" VerticalAlignment="Top" />
+                    <Label Content="Prenom" Height="28" HorizontalAlignment="Left" Margin="260,210,0,0" Name="Prenom" VerticalAlignment="Top" />
+                    <Label Content="Solde" Height="28" HorizontalAlignment="Left" Margin="260,269,0,0" Name="Solde" VerticalAlignment="Top" />
+                </Grid>
+            </TabItem>
+            <TabItem Header="Vente" Name="Vente">
+                <Grid Loaded="Grid_Loaded">
+                    <Label Content="Vente" Height="47" HorizontalAlignment="Left" Margin="386,12,0,0" Name="Vente" VerticalAlignment="Top" Width="80" FontSize="26" />
+                    <DataGrid AutoGenerateColumns="False" Height="308" HorizontalAlignment="Left" Margin="555,73,0,0" Name="grdPanier" VerticalAlignment="Top" Width="329"/>
+                    <Button Content="Carte" Height="52" HorizontalAlignment="Left" Margin="555,404,0,0" Name="btnCarte" VerticalAlignment="Top" Width="156" Click="btnCarte_Click" />
+                    <Button Content="Retour" Height="36" HorizontalAlignment="Left" Margin="772,481,0,0" Name="btnRetour" VerticalAlignment="Top" Width="112" Click="btnRetour_Click" />
+                    <TabControl Height="414" HorizontalAlignment="Left" Margin="12,73,0,0" Name="tabProduit" VerticalAlignment="Top" Width="473">
+                        <TabItem Header="Tous les produits" Name="tabItem1">
+                            <Grid Height="383" Width="464" Name="gridAllProduit" />
+                        </TabItem>
+                    </TabControl>
+                    <Button Content="Especes" Height="52" HorizontalAlignment="Left" Margin="728,404,0,0" Name="btnEspeces" VerticalAlignment="Top" Width="156" Click="btnEspeces_Click" />
+                </Grid>
+            </TabItem>
+            <TabItem Header="Rapport vente" Name="Rapport_vente">
+                <Grid />
+            </TabItem>
+            <TabItem Header="Gestion Stock" Name="Gestion_Stock">
+                <Grid />
+            </TabItem>
+            <TabItem Header="Clients" Name="Clients">
+                <Grid>
+                    <DataGrid AutoGenerateColumns="True" Height="388" HorizontalAlignment="Center" Margin="0,46,0,98" Name="grdClients" VerticalAlignment="Center" Width="932" SelectionChanged="grdClients_SelectionChanged" />
+                    <Label Content="Liste des clients" Height="28" HorizontalAlignment="Left" Name="label1" VerticalAlignment="Top" FontWeight="Bold" FontFamily="Segoe UI" Margin="384,12,0,0" Width="162">
+                        <Label.BindingGroup>
+                            <BindingGroup />
+                        </Label.BindingGroup>
+                    </Label>
+                </Grid>
+               
+            </TabItem>
+            <TabItem Header="Vendeurs" Name="Vendeurs">
+                <Grid />
+            </TabItem>
+        </TabControl>
+        <Button Content="Deconnexion" Height="49" HorizontalAlignment="Left" Margin="748,530,0,0" Name="btnDeco" VerticalAlignment="Top" Width="157" />
     </Grid>
 </Page>

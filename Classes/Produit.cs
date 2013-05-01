@@ -41,10 +41,10 @@ namespace GOS.Classes
             this.prix = prix;
             this.quantite = quantite;
             this.quantite_min = quantite_min;
-
+            
             if (!logo.Equals("")) 
             {
-                this.logoFull = "E:/Codage/GOS/Images/logo-produit/" + logo;
+                this.logoFull =System.IO.Path.GetFullPath("Images\\logo-produit\\"+logo);
             }
             this.newProduit = false;
         }
