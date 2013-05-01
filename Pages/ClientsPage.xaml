@@ -5,13 +5,17 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       mc:Ignorable="d" Title="ClientsPage" Height="532" Width="932">
 
-    <Grid>
-        <DataGrid AutoGenerateColumns="True" Height="325" HorizontalAlignment="Center" Margin="92,97,75,110" Name="grdClients" VerticalAlignment="Center" Width="765" />
-        <Label Content="Liste des clients" Height="28" HorizontalAlignment="Left" Name="label1" VerticalAlignment="Top" FontWeight="Bold" FontFamily="Segoe UI" Margin="384,12,0,0" Width="162">
+    <Grid Height="Auto" Width="Auto">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="488*" />
+        </Grid.ColumnDefinitions>
+        <Label Content="Liste des clients" Height="28" HorizontalAlignment="Left" Name="label1" VerticalAlignment="Top" FontWeight="Bold" FontFamily="Segoe UI" Margin="393,12,0,0" Width="162" Grid.ColumnSpan="2">
             <Label.BindingGroup>
                 <BindingGroup />
             </Label.BindingGroup>
         </Label>
-        <Button Content="Retour" Height="52" HorizontalAlignment="Left" Margin="668,456,0,0" Name="btnRetour" VerticalAlignment="Top" Width="189" Click="btnRetour_Click" />
+        <Button Content="Retour" Height="52" HorizontalAlignment="Left" Margin="233,456,0,0" Name="btnRetour" VerticalAlignment="Top" Width="189" Click="btnRetour_Click" Grid.Column="1" />
+        <DataGrid AutoGenerateColumns="True" HorizontalAlignment="Left" Margin="12,50,12,103" Name="grdClients" VerticalAlignment="Top" SelectionChanged="grdClients_SelectionChanged" Grid.ColumnSpan="2" Height="379" Width="908" />
     </Grid>
 </Page>
