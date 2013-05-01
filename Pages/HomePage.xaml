@@ -4,8 +4,8 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       mc:Ignorable="d" 
-      d:DesignHeight="532" d:DesignWidth="917"
-	Title="HomePage" Background="#FFF2F2F2">
+      d:DesignHeight="819" d:DesignWidth="1107"
+	Title="HomePage" Background="#FFF2F2F2" Loaded="Page_Loaded">
 
     <Grid Background="#FFF2F2F2" AllowDrop="False" HorizontalAlignment="Center" VerticalAlignment="Center">
         <Grid.OpacityMask>
@@ -14,11 +14,44 @@
                 <GradientStop Color="White" Offset="1" />
             </LinearGradientBrush>
         </Grid.OpacityMask>
-        <Button Content="Gestion carte magnetique" Height="56" HorizontalAlignment="Left" Margin="255,359,0,0" Name="btnCarte" VerticalAlignment="Top" Width="177" Click="btnCarte_Click" Background="#FFFFF70D" TabIndex="3" />
-        <Button Content="Rapport vente" Height="56" HorizontalAlignment="Left" Margin="480,359,0,0" Name="btnRapport" VerticalAlignment="Top" Width="177" Click="btnRapport_Click" TabIndex="4" Background="#FFFFF70D" />
-        <Button Content="Vente" Height="56" HorizontalAlignment="Left" Margin="255,285,0,0" Name="btnVente" VerticalAlignment="Top" Width="177" Click="btnVente_Click" Background="#FFFFF70D" TabIndex="1" />
-        <Button Content="Gestion Stock" Height="56" HorizontalAlignment="Left" Margin="480,285,0,0" Name="btnStock" VerticalAlignment="Top" Width="177" Background="#FFFFF70D" Click="btnStock_Click" TabIndex="2" />
-        <Button Content="Clients" Height="55" HorizontalAlignment="Left" Margin="383,454,0,0" Name="btnClients" VerticalAlignment="Top" Width="177" Click="btnClients_Click" Background="#FFFFF70D" />
+        <Button Content="Gestion carte magnetique" Height="56" HorizontalAlignment="Left" Margin="107,359,0,0" Name="btnCarte" VerticalAlignment="Top" Width="177" Click="btnCarte_Click" Background="#FFFFF70D" TabIndex="3" />
+        <Button Content="Rapport vente" Height="56" HorizontalAlignment="Left" Margin="656,359,0,0" Name="btnRapport" VerticalAlignment="Top" Width="177" Click="btnRapport_Click" TabIndex="4" Background="#FFFFF70D" />
+        <Button Content="Vente" Height="56" HorizontalAlignment="Left" Margin="-21,649,0,0" Name="btnVente" VerticalAlignment="Top" Width="177" Click="btnVente_Click" Background="#FFFFF70D" TabIndex="1" />
+        <Button Content="Gestion Stock" Height="56" HorizontalAlignment="Left" Margin="656,285,0,0" Name="btnStock" VerticalAlignment="Top" Width="177" Background="#FFFFF70D" Click="btnStock_Click" TabIndex="2" />
+        <Button Content="Clients" Height="55" HorizontalAlignment="Left" Margin="388,285,0,0" Name="btnClients" VerticalAlignment="Top" Width="177" Click="btnClients_Click" Background="#FFFFF70D" />
         <Button Content="Deconnexion" Height="49" HorizontalAlignment="Left" Margin="748,471,0,0" Name="btnDeco" VerticalAlignment="Top" Width="157" Click="btnDeco_Click" />
+        <TabControl Height="716" HorizontalAlignment="Left" Margin="-96,-135,0,0" Name="tabControl1" VerticalAlignment="Top" Width="1033">
+            <TabItem Header="Ventes" Name="tabItemVente">
+                <Grid Initialized="Grid_Initialized_Vente">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="472*" />
+                        <ColumnDefinition Width="423*" />
+                    </Grid.ColumnDefinitions>
+                    <Frame Height="455" HorizontalAlignment="Left" Margin="-5,1,0,0" Name="frameVente" VerticalAlignment="Top" Width="903" Grid.ColumnSpan="2" />
+                    <Frame Height="601" HorizontalAlignment="Left" Margin="6,6,0,0" Name="frameVenteEspece" VerticalAlignment="Top" Width="889" Grid.ColumnSpan="2" />
+                    <Frame Height="601" HorizontalAlignment="Left" Margin="6,6,0,0" Name="frameVenteCarte" VerticalAlignment="Top" Width="889" Navigated="frameVenteCarte_Navigated" Grid.ColumnSpan="2" />
+
+                </Grid>
+            </TabItem>
+            <TabItem Header="Gestion carte magnetique" Name="tabItemGestionCarte">
+                <Grid Initialized="Grid_Initialized_GestionCarte">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="31*" />
+                        <ColumnDefinition Width="864*" />
+                    </Grid.ColumnDefinitions>
+                    <Frame Height="602" HorizontalAlignment="Left" Margin="-5,2,0,0" Name="frameGestionCarte" VerticalAlignment="Top" Width="984" Grid.ColumnSpan="2" Navigated="frameGestionCarte_Navigated" />
+                </Grid>
+            </TabItem>
+            <TabItem Header="Gestion Stock" Name="tabItemStock">
+                <Grid Initialized="Grid_Initialized_Stock">
+                    <Frame Height="546" HorizontalAlignment="Left" Margin="-5,0,0,0" Name="frameStock" VerticalAlignment="Top" Width="921" />
+                </Grid>
+            </TabItem>
+            <TabItem Header="Clients" Name="tabItemClients">
+                <Grid Initialized="Grid_Initialized_Clients">
+                    <Frame Height="439" HorizontalAlignment="Left" Margin="-5,4,0,0" Name="frameClients" VerticalAlignment="Top" Width="905" />
+                </Grid>
+            </TabItem>
+        </TabControl>
     </Grid>
 </Page>

@@ -68,5 +68,10 @@ namespace GOS.Pages
             MainWindow main = (MainWindow)this.Parent;
             main.Content = new HomePage();
         }
+
+        private void grdstock_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
 }
