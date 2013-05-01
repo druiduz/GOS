@@ -13,6 +13,8 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using GOS.Classes;
 
+using PCSC;
+
 namespace GOS.Pages
 {
     /// <summary>
@@ -27,15 +29,23 @@ namespace GOS.Pages
 
         private void btnCreer_Click(object sender, RoutedEventArgs e)
         {
-
             string nom = this.txtNom.Text;
             string prenom = this.txtPrenom.Text;
             float solde = float.Parse(this.txtSolde.Text);
 
-            Client c = new Client(nom, prenom, solde);
+            
+            SmartCard card = new SmartCard();
+            string idCard = card.getUIDCard();
 
-
-            MessageBox.Show("Carte creer avec succes");
+            if (idCard == "" && "".Equals(idCard))
+            {
+                MessageBox.Show("Veuillez inserez une carte");
+            }
+            else
+            {
+                Client c = new Client(nom, prenom, solde, idCard);
+                MessageBox.Show("Carte creer avec succes");
+            }
 
             MainWindow main = (MainWindow)this.Parent;
             main.Content = new HomePage();
@@ -45,6 +55,11 @@ namespace GOS.Pages
         {
             MainWindow main = (MainWindow)this.Parent;
             main.Content = new HomePage();
+        }
+
+        private void textBox1_TextChanged(object sender, TextChangedEventArgs e)
+        {
+    
         }
     }
 }

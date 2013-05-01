@@ -36,7 +36,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="MySql.Data, Version=6.1.6.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL" />
+    <Reference Include="MySql.Data, Version=6.2.1.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>.\MySql.Data.dll</HintPath>
+    </Reference>
     <Reference Include="pcsc-sharp">
       <HintPath>.\pcsc-sharp.dll</HintPath>
     </Reference>
@@ -77,6 +80,7 @@
     <Compile Include="Classes\Produit.cs" />
     <Compile Include="Classes\ProduitButton.cs" />
     <Compile Include="Classes\Repporting.cs" />
+    <Compile Include="Classes\SmartCard.cs" />
     <Compile Include="Classes\Stock.cs" />
     <Compile Include="Classes\User.cs" />
     <Compile Include="Classes\Utils.cs" />
