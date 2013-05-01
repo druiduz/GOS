@@ -101,5 +101,10 @@ namespace GOS.Pages
             MainWindow main = (MainWindow)this.Parent;
             main.Content = new HomePage();
         }
+
+        private void Grid_Loaded(object sender, RoutedEventArgs e)
+        {
+            this.txtNom.Focus();
+        }
     }
 }

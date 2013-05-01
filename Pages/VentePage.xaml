@@ -9,14 +9,16 @@
 
     <Grid Loaded="Grid_Loaded">
         <Label Content="Vente" Height="47" HorizontalAlignment="Left" Margin="386,12,0,0" Name="label1" VerticalAlignment="Top" Width="80" FontSize="26" />
-        <DataGrid AutoGenerateColumns="False" Height="308" HorizontalAlignment="Left" Margin="555,73,0,0" Name="grdPanier" VerticalAlignment="Top" Width="329"/>
-        <Button Content="Carte" Height="52" HorizontalAlignment="Left" Margin="555,404,0,0" Name="btnCarte" VerticalAlignment="Top" Width="156" Click="btnCarte_Click" />
-        <Button Content="Retour" Height="36" HorizontalAlignment="Left" Margin="772,481,0,0" Name="btnRetour" VerticalAlignment="Top" Width="112" Click="btnRetour_Click" />
+        <DataGrid AutoGenerateColumns="False" Height="231" HorizontalAlignment="Left" Margin="555,133,0,0" Name="grdPanier" VerticalAlignment="Top" Width="329"/>
+        <Button Content="Carte" Height="52" HorizontalAlignment="Left" Margin="555,404,0,0" Name="btnCarte" VerticalAlignment="Top" Width="156" Click="btnCarte_Click" TabIndex="1" />
+        <Button Content="Retour" Height="36" HorizontalAlignment="Left" Margin="772,481,0,0" Name="btnRetour" VerticalAlignment="Top" Width="112" Click="btnRetour_Click" TabIndex="3" />
         <TabControl Height="414" HorizontalAlignment="Left" Margin="12,73,0,0" Name="tabProduit" VerticalAlignment="Top" Width="473">
             <TabItem Header="Tous les produits" Name="tabItem1">
                 <Grid Height="383" Width="464" Name="gridAllProduit" />
             </TabItem>
         </TabControl>
-        <Button Content="Especes" Height="52" HorizontalAlignment="Left" Margin="728,404,0,0" Name="btnEspeces" VerticalAlignment="Top" Width="156" Click="btnEspeces_Click" />
+        <Button Content="Especes" Height="52" HorizontalAlignment="Left" Margin="728,404,0,0" Name="btnEspeces" VerticalAlignment="Top" Width="156" Click="btnEspeces_Click" TabIndex="2" />
+        <Label Content="Paiement" HorizontalAlignment="Left" Margin="555,370,12,0" Name="labPaiement" Width="329" HorizontalContentAlignment="Center" FontSize="14" FontWeight="SemiBold" Height="28" VerticalAlignment="Top" />
+        <Label Content="Panier" Height="28" HorizontalAlignment="Left" Margin="555,100,0,0" Name="labPanier" VerticalAlignment="Top" Width="329" HorizontalContentAlignment="Center" FontWeight="SemiBold" FontSize="14" />
     </Grid>
 </Page>

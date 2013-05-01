@@ -12,6 +12,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using GOS.Classes;
+using System.Configuration;
 
 namespace GOS.Pages
 {
@@ -25,32 +26,43 @@ namespace GOS.Pages
 
         public GestionStock()
         {
-            s = new Stock();
             InitializeComponent();
 
-            //this.grdstock.ItemsSource = s;
-            //this.grdstock.ItemsSource = Produit.getAllProduit();
-            this.grdstock.ItemsSource = s.stock;
+            this.s = null;
+        }
+
+        private void Grid_Loaded(object sender, RoutedEventArgs e)
+        {
+
+            try
+            {
+                s = new Stock();
+            }
+            catch (Exception any)
+            {
+                if (ConfigurationManager.AppSettings["debugmode"] == "true")
+                {
+                    MessageBox.Show("DEBUG: " + any.Message);
+                }
+                MessageBox.Show("Impossible de charger la liste des produits");
+
+                MainWindow main = (MainWindow)this.Parent;
+                main.Content = new HomePage();
+                return;
+            }
+
+            this.grdstock.ItemsSource = s.lStock;
             this.grdstock.Columns.Add(new DataGridTextColumn { Header = "ID", Width = 10, Binding = new Binding("ID"), IsReadOnly = true });
             this.grdstock.Columns.Add(new DataGridTextColumn { Header = "Name", Width = 200, Binding = new Binding("Name") });
             this.grdstock.Columns.Add(new DataGridTextColumn { Header = "Type", Width = 200, Binding = new Binding("Type") });
             this.grdstock.Columns.Add(new DataGridTextColumn { Header = "Prix", Width = 100, Binding = new Binding("Prix") });
             this.grdstock.Columns.Add(new DataGridTextColumn { Header = "Quantite", Width = 100, Binding = new Binding("Quantite") });
             this.grdstock.Columns.Add(new DataGridTextColumn { Header = "Quantite_min", Width = 100, Binding = new Binding("Quantite_min") });
-            this.grdstock.Columns.Add(new DataGridTextColumn { Header = "Logo", Width = 100, Binding = new Binding("logo") });
+            this.grdstock.Columns.Add(new DataGridTextColumn { Header = "Logo", Width = 100, Binding = new Binding("Logo") });
         }
 
-        private void btnExport_Click(object sender, RoutedEventArgs e)
-        {
-            Repporting.Export(true, Produit.getAllProduit());
-        }
 
-        private void Grid_Loaded(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void btnValider_Click(object sender, RoutedEventArgs e)
+        private void btnSave_Click(object sender, RoutedEventArgs e)
         {
             try
             {
@@ -69,9 +81,10 @@ namespace GOS.Pages
             main.Content = new HomePage();
         }
 
-        private void grdstock_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void btnExport_Click(object sender, RoutedEventArgs e)
         {
-
+            Repporting.Export(true, Produit.getAllProduit());
         }
+
     }
 }

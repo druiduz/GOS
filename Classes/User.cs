@@ -1,11 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using MySql.Data.MySqlClient;
-using System.Windows.Forms;
-using System.Security.Cryptography;
 using System.Configuration;
+using System.Windows.Forms;
+using MySql.Data.MySqlClient;
 
 namespace GOS.Classes
 {
@@ -63,7 +59,7 @@ namespace GOS.Classes
                 {
                     if (ConfigurationManager.AppSettings["debugmode"] == "true")
                     {
-                        MessageBox.Show(any.Message);
+                        MessageBox.Show("DEBUG: " + any.Message);
                     }
                     dataReader.Close();
                 }

@@ -1,50 +1,36 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Collections;
+using System.Collections.Generic;
 using System.Windows.Forms;
-using MySql.Data.MySqlClient;
 
 namespace GOS.Classes
 {
     class Stock : IEnumerable
     {
 
-        public List<Produit> stock;
-        public Produit[] _stock;
+        public List<Produit> lStock;
+        public Produit[] aStock;
         //TODO Utiliser une collection perso pour que tout se gère en auto
 
         public Stock()
         {
-            this.stock = new List<Produit>();
+            this.lStock = new List<Produit>();
 
             this._init();
         }
 
         private void _init()
         {
-            stock = Produit.getAllProduit();
-            _stock = Produit.getAllProduitArray();
-        }
-
-        public void afficher()
-        {
-
-        }
-        public void trier()
-        {
-
+            lStock = Produit.getAllProduit();
+            aStock = Produit.getAllProduitArray();
         }
 
         public void store()
         {
-            #region BDD
-
             try
             {
 
-                foreach (Produit p in stock)
+                foreach (Produit p in lStock)
                 {
                     if (!p.store())
                     {
@@ -62,18 +48,16 @@ namespace GOS.Classes
             {
                 throw any;
             }
-
-            #endregion
         }
 
         public bool checkQuantite(int id)
         {
-            return stock[id].Quantite < stock[id].Quantite_min;
+            return aStock[id].Quantite < aStock[id].Quantite_min;
         }
         public List<int> getOutOfOrder()
         {
             List<int> idOut = new List<int>();
-            foreach(Produit p in stock)
+            foreach(Produit p in lStock)
             {
                 if(checkQuantite(p.ID)){
                     idOut.Add(p.ID);
@@ -115,7 +99,7 @@ namespace GOS.Classes
 
         public StockEnum GetEnumerator()
         {
-            return new StockEnum(_stock);
+            return new StockEnum(aStock);
         }
     }
 

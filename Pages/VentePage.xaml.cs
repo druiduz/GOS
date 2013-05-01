@@ -75,7 +75,7 @@ namespace GOS.Pages
             myGrid.ShowGridLines = true;
 
             int nbCol = 4;
-            int nbRow = (s.stock.Count / nbCol) + 1;
+            int nbRow = (s.lStock.Count / nbCol) + 1;
 
             for (int k = 0; k < nbRow; k++)
             {
@@ -89,7 +89,7 @@ namespace GOS.Pages
                 myGrid.ColumnDefinitions.Add(colDef1);
             }
 
-            foreach (Produit p in s.stock)
+            foreach (Produit p in s.lStock)
             {
                 if (i >= nbCol)
                 {
@@ -149,7 +149,7 @@ namespace GOS.Pages
 
         private void addProduit(Grid g, Produit p, int i, int j)
         {
-            if (p.Logo != "")
+            if (true || String.IsNullOrEmpty(p.Logo)) // Au final, on cree un ProduitButton sans image, d'ou le true
             {
                 try
                 {

@@ -5,7 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       mc:Ignorable="d" Title="GestionCartePage" d:DesignHeight="676" d:DesignWidth="1125">
 
-    <Grid>
+    <Grid Loaded="Grid_Loaded">
         <TextBox Height="29" HorizontalAlignment="Left" Margin="455,218,0,0" Name="txtNom" VerticalAlignment="Top" Width="255" VerticalContentAlignment="Center" TabIndex="1" />
         <TextBox Height="27" HorizontalAlignment="Left" Margin="455,332,0,0" Name="txtSolde" VerticalAlignment="Top" Width="255" VerticalContentAlignment="Center" TabIndex="3" />
         <TextBox Height="27" HorizontalAlignment="Left" Margin="455,273,0,0" Name="txtPrenom" VerticalAlignment="Top" Width="255" VerticalContentAlignment="Center" TabIndex="2" />

@@ -41,10 +41,11 @@ namespace GOS.Classes
             this.prix = prix;
             this.quantite = quantite;
             this.quantite_min = quantite_min;
-            
-            if (!logo.Equals("")) 
+            this.logo = logo;
+
+            if (!string.IsNullOrEmpty(this.logo))
             {
-                this.logoFull = System.IO.Path.GetFullPath("..\\..\\Images\\logo-produit\\"+logo);
+                this.logoFull = System.IO.Path.GetFullPath("..\\..\\Images\\logo-produit\\" + this.logo);
             }
             this.newProduit = false;
         }
@@ -94,7 +95,7 @@ namespace GOS.Classes
         public String LogoFull
         {
             get { return logoFull; }
-            set { logoFull = value; }
+            //set { logoFull = value; }
         }
 
         public override String ToString()
@@ -188,7 +189,7 @@ namespace GOS.Classes
             {
                 if (ConfigurationManager.AppSettings["debugmode"] == "true")
                 {
-                    MessageBox.Show(any.Message);
+                    MessageBox.Show("DEBUG: " + any.Message);
                 }
                 return false;
             }
@@ -228,7 +229,7 @@ namespace GOS.Classes
             {
                 if (ConfigurationManager.AppSettings["debugmode"] == "true")
                 {
-                    MessageBox.Show(any.Message);
+                    MessageBox.Show("DEBUG: " + any.Message);
                 }
                 return false;
             }
@@ -277,7 +278,7 @@ namespace GOS.Classes
                 {
                     if (ConfigurationManager.AppSettings["debugmode"] == "true")
                     {
-                        MessageBox.Show(any.Message);
+                        MessageBox.Show("DEBUG: " + any.Message);
                     }
 
                     dataReader.Close();
@@ -335,6 +336,7 @@ namespace GOS.Classes
             Connexion co = Connexion.getInstance();
             co.checkConnexion();
 
+            // On recupere le nombre de produit pour init le tableau
             string query = "SELECT count(idProduit) FROM produit";
             MySqlCommand cmd = new MySqlCommand(query, co.connexion);
             MySqlDataReader dataReader = cmd.ExecuteReader();

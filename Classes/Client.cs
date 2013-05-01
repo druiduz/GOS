@@ -1,12 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using MySql.Data.MySqlClient;
-using System.Windows.Forms;
-
-using PCSC;
 using System.Configuration;
+using System.Windows.Forms;
+using MySql.Data.MySqlClient;
 
 namespace GOS.Classes
 {
@@ -63,12 +59,23 @@ namespace GOS.Classes
             get { return rfid_id; }
         }
 
+        public Client()
+        {
+            this.id = -1;
+            this.nom = "";
+            this.prenom = "";
+            this.capital = 0.0f;
+            this.rfid_id = this.generateID();
+            this.newClient = true;
+        }
+
         public Client(String nom, String prenom, float solde)
         {
-            this.id = this.generateID();
+            this.id = -1;
             this.nom = nom;
             this.prenom = prenom;
             this.capital = solde;
+            this.rfid_id = this.generateID();
             this.newClient = true;
         }
 
@@ -128,7 +135,7 @@ namespace GOS.Classes
                     {
                         if (ConfigurationManager.AppSettings["debugmode"] == "true")
                         {
-                            MessageBox.Show(any.Message);
+                            MessageBox.Show("DEBUG: " + any.Message);
                         }
 
                         dataReader.Close();
@@ -139,7 +146,7 @@ namespace GOS.Classes
                 {
                     if (ConfigurationManager.AppSettings["debugmode"] == "true")
                     {
-                        MessageBox.Show("Connexion avec la base de donnée perdu");
+                        MessageBox.Show("DEBUG: " + "Connexion avec la base de donnée perdu");
                     }
                     return 0;
                 }
@@ -190,9 +197,12 @@ namespace GOS.Classes
                     dataReader.Close();
                     return c;
                 }
-                catch (Exception e)
+                catch (Exception any)
                 {
-                    MessageBox.Show(e.Message);
+                    if (ConfigurationManager.AppSettings["debugmode"] == "true")
+                    {
+                        MessageBox.Show("DEBUG: " + any.Message);
+                    }
                     dataReader.Close();
                 }
             }
@@ -207,8 +217,7 @@ namespace GOS.Classes
             return null;
         }
 
-
-        public static List<Client> getAllClients()
+        public static List<Client> getAllClientsList()
         {
             List<Client> lc = new List<Client>();
 
@@ -219,7 +228,7 @@ namespace GOS.Classes
                 Connexion co = Connexion.getInstance();
                 co.checkConnexion();
 
-                string query = "SELECT id, nom, prenom, solde, rfid_ID FROM client";
+                string query = "SELECT id, nom, prenom, solde, rfid_ID FROM client ORDER BY id";
                 MySqlCommand cmd = new MySqlCommand(query, co.connexion);
                 MySqlDataReader dataReader = cmd.ExecuteReader();
 
@@ -234,14 +243,79 @@ namespace GOS.Classes
                         }
                     }
 
-                    dataReader.Close(); 
+                    dataReader.Close();
                     return lc;
                 }
                 catch (Exception any)
                 {
                     if (ConfigurationManager.AppSettings["debugmode"] == "true")
                     {
-                        MessageBox.Show(any.Message);
+                        MessageBox.Show("DEBUG: " + any.Message);
+                    }
+                    dataReader.Close();
+                }
+            }
+            catch (InvalidConnexion e)
+            {
+                MessageBox.Show("Connexion avec la base de donnée perdu");
+                throw e;
+            }
+
+            #endregion
+
+            return null;
+        }
+
+        public static Client[] getAllClientsArray()
+        {
+            Client[] ac = null;
+            int taille = 0;
+
+            #region BDD
+
+            try
+            {
+                Connexion co = Connexion.getInstance();
+                co.checkConnexion();
+                
+                // On recupere le nombre de client pour init le tableau
+                string query = "SELECT count(id) FROM client";
+                MySqlCommand cmd = new MySqlCommand(query, co.connexion);
+                MySqlDataReader dataReader = cmd.ExecuteReader();
+
+                while (dataReader.Read())
+                {
+                    taille = dataReader.GetInt32(0);
+                }
+
+                dataReader.Close();
+
+                ac = new Client[taille];
+                query = "SELECT id, nom, prenom, solde, rfid_ID FROM client ORDER BY id ASC";
+                cmd = new MySqlCommand(query, co.connexion);
+                dataReader = cmd.ExecuteReader();
+
+                try
+                {
+
+                    int i = 0;
+                    if (dataReader.HasRows)
+                    {
+                        while (dataReader.Read())
+                        {
+                            ac[i] = new Client(dataReader.GetInt32(0), dataReader.GetString(1), dataReader.GetString(2), dataReader.GetFloat(3), dataReader.GetInt32(4));
+                            i++;
+                        }
+                    }
+
+                    dataReader.Close();
+                    return ac;
+                }
+                catch (Exception any)
+                {
+                    if (ConfigurationManager.AppSettings["debugmode"] == "true")
+                    {
+                        MessageBox.Show("DEBUG: "+any.Message);
                     }
                     dataReader.Close();
                 }
