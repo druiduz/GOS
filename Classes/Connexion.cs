@@ -1,11 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Data.SqlClient;
-using MySql.Data.MySqlClient;
-using System.Windows.Forms;
 using System.Configuration;
+using System.Windows.Forms;
+using MySql.Data.MySqlClient;
 
 namespace GOS.Classes
 {
@@ -23,6 +19,7 @@ namespace GOS.Classes
         }
     }
 
+    // Non utilisé
     public class QueryException : Exception
     {
         public string query;
@@ -36,7 +33,6 @@ namespace GOS.Classes
 
     class Connexion
     {
-
         static private Connexion instance;
         public MySqlConnection connexion;
         private string server;
@@ -66,10 +62,11 @@ namespace GOS.Classes
         }
 
 
-        //Initialize values
+        /*
+         * Initialize values
+        **/
         private void Initialize()
         {
-
             server = ConfigurationManager.AppSettings["bdd_server"];
             database = ConfigurationManager.AppSettings["bdd_database"];
             uid = ConfigurationManager.AppSettings["bdd_uid"];

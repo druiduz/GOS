@@ -8,7 +8,8 @@
     <Grid Loaded="Grid_Loaded">
         <DataGrid AutoGenerateColumns="False" Height="365" HorizontalAlignment="Center" Margin="26,69,28,98" Name="grdClients" VerticalAlignment="Center" Width="878" CanUserAddRows="True" CanUserDeleteRows="True" />
         <Label Content="Liste des clients" Height="39" HorizontalAlignment="Left" Name="label1" VerticalAlignment="Top" FontWeight="Bold" FontFamily="Segoe UI" Margin="359,12,0,0" Width="204" FontSize="24"></Label>
-        <Button Content="Retour" Height="52" HorizontalAlignment="Left" Margin="715,456,0,0" Name="btnRetour" VerticalAlignment="Top" Width="189" Click="btnRetour_Click" TabIndex="3" />
-        <Button Content="Enregistrer" Height="52" HorizontalAlignment="Left" Margin="505,456,0,0" Name="btnSave" VerticalAlignment="Top" Width="189" Click="btnSave_Click" TabIndex="2" />
+        <Button Content="Retour" Height="52" HorizontalAlignment="Left" Margin="715,456,0,0" Name="btnRetour" VerticalAlignment="Top" Width="189" Click="btnRetour_Click" TabIndex="2" />
+        <Button Content="Enregistrer" Height="52" HorizontalAlignment="Left" Margin="505,456,0,0" Name="btnSave" VerticalAlignment="Top" Width="189" Click="btnSave_Click" TabIndex="1" />
+        <Button Content="Exporter clients en fichier CSV" Height="49" HorizontalAlignment="Left" Margin="26,456,0,0" Name="btnExport" TabIndex="3" VerticalAlignment="Top" Width="281" Click="btnExport_Click" />
     </Grid>
 </Page>

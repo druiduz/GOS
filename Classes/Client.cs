@@ -103,13 +103,18 @@ namespace GOS.Classes
             return s;
         }
 
+        /**
+         * Génére un id unique lié à une carte afin d'identifier un client 
+         * 
+        **/
+
         private int generateID()
         {
             return 0;
             int rfid_id = -1;
         
             do{
-                rfid_id = 0; /** RANDOM **/
+                rfid_id = 0; /** TODO: RANDOM **/
 
                 #region BDD
                 try
@@ -117,6 +122,8 @@ namespace GOS.Classes
                     Connexion co = Connexion.getInstance();
                     co.checkConnexion();
 
+
+                    // Test si l'identifiant unique n'est pas déjà utilisé
                     string query = "SELECT id FROM client WHERE rfid_ID = @rfidid";
                     MySqlCommand cmd = new MySqlCommand(query, co.connexion);
                     cmd.Parameters.AddWithValue("@rfidid", rfid_id);
@@ -124,7 +131,7 @@ namespace GOS.Classes
 
                     try
                     {
-                        if (dataReader.Read())
+                        if (dataReader.HasRows)
                         {
                             return rfid_id;
                         }
@@ -417,7 +424,7 @@ namespace GOS.Classes
         {
             //Client c = new Client("testNom", "testPrenom", 50.0f);
             //int idClient = rfidGetId();
-            //Client cl = Client.getUserByUniqID(idClient);
+            //Client cl = Client.getUserByUniqueID(idClient);
             
             int idClient = 1;
 
@@ -437,9 +444,8 @@ namespace GOS.Classes
 
         /**
          * Récupère le client grave à l'identifiant unique stocké sur la carte RFID
-         * 
          */
-        public static Client getUserByUniqID(int id)
+        public static Client getUserByUniqueID(int id)
         {
             Client c = null;
             #region BDD
@@ -447,9 +453,9 @@ namespace GOS.Classes
             try
             {
                 Connexion co = Connexion.getInstance();
+                co.checkConnexion();
 
                 string query = "SELECT id, nom, prenom, solde, rfid_id FROM client WHERE rfid_ID = @id LIMIT 1";
-
                 MySqlCommand cmd = new MySqlCommand(query, co.connexion);
                 cmd.Parameters.AddWithValue("@id", id);
                 MySqlDataReader dataReader = cmd.ExecuteReader();

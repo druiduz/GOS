@@ -83,7 +83,14 @@ namespace GOS.Pages
 
         private void btnExport_Click(object sender, RoutedEventArgs e)
         {
-            Repporting.Export(true, Produit.getAllProduit());
+            if (Repporting.ExportStock(true, Produit.getAllProduit()))
+            {
+                MessageBox.Show("Export du stock réussi !");
+            }
+            else
+            {
+                MessageBox.Show("Un problème est survenue durant l'export du stock");
+            }
         }
 
     }

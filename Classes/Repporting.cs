@@ -1,18 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Net.Mail;
 using System.Data.SqlTypes;
-using System.Reflection;
 using System.IO;
+using System.Reflection;
+using System.Text;
+using System.Windows;
+using System.Configuration;
 
 namespace GOS.Classes
 {
     static class Repporting
     {
 
-        static string exportPath = "E:/Codage/GOS";
+        static string exportPath = "E:\\Codage\\GOS\\export";
 
         public static bool repportCsv(DateTime debut, DateTime fin, string path)
         {
@@ -35,37 +35,93 @@ namespace GOS.Classes
         }
 
         
-        public  static void Export(bool includeHeaderLine, List<Produit> stock)
+        /**
+         * Export la list donnée dans un fichier csv
+         * TODO: Faire en sorte que ce soit générique en fonctions de la list, classes mère ?
+         *         Pour ne pas faire trop de duplication de code
+         */
+
+        public static bool ExportStock(bool includeHeaderLine, List<Produit> stock)
         {
-
-            StringBuilder sb = new StringBuilder();
-            //Get properties using reflection.
-            IList<PropertyInfo> propertyInfos = typeof(Produit).GetProperties();
-
-            if (includeHeaderLine)
+            try
             {
-                //add header line.
-                foreach (PropertyInfo propertyInfo in propertyInfos)
-                {
-                    sb.Append(propertyInfo.Name).Append(";");
-                }
-                sb.Remove(sb.Length - 1, 1).AppendLine();
-            }
+                StringBuilder sb = new StringBuilder();
+                //Get properties using reflection.
+                IList<PropertyInfo> propertyInfos = typeof(Produit).GetProperties();
 
-            //add value for each property.
-            foreach (Produit obj in stock)
+                if (includeHeaderLine)
+                {
+                    //add header line.
+                    foreach (PropertyInfo propertyInfo in propertyInfos)
+                    {
+                        sb.Append(propertyInfo.Name).Append(";");
+                    }
+                    sb.Remove(sb.Length - 1, 1).AppendLine();
+                }
+
+                //add value for each property.
+                foreach (Object obj in stock)
+                {
+                    foreach (PropertyInfo propertyInfo in propertyInfos)
+                    {
+                        sb.Append(MakeValueCsvFriendly(propertyInfo.GetValue(obj, null))).Append(";");
+                    }
+                    sb.Remove(sb.Length - 1, 1).AppendLine();
+                }
+
+                File.WriteAllText(exportPath + "/Stocks_" + String.Format("{0:yyyy_MM_dd_HH_mm_ss}", DateTime.Now) + ".csv", sb.ToString());
+            }
+            catch (Exception any)
             {
-                foreach (PropertyInfo propertyInfo in propertyInfos)
+                if (ConfigurationManager.AppSettings["debugmode"] == "true")
                 {
-                    sb.Append(MakeValueCsvFriendly(propertyInfo.GetValue(obj, null))).Append(";");
+                    MessageBox.Show("DEBUG: " + any.Message);
                 }
-                sb.Remove(sb.Length - 1, 1).AppendLine();
+                return false;
             }
-
-            
-            File.WriteAllText(exportPath + "/Stocks_"+DateTime.Now.ToString()+".csv", sb.ToString());
+            return true;
         }
 
+        public static bool ExportClients(bool includeHeaderLine, List<Client> clients)
+        {
+            try
+            {
+                StringBuilder sb = new StringBuilder();
+                //Get properties using reflection.
+                IList<PropertyInfo> propertyInfos = typeof(Client).GetProperties();
+
+                if (includeHeaderLine)
+                {
+                    //add header line.
+                    foreach (PropertyInfo propertyInfo in propertyInfos)
+                    {
+                        sb.Append(propertyInfo.Name).Append(";");
+                    }
+                    sb.Remove(sb.Length - 1, 1).AppendLine();
+                }
+
+                //add value for each property.
+                foreach (Object obj in clients)
+                {
+                    foreach (PropertyInfo propertyInfo in propertyInfos)
+                    {
+                        sb.Append(MakeValueCsvFriendly(propertyInfo.GetValue(obj, null))).Append(";");
+                    }
+                    sb.Remove(sb.Length - 1, 1).AppendLine();
+                }
+
+                File.WriteAllText(exportPath + "/Clients_" + String.Format("{0:yyyy_MM_dd_HH_mm_ss}", DateTime.Now) + ".csv", sb.ToString());
+            }
+            catch (Exception any)
+            {
+                if (ConfigurationManager.AppSettings["debugmode"] == "true")
+                {
+                    MessageBox.Show("DEBUG: " + any.Message);
+                }
+                return false;
+            }
+            return true;
+        }
       
         //get the csv value for field.
         public static string MakeValueCsvFriendly(object value)
@@ -82,7 +138,13 @@ namespace GOS.Classes
             string output = value.ToString();
 
             if (output.Contains(";") || output.Contains("\""))
+            {
                 output = '"' + output.Replace("\"", "\"\"") + '"';
+            }
+            if (output.Contains("\\"))
+            {
+                output = '"' + output.Replace("\\", "/") + '"';
+            }
 
             return output;
 

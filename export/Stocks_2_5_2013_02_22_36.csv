@@ -1,0 +1,9 @@
+ID;Name;Type;Prix;Quantite;Quantite_min;Logo;LogoFull
+1;coca;boisson;0,6;39;5;coca-cola-logo.jpg;E:\Codage\GOS\Images\logo-produit\coca-cola-logo.jpg
+2;cafe;boisson;0,6;41;5;;
+3;m&m;nourriture;0,6;38;5;mms-logo.jpg;E:\Codage\GOS\Images\logo-produit\mms-logo.jpg
+4;lion;nourriture;0,6;50;5;;
+5;redbull;autre;1;50;5;;
+6;test;test;0;0;5;mms-logo.jpg;E:\Codage\GOS\Images\logo-produit\mms-logo.jpg
+7;fanta;boisson;0,6;50;5;;
+8;m&m noir;nourriture;0,6;50;5;mms-noir-logo.png;E:\Codage\GOS\Images\logo-produit\mms-noir-logo.png

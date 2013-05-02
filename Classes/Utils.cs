@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Security.Cryptography;
-using System.Net.Mail;
 using System.Configuration;
+using System.Net.Mail;
+using System.Security.Cryptography;
+using System.Text;
 using System.Windows.Forms;
 using PCSC;
 

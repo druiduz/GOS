@@ -76,6 +76,18 @@ namespace GOS.Pages
                 MessageBox.Show("Erreur lors de l'enregistrement des clients");
             }
         }
+
+        private void btnExport_Click(object sender, RoutedEventArgs e)
+        {
+            if (Repporting.ExportClients(true, Client.getAllClientsList()))
+            {
+                MessageBox.Show("Export des clients réussi !");
+            }
+            else
+            {
+                MessageBox.Show("Un problème est survenue durant l'export des clients");
+            }
+        }
     }
 }
 

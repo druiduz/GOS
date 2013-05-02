@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using MySql.Data.MySqlClient;
-using System.Windows.Forms;
 using System.Configuration;
+using System.Windows.Forms;
+using MySql.Data.MySqlClient;
 
 namespace GOS.Classes
 {
