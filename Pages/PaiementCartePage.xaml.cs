@@ -38,6 +38,13 @@ namespace GOS.Pages
             {
                 curClient = Client.getUserByRFID();
 
+                if (curClient == null)
+                {
+                    MessageBox.Show("Client introuvable");
+                    MainWindow main = (MainWindow)this.Parent;
+                    main.Content = new VentePage(this.panier);
+                }
+
                 this.textNom.Text = curClient.Nom;
                 this.textPrenom.Text = curClient.Prenom;
                 this.textSolde.Text = curClient.Capital.ToString();

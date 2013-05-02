@@ -425,16 +425,18 @@ namespace GOS.Classes
 
         public static Client getUserByRFID()
         {
-            //Client c = new Client("testNom", "testPrenom", 50.0f);
-            //int idClient = rfidGetId();
-            //Client cl = Client.getUserByUniqueID(idClient);
-            
-            int idClient = 1;
+
+            Client client = null;
+
+            SmartCard card = new SmartCard();
+            String rfid_id = card.getUIDCard();
+
+            MessageBox.Show("RFID: "+rfid_id);
 
             try
             {
-                Client cl = Client.getClientById(idClient);
-                return cl;
+                client = Client.getUserByUniqueID(rfid_id);
+                return client;
             }
             catch (InvalidConnexion e)
             {
@@ -448,7 +450,7 @@ namespace GOS.Classes
         /**
          * Récupère le client grave à l'identifiant unique stocké sur la carte RFID
          */
-        public static Client getUserByUniqueID(int id)
+        public static Client getUserByUniqueID(String rfid_id)
         {
             Client c = null;
             #region BDD
@@ -458,15 +460,17 @@ namespace GOS.Classes
                 Connexion co = Connexion.getInstance();
                 co.checkConnexion();
 
-                string query = "SELECT id, nom, prenom, solde, rfid_id FROM client WHERE rfid_ID = @id LIMIT 1";
+                string query = "SELECT id, nom, prenom, solde, rfid_id FROM client WHERE rfid_ID = @rfid_id LIMIT 1";
                 MySqlCommand cmd = new MySqlCommand(query, co.connexion);
-                cmd.Parameters.AddWithValue("@id", id);
+                cmd.Parameters.AddWithValue("@rfid_id", rfid_id);
                 MySqlDataReader dataReader = cmd.ExecuteReader();
 
                 if (dataReader.Read())
                 {
                     c = new Client(dataReader.GetInt32(0), dataReader.GetString(1), dataReader.GetString(2), dataReader.GetFloat(3), dataReader.GetString(4));
                 }
+
+                dataReader.Close();
 
             }
             catch (InvalidConnexion e)
