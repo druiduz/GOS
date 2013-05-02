@@ -30,7 +30,7 @@ namespace GOS.Pages
             MainWindow main = (MainWindow)this.Parent;
             try
             {
-                main.vendeur = User.Login(this.inputLogin.Text, this.inputPass.Password);
+                main.vendeur = User.connect(this.inputLogin.Text, this.inputPass.Password);
                 if (main.vendeur != null)
                 {
                     HomePage home = new HomePage();

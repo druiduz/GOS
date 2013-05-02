@@ -31,7 +31,7 @@ namespace GOS.Classes
             set { prenom = value; }
         }
 
-        public String Logins
+        public String Login
         {
             get { return login; }
             set { login = value; }
@@ -46,7 +46,7 @@ namespace GOS.Classes
             this.login = login;
         }
 
-        public static User Login(string login, string mdp)
+        public static User connect(string login, string mdp)
         {
 
             User u = null;
@@ -122,11 +122,6 @@ namespace GOS.Classes
             }
 
             #endregion
-        }
-
-        public int getId()
-        {
-            return this.id;
         }
 
         public static List<User> getAllUsersList()

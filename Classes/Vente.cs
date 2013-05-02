@@ -145,13 +145,13 @@ namespace GOS.Classes
             {
                 if (c != null)
                 {
-                    this.store(c.Id, u.getId());
+                    this.store(c.Id, u.Id);
                     c.subCapital(this.getTotal());
                     c.store();
                 }
                 else
                 {
-                    this.store(0, u.getId(), "espece", rendu); //client anonyme
+                    this.store(0, u.Id, "espece", rendu); //client anonyme
                 }
 
                 foreach (KeyValuePair<Produit, int> p in panier)
