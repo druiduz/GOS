@@ -43,8 +43,8 @@ CREATE TABLE `client` (
 INSERT INTO `client` (`id`,`nom`,`prenom`,`solde`,`rfid_ID`) VALUES 
  (0,'anonymous','',0,''),
  (1,'client1_n','client1_p',0.8,''),
- (3,'Allier','Mikael',50,''),
- (4,'Lavergne','Guillaume',25,''),
+ (3,'Allier','Mikael',50,'469627FE'),
+ (4,'Lavergne','Guillaume',25,'E20F9BEB'),
  (5,'test','cart',50,'');
 /*!40000 ALTER TABLE `client` ENABLE KEYS */;
 
@@ -103,7 +103,7 @@ CREATE TABLE `vendeur` (
 
 /*!40000 ALTER TABLE `vendeur` DISABLE KEYS */;
 INSERT INTO `vendeur` (`id`,`login`,`mdp`,`nom`,`prenom`,`lastCo`) VALUES 
- (1,'admin','21232f297a57a5a743894a0e4a801fc3','vendeur','1','2013-05-02 11:45:26'),
+ (1,'admin','21232f297a57a5a743894a0e4a801fc3','vendeur','1','2013-05-02 15:11:32'),
  (2,'druiduz','63a9f0ea7bb98050796b649e85481845','Allier','Mikael','0000-00-00 00:00:00');
 /*!40000 ALTER TABLE `vendeur` ENABLE KEYS */;
 
@@ -166,8 +166,8 @@ CREATE TABLE `ventedetails` (
   PRIMARY KEY  (`id`),
   KEY `FK_ventedetails_vente_id` (`vente_id`),
   KEY `FK_ventedetails_produit_id` (`produit_id`),
-  CONSTRAINT `FK_ventedetails_vente_id` FOREIGN KEY (`vente_id`) REFERENCES `vente` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `FK_ventedetails_produit_id` FOREIGN KEY (`produit_id`) REFERENCES `produit` (`idProduit`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  CONSTRAINT `FK_ventedetails_produit_id` FOREIGN KEY (`produit_id`) REFERENCES `produit` (`idProduit`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `FK_ventedetails_vente_id` FOREIGN KEY (`vente_id`) REFERENCES `vente` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=latin1;
 
 --
