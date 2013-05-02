@@ -81,6 +81,7 @@
     <Compile Include="Classes\Produit.cs" />
     <Compile Include="Classes\ProduitButton.cs" />
     <Compile Include="Classes\Repporting.cs" />
+    <Compile Include="Classes\SmartCard.cs" />
     <Compile Include="Classes\Stock.cs" />
     <Compile Include="Classes\User.cs" />
     <Compile Include="Classes\Utils.cs" />
