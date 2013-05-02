@@ -76,6 +76,7 @@
     </Compile>
     <Compile Include="Classes\Client.cs" />
     <Compile Include="Classes\Connexion.cs" />
+    <Compile Include="Classes\GestionClients.cs" />
     <Compile Include="Classes\Produit.cs" />
     <Compile Include="Classes\ProduitButton.cs" />
     <Compile Include="Classes\Repporting.cs" />

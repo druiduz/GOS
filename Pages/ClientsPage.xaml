@@ -5,7 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       mc:Ignorable="d" Title="ClientsPage" Height="532" Width="932">
 
-    <Grid Loaded="Grid_Loaded">
+    <Grid Loaded="Grid_Loaded" HorizontalAlignment="Center" VerticalAlignment="Center">
         <DataGrid AutoGenerateColumns="False" Height="365" HorizontalAlignment="Center" Margin="26,69,28,98" Name="grdClients" VerticalAlignment="Center" Width="878" CanUserAddRows="True" CanUserDeleteRows="True" />
         <Label Content="Liste des clients" Height="39" HorizontalAlignment="Left" Name="label1" VerticalAlignment="Top" FontWeight="Bold" FontFamily="Segoe UI" Margin="359,12,0,0" Width="204" FontSize="24"></Label>
         <Button Content="Retour" Height="52" HorizontalAlignment="Left" Margin="715,456,0,0" Name="btnRetour" VerticalAlignment="Top" Width="189" Click="btnRetour_Click" TabIndex="2" />

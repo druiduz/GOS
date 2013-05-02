@@ -7,7 +7,7 @@
       d:DesignHeight="553" d:DesignWidth="922"
 	Title="PaiementCartePage" Loaded="Page_Loaded">
 
-    <Grid Height="Auto" Width="Auto" Background="#FFF2F2F2">
+    <Grid Height="Auto" Width="Auto" Background="#FFF2F2F2" HorizontalAlignment="Center" VerticalAlignment="Center">
         <TextBox Height="35" HorizontalAlignment="Left" Margin="72,205,0,0" Name="textNom" VerticalAlignment="Top" Width="120" IsUndoEnabled="False" IsEnabled="False" />
         <TextBox Height="35" HorizontalAlignment="Left" Margin="235,205,0,0" Name="textPrenom" VerticalAlignment="Top" Width="120" IsEnabled="False" />
         <TextBox Height="35" HorizontalAlignment="Left" Margin="72,319,0,0" Name="textSolde" VerticalAlignment="Top" Width="120" IsEnabled="False" />

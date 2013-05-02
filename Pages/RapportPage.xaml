@@ -7,7 +7,7 @@
       d:DesignHeight="556" d:DesignWidth="923"
 	Title="RapportPage">
 
-    <Grid>
+    <Grid HorizontalAlignment="Center" VerticalAlignment="Center" Background="#FFF0F0F0">
         <DatePicker Height="25" HorizontalAlignment="Left" Margin="445,163,0,0" Name="datePickerDebut" VerticalAlignment="Top" Width="115" />
         <DatePicker Height="25" HorizontalAlignment="Left" Margin="445,213,0,0" Name="datePickerFin" VerticalAlignment="Top" Width="115" />
         <Button Content="Créer" Height="38" HorizontalAlignment="Left" Margin="250,418,0,0" Name="btnCreer" VerticalAlignment="Top" Width="153" Click="btnCreer_Click" />
@@ -20,5 +20,7 @@
         <Label Content="Email : " Height="28" HorizontalAlignment="Left" Margin="385,310,0,0" Name="labelMail" VerticalAlignment="Top" Width="54" />
         <TextBox Height="23" HorizontalAlignment="Left" IsEnabled="False" Margin="445,278,0,0" Name="txtPath" VerticalAlignment="Top" Width="153" />
         <Label Content="Destination : " Height="28" HorizontalAlignment="Left" Margin="350,276,0,0" Name="labelPath" VerticalAlignment="Top" Width="79" />
+        <Label Content="Export des Données" Height="39" Name="Export" VerticalAlignment="Top" FontWeight="Bold" FontFamily="Segoe UI" Margin="350,70,334,0" FontSize="24"></Label>
+
     </Grid>
 </Page>

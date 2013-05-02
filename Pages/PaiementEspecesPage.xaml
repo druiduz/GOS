@@ -7,11 +7,11 @@
       d:DesignHeight="545" d:DesignWidth="903"
 	Title="PaiementEspecesPage">
 
-    <Grid Background="#FFF2F2F2" Loaded="Grid_Loaded">
+    <Grid Background="#FFF2F2F2" Loaded="Grid_Loaded" HorizontalAlignment="Center" VerticalAlignment="Center">
         <DataGrid AutoGenerateColumns="False" Height="325" HorizontalAlignment="Left" Margin="604,122,0,0" Name="grdPanier" VerticalAlignment="Top" Width="283" />
         <TextBox Height="39" HorizontalAlignment="Left" Margin="30,151,0,0" Name="txtPrix" VerticalAlignment="Top" Width="143" IsEnabled="False" />
         <TextBox Height="39" HorizontalAlignment="Left" Margin="227,151,0,0" Name="txtMonnaie" VerticalAlignment="Top" Width="143" TextChanged="txtMonnaie_TextChanged" />
-        <TextBox Height="39" HorizontalAlignment="Left" Margin="407,151,0,0" Name="txtRendu" VerticalAlignment="Top" Width="143" IsEnabled="False" />
+        <TextBox Height="39" HorizontalAlignment="Right" Margin="0,151,337,0" Name="txtRendu" VerticalAlignment="Top" Width="143" IsEnabled="False" />
         <Button Content="Valider" Height="40" HorizontalAlignment="Left" Margin="604,474,0,0" Name="Valider" VerticalAlignment="Top" Width="138" Click="Valider_Click" />
         <Button Content="Retour" Height="40" Margin="749,474,16,0" Name="btnRetour" VerticalAlignment="Top" Click="btnRetour_Click" />
         <Button Content="1" HorizontalAlignment="Left" Margin="30,242,0,0" Name="btn1" VerticalAlignment="Top" MinWidth="70" MinHeight="50" Click="btn1_Click" />

@@ -7,8 +7,8 @@
       d:DesignHeight="529" d:DesignWidth="896"
 	Title="Vente">
 
-    <Grid Loaded="Grid_Loaded">
-        <Label Content="Vente" Height="47" HorizontalAlignment="Left" Margin="386,12,0,0" Name="label1" VerticalAlignment="Top" Width="80" FontSize="26" />
+    <Grid Loaded="Grid_Loaded" HorizontalAlignment="Center" VerticalAlignment="Center">
+        <Label Content="Ventes" Height="39" HorizontalAlignment="Left" Name="vente" VerticalAlignment="Top" FontWeight="Bold" FontFamily="Segoe UI" Margin="398,12,0,0" Width="87" FontSize="24"></Label>
         <DataGrid AutoGenerateColumns="False" Height="231" HorizontalAlignment="Left" Margin="555,133,0,0" Name="grdPanier" VerticalAlignment="Top" Width="329"/>
         <Button Content="Carte" Height="52" HorizontalAlignment="Left" Margin="555,404,0,0" Name="btnCarte" VerticalAlignment="Top" Width="156" Click="btnCarte_Click" TabIndex="1" />
         <Button Content="Retour" Height="36" HorizontalAlignment="Left" Margin="772,481,0,0" Name="btnRetour" VerticalAlignment="Top" Width="112" Click="btnRetour_Click" TabIndex="3" />
