@@ -60,7 +60,7 @@ namespace GOS.Pages
             this.grdVendeurs.Columns.Add(new DataGridTextColumn { Header = "ID", Width = 40, Binding = new Binding("Id"), IsReadOnly = true });
             this.grdVendeurs.Columns.Add(new DataGridTextColumn { Header = "Nom", Width = 150, Binding = new Binding("Nom") });
             this.grdVendeurs.Columns.Add(new DataGridTextColumn { Header = "Prenom", Width = 150, Binding = new Binding("Prenom") });
-            this.grdVendeurs.Columns.Add(new DataGridTextColumn { Header = "Login", Width = 90, Binding = new Binding("Login") });
+            this.grdVendeurs.Columns.Add(new DataGridTextColumn { Header = "Login", Width = 90, Binding = new Binding("Logins") });
         }
 
         private void btnSave_Click(object sender, RoutedEventArgs e)

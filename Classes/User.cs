@@ -14,7 +14,30 @@ namespace GOS.Classes
         private string prenom;
         private string login;
         private bool newUser;
+        public int Id
+        {
+            get { return id; }
+        }
 
+        public String Nom
+        {
+            get { return nom; }
+            set { nom = value; }
+        }
+
+        public String Prenom
+        {
+            get { return prenom; }
+            set { prenom = value; }
+        }
+
+        public String Logins
+        {
+            get { return login; }
+            set { login = value; }
+        }
+
+        
         public User(int id, String nom, String prenom, String login)
         {
             this.id = id;
