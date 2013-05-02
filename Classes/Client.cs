@@ -27,7 +27,7 @@ namespace GOS.Classes
         private String nom;        
         private String prenom;
         private float capital;
-        private int rfid_id;
+        private String rfid_id;
 
         private bool newClient;
 
@@ -54,7 +54,7 @@ namespace GOS.Classes
             set { capital = value; }
         }
 
-        public int Rfid_id
+        public string Rfid_id
         {
             get { return rfid_id; }
         }
@@ -77,9 +77,11 @@ namespace GOS.Classes
             this.capital = solde;
             this.rfid_id = this.generateID();
             this.newClient = true;
+
+            // TODO: ecriture de l'id sur la carte
         }
 
-        public Client(int id, String nom, String prenom, float solde, int rfid_id)
+        public Client(int id, String nom, String prenom, float solde, String rfid_id)
         {
             this.id = id;
             this.nom = nom;
@@ -108,13 +110,14 @@ namespace GOS.Classes
          * 
         **/
 
-        private int generateID()
+        private string generateID()
         {
-            return 0;
-            int rfid_id = -1;
+            return "";
+            string rfid_id = "";
         
             do{
-                rfid_id = 0; /** TODO: RANDOM **/
+                //rfid_id = ""; /** TODO: RANDOM **/
+                rfid_id = Utils.getRandomString(10);
 
                 #region BDD
                 try
@@ -155,7 +158,7 @@ namespace GOS.Classes
                     {
                         MessageBox.Show("DEBUG: " + "Connexion avec la base de donnée perdu");
                     }
-                    return 0;
+                    return "";
                 }
             
                 #endregion
@@ -197,7 +200,7 @@ namespace GOS.Classes
                     {
                         if (dataReader.Read())
                         {
-                            c = new Client(dataReader.GetInt32(0), dataReader.GetString(1), dataReader.GetString(2), dataReader.GetFloat(3), 0);
+                            c = new Client(dataReader.GetInt32(0), dataReader.GetString(1), dataReader.GetString(2), dataReader.GetFloat(3), "");
                         }
                     }
 
@@ -246,7 +249,7 @@ namespace GOS.Classes
                     {
                         while (dataReader.Read())
                         {
-                            lc.Add(new Client(dataReader.GetInt32(0), dataReader.GetString(1), dataReader.GetString(2), dataReader.GetFloat(3), dataReader.GetInt32(4)));
+                            lc.Add(new Client(dataReader.GetInt32(0), dataReader.GetString(1), dataReader.GetString(2), dataReader.GetFloat(3), dataReader.GetString(4)));
                         }
                     }
 
@@ -310,7 +313,7 @@ namespace GOS.Classes
                     {
                         while (dataReader.Read())
                         {
-                            ac[i] = new Client(dataReader.GetInt32(0), dataReader.GetString(1), dataReader.GetString(2), dataReader.GetFloat(3), dataReader.GetInt32(4));
+                            ac[i] = new Client(dataReader.GetInt32(0), dataReader.GetString(1), dataReader.GetString(2), dataReader.GetFloat(3), dataReader.GetString(4));
                             i++;
                         }
                     }
@@ -462,7 +465,7 @@ namespace GOS.Classes
 
                 if (dataReader.Read())
                 {
-                    c = new Client(dataReader.GetInt32(0), dataReader.GetString(1), dataReader.GetString(2), dataReader.GetFloat(3), dataReader.GetInt32(4));
+                    c = new Client(dataReader.GetInt32(0), dataReader.GetString(1), dataReader.GetString(2), dataReader.GetFloat(3), dataReader.GetString(4));
                 }
 
             }
