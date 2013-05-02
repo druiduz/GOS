@@ -4,20 +4,18 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       mc:Ignorable="d" 
-      d:DesignHeight="300" d:DesignWidth="300"
+      d:DesignHeight="863" d:DesignWidth="1077"
 	Title="VendeursPage">
 
-    <Grid>
+    <Grid Loaded="Grid_Loaded" HorizontalAlignment="Center" VerticalAlignment="Center">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="122*" />
-            <ColumnDefinition Width="178*" />
+            <ColumnDefinition Width="862" />
+            <ColumnDefinition Width="70" />
         </Grid.ColumnDefinitions>
-        <DataGrid AutoGenerateColumns="True" Height="388" HorizontalAlignment="Center" Margin="-154,28,-478,51" Name="grdVendeurs" VerticalAlignment="Center" Width="932" Grid.ColumnSpan="2" />
-        <Label Content="Liste des Vendeurs" Height="28" HorizontalAlignment="Left" Name="VendeursList" VerticalAlignment="Top" FontWeight="Bold" FontFamily="Segoe UI" Margin="262,12,0,0" Width="162" Grid.Column="1">
-            <Label.BindingGroup>
-                <BindingGroup />
-            </Label.BindingGroup>
-        </Label>
-        <Button Content="Retour" Height="52" HorizontalAlignment="Left" Margin="546,456,0,0" Name="btnRetour" VerticalAlignment="Top" Width="189" Click="btnRetour_Click" Grid.Column="1" />
+        <DataGrid AutoGenerateColumns="False" Height="365" HorizontalAlignment="Center" Margin="26,69,28,98" Name="grdVendeurs" VerticalAlignment="Center" Width="878" CanUserAddRows="True" CanUserDeleteRows="True" Grid.ColumnSpan="2" CanUserSortColumns="False" SelectionChanged="grdVendeurs_SelectionChanged" />
+        <Label Content="Liste des vendeurs" Height="39" HorizontalAlignment="Left" Name="label1" VerticalAlignment="Top" FontWeight="Bold" FontFamily="Segoe UI" Margin="359,12,0,0" Width="204" FontSize="24"></Label>
+        <Button Content="Retour" Height="52" HorizontalAlignment="Left" Margin="715,456,0,0" Name="btnRetour" VerticalAlignment="Top" Width="189" Click="btnRetour_Click" TabIndex="2" Grid.ColumnSpan="2" />
+        <Button Content="Enregistrer" Height="52" HorizontalAlignment="Left" Margin="505,456,0,0" Name="btnSave" VerticalAlignment="Top" Width="189" Click="btnSave_Click" TabIndex="1" />
+        <Image Height="112" HorizontalAlignment="Center" Margin="0,-132,0,0" Name="image1" Stretch="Fill" VerticalAlignment="Top" Width="477" Source="/GOS;component/Images/Logo%20-%20Com%27In.jpg" />
     </Grid>
 </Page>

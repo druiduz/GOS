@@ -4,7 +4,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       mc:Ignorable="d" 
-      d:DesignHeight="698" d:DesignWidth="1100"
+      d:DesignHeight="775" d:DesignWidth="1472"
 	Title="RapportPage">
 
     <Grid HorizontalAlignment="Center" VerticalAlignment="Center" Background="#FFF0F0F0">
@@ -25,6 +25,6 @@
         <TextBox Height="23" HorizontalAlignment="Left" IsEnabled="False" Margin="424,278,0,0" Name="txtPath" VerticalAlignment="Top" Width="153" Grid.Column="1" />
         <Label Content="Destination : " Height="28" HorizontalAlignment="Left" Margin="329,276,0,0" Name="labelPath" VerticalAlignment="Top" Width="79" Grid.Column="1" />
         <Label Content="Export des Données" Height="39" Name="Export" VerticalAlignment="Top" FontWeight="Bold" FontFamily="Segoe UI" Margin="329,70,334,0" FontSize="24" Grid.Column="1"></Label>
-<Image Height="116" HorizontalAlignment="Left" Margin="5,-142,0,0" Name="image1" Stretch="Fill" VerticalAlignment="Top" Width="880" Source="/GOS;component/Images/Logo%20-%20Com%27In.jpg" Grid.Column="1" />
+        <Image Height="112" HorizontalAlignment="Center" Margin="211,-129,209,0" Name="image1" Stretch="Fill" VerticalAlignment="Top" Width="477" Source="/GOS;component/Images/Logo%20-%20Com%27In.jpg" Grid.Column="1" />
     </Grid>
 </Page>

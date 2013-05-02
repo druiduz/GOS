@@ -14,7 +14,6 @@ using System.Windows.Shapes;
 using GOS.Classes;
 using System.Configuration;
 using System.Collections;
-using GOS.Classes;
 namespace GOS.Pages
 {
     /// <summary>

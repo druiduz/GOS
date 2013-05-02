@@ -146,5 +146,10 @@ namespace GOS.Pages
             MainWindow main = (MainWindow)this.Parent;
             main.Content = new HomePage();
         }
+
+        private void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
