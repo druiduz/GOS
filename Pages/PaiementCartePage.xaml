@@ -4,10 +4,10 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       mc:Ignorable="d" 
-      d:DesignHeight="553" d:DesignWidth="922"
+      d:DesignHeight="764" d:DesignWidth="1086"
 	Title="PaiementCartePage" Loaded="Page_Loaded">
 
-    <Grid Height="Auto" Width="Auto" Background="#FFF2F2F2" HorizontalAlignment="Center" VerticalAlignment="Center">
+    <Grid Background="#FFF2F2F2" HorizontalAlignment="Center" VerticalAlignment="Center">
         <TextBox Height="35" HorizontalAlignment="Left" Margin="72,205,0,0" Name="textNom" VerticalAlignment="Top" Width="120" IsUndoEnabled="False" IsEnabled="False" />
         <TextBox Height="35" HorizontalAlignment="Left" Margin="235,205,0,0" Name="textPrenom" VerticalAlignment="Top" Width="120" IsEnabled="False" />
         <TextBox Height="35" HorizontalAlignment="Left" Margin="72,319,0,0" Name="textSolde" VerticalAlignment="Top" Width="120" IsEnabled="False" />
@@ -21,5 +21,6 @@
         <Button Content="Retour" Height="46" HorizontalAlignment="Left" Margin="600,473,0,0" Name="btnRetour" VerticalAlignment="Top" Width="271" Click="btnAnnuler_Click" />
         <DataGrid AutoGenerateColumns="False" Height="374" HorizontalAlignment="Left" Margin="489,12,0,0" Name="grdRecap" VerticalAlignment="Top" Width="382" />
         <Label Content="Paiement par carte" FontSize="48" FontWeight="Bold" Height="68" HorizontalAlignment="Left" Margin="44,37,0,0" Name="label5" VerticalAlignment="Top" Width="519" />
+        <Image Height="116" HorizontalAlignment="Left" Margin="-9,-122,0,0" Name="image1" Stretch="Fill" VerticalAlignment="Top" Width="880" Source="/GOS;component/Images/Logo%20-%20Com%27In.jpg" />
     </Grid>
 </Page>

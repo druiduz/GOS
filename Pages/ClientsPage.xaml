@@ -3,13 +3,18 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      mc:Ignorable="d" Title="ClientsPage" Height="532" Width="932">
+      mc:Ignorable="d" Title="ClientsPage" Height="808" Width="1050">
 
     <Grid Loaded="Grid_Loaded" HorizontalAlignment="Center" VerticalAlignment="Center">
-        <DataGrid AutoGenerateColumns="False" Height="365" HorizontalAlignment="Center" Margin="26,69,28,98" Name="grdClients" VerticalAlignment="Center" Width="878" CanUserAddRows="True" CanUserDeleteRows="True" />
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="862" />
+            <ColumnDefinition Width="70" />
+        </Grid.ColumnDefinitions>
+        <DataGrid AutoGenerateColumns="False" Height="365" HorizontalAlignment="Center" Margin="26,69,28,98" Name="grdClients" VerticalAlignment="Center" Width="878" CanUserAddRows="True" CanUserDeleteRows="True" Grid.ColumnSpan="2" />
         <Label Content="Liste des clients" Height="39" HorizontalAlignment="Left" Name="label1" VerticalAlignment="Top" FontWeight="Bold" FontFamily="Segoe UI" Margin="359,12,0,0" Width="204" FontSize="24"></Label>
-        <Button Content="Retour" Height="52" HorizontalAlignment="Left" Margin="715,456,0,0" Name="btnRetour" VerticalAlignment="Top" Width="189" Click="btnRetour_Click" TabIndex="2" />
+        <Button Content="Retour" Height="52" HorizontalAlignment="Left" Margin="715,456,0,0" Name="btnRetour" VerticalAlignment="Top" Width="189" Click="btnRetour_Click" TabIndex="2" Grid.ColumnSpan="2" />
         <Button Content="Enregistrer" Height="52" HorizontalAlignment="Left" Margin="505,456,0,0" Name="btnSave" VerticalAlignment="Top" Width="189" Click="btnSave_Click" TabIndex="1" />
         <Button Content="Exporter clients en fichier CSV" Height="49" HorizontalAlignment="Left" Margin="26,456,0,0" Name="btnExport" TabIndex="3" VerticalAlignment="Top" Width="281" Click="btnExport_Click" />
+        <Image Height="116" HorizontalAlignment="Left" Margin="24,-138,0,0" Name="image1" Stretch="Fill" VerticalAlignment="Top" Width="880" Source="/GOS;component/Images/Logo%20-%20Com%27In.jpg" Grid.ColumnSpan="2" />
     </Grid>
 </Page>

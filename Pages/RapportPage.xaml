@@ -4,23 +4,27 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       mc:Ignorable="d" 
-      d:DesignHeight="556" d:DesignWidth="923"
+      d:DesignHeight="698" d:DesignWidth="1100"
 	Title="RapportPage">
 
     <Grid HorizontalAlignment="Center" VerticalAlignment="Center" Background="#FFF0F0F0">
-        <DatePicker Height="25" HorizontalAlignment="Left" Margin="445,163,0,0" Name="datePickerDebut" VerticalAlignment="Top" Width="115" />
-        <DatePicker Height="25" HorizontalAlignment="Left" Margin="445,213,0,0" Name="datePickerFin" VerticalAlignment="Top" Width="115" />
-        <Button Content="Créer" Height="38" HorizontalAlignment="Left" Margin="250,418,0,0" Name="btnCreer" VerticalAlignment="Top" Width="153" Click="btnCreer_Click" />
-        <Button Content="Retour" Height="38" HorizontalAlignment="Left" Margin="445,418,0,0" Name="btnRetour" VerticalAlignment="Top" Width="153" Click="btnRetour_Click" />
-        <Label Content="Date de début" Height="28" HorizontalAlignment="Left" Margin="250,160,0,0" Name="labelDateDebut" VerticalAlignment="Top" Width="153" />
-        <Label Content="Date de fin" Height="28" HorizontalAlignment="Left" Margin="250,210,0,0" Name="labelDateFin" VerticalAlignment="Top" Width="153" />
-        <RadioButton Content="Export csv" Height="22" HorizontalAlignment="Left" Margin="250,282,0,0" Name="radioCsv" VerticalAlignment="Top" Width="94" Checked="radioCsv_Checked" />
-        <RadioButton Content="Export mail" Height="24" HorizontalAlignment="Left" Margin="250,315,0,0" Name="radioMail" VerticalAlignment="Top" Checked="radioMail_Checked" />
-        <TextBox Height="23" HorizontalAlignment="Left" Margin="445,312,0,0" Name="txtMail" VerticalAlignment="Top" Width="153" IsEnabled="False" />
-        <Label Content="Email : " Height="28" HorizontalAlignment="Left" Margin="385,310,0,0" Name="labelMail" VerticalAlignment="Top" Width="54" />
-        <TextBox Height="23" HorizontalAlignment="Left" IsEnabled="False" Margin="445,278,0,0" Name="txtPath" VerticalAlignment="Top" Width="153" />
-        <Label Content="Destination : " Height="28" HorizontalAlignment="Left" Margin="350,276,0,0" Name="labelPath" VerticalAlignment="Top" Width="79" />
-        <Label Content="Export des Données" Height="39" Name="Export" VerticalAlignment="Top" FontWeight="Bold" FontFamily="Segoe UI" Margin="350,70,334,0" FontSize="24"></Label>
-
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="21" />
+            <ColumnDefinition Width="897" />
+        </Grid.ColumnDefinitions>
+        <DatePicker Height="25" HorizontalAlignment="Left" Margin="424,163,0,0" Name="datePickerDebut" VerticalAlignment="Top" Width="115" Grid.Column="1" />
+        <DatePicker Height="25" HorizontalAlignment="Left" Margin="424,213,0,0" Name="datePickerFin" VerticalAlignment="Top" Width="115" Grid.Column="1" />
+        <Button Content="Créer" Height="38" HorizontalAlignment="Left" Margin="229,418,0,0" Name="btnCreer" VerticalAlignment="Top" Width="153" Click="btnCreer_Click" Grid.Column="1" />
+        <Button Content="Retour" Height="38" HorizontalAlignment="Left" Margin="424,418,0,0" Name="btnRetour" VerticalAlignment="Top" Width="153" Click="btnRetour_Click" Grid.Column="1" />
+        <Label Content="Date de début" Height="28" HorizontalAlignment="Left" Margin="229,160,0,0" Name="labelDateDebut" VerticalAlignment="Top" Width="153" Grid.Column="1" />
+        <Label Content="Date de fin" Height="28" HorizontalAlignment="Left" Margin="229,210,0,0" Name="labelDateFin" VerticalAlignment="Top" Width="153" Grid.Column="1" />
+        <RadioButton Content="Export csv" Height="22" HorizontalAlignment="Left" Margin="229,282,0,0" Name="radioCsv" VerticalAlignment="Top" Width="94" Checked="radioCsv_Checked" Grid.Column="1" />
+        <RadioButton Content="Export mail" Height="24" HorizontalAlignment="Left" Margin="229,315,0,0" Name="radioMail" VerticalAlignment="Top" Checked="radioMail_Checked" Grid.Column="1" />
+        <TextBox Height="23" HorizontalAlignment="Left" Margin="424,312,0,0" Name="txtMail" VerticalAlignment="Top" Width="153" IsEnabled="False" Grid.Column="1" />
+        <Label Content="Email : " Height="28" HorizontalAlignment="Left" Margin="364,310,0,0" Name="labelMail" VerticalAlignment="Top" Width="54" Grid.Column="1" />
+        <TextBox Height="23" HorizontalAlignment="Left" IsEnabled="False" Margin="424,278,0,0" Name="txtPath" VerticalAlignment="Top" Width="153" Grid.Column="1" />
+        <Label Content="Destination : " Height="28" HorizontalAlignment="Left" Margin="329,276,0,0" Name="labelPath" VerticalAlignment="Top" Width="79" Grid.Column="1" />
+        <Label Content="Export des Données" Height="39" Name="Export" VerticalAlignment="Top" FontWeight="Bold" FontFamily="Segoe UI" Margin="329,70,334,0" FontSize="24" Grid.Column="1"></Label>
+<Image Height="116" HorizontalAlignment="Left" Margin="5,-142,0,0" Name="image1" Stretch="Fill" VerticalAlignment="Top" Width="880" Source="/GOS;component/Images/Logo%20-%20Com%27In.jpg" Grid.Column="1" />
     </Grid>
 </Page>

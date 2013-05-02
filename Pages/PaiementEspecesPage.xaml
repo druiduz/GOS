@@ -4,7 +4,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       mc:Ignorable="d" 
-      d:DesignHeight="545" d:DesignWidth="903"
+      d:DesignHeight="777" d:DesignWidth="938"
 	Title="PaiementEspecesPage">
 
     <Grid Background="#FFF2F2F2" Loaded="Grid_Loaded" HorizontalAlignment="Center" VerticalAlignment="Center">
@@ -30,5 +30,6 @@
         <Label Content="Rendu" Height="28" HorizontalAlignment="Left" Margin="407,122,0,0" Name="label4" VerticalAlignment="Top" Width="141" />
         <Button Content="," HorizontalAlignment="Left" Margin="126,469,0,0" MinHeight="50" MinWidth="70" Name="btnvirg" VerticalAlignment="Top" Click="btnvirg_Click" />
         <Button Content="C" HorizontalAlignment="Left" Margin="224,469,0,0" MinHeight="50" MinWidth="70" Name="btnC" VerticalAlignment="Top" Click="btnC_Click" />
+        <Image Height="116" HorizontalAlignment="Left" Margin="-9,-122,0,0" Name="image1" Stretch="Fill" VerticalAlignment="Top" Width="880" Source="/GOS;component/Images/Logo%20-%20Com%27In.jpg" />
     </Grid>
 </Page>
