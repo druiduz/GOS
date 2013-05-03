@@ -25,6 +25,7 @@ namespace GOS.Pages
         String nom;
         String prenom;
         float solde;
+        String rfid;
 
         public GestionCartePage()
         {
@@ -33,18 +34,31 @@ namespace GOS.Pages
             this.nom = "";
             this.prenom = "";
             this.solde = -1.0f;
+            this.rfid = "";
         }
 
         private bool validateForm()
         {
 
-            if (nom == String.Empty)
+            if (String.IsNullOrEmpty(rfid))
+            {
+                MessageBox.Show("Veuillez analyser une carte");
+                return false;
+            }
+
+            if (Client.checkRfidUsed(rfid))
+            {
+                MessageBox.Show("L'identifiant RFID est déjà assigné à un client");
+                return false;
+            }
+
+            if (String.IsNullOrEmpty(nom))
             {
                 MessageBox.Show("Veuillez renseigner le champs nom");
                 return false;
             }
 
-            if (prenom == String.Empty)
+            if (String.IsNullOrEmpty(prenom))
             {
                 MessageBox.Show("Veuillez renseigner le champs prenom");
                 return false;
@@ -68,6 +82,7 @@ namespace GOS.Pages
             {
                 this.solde = float.Parse(this.txtSolde.Text);
             }
+            this.rfid = this.txtRfid.Text;
 
             if (!this.validateForm())
             {
@@ -76,10 +91,11 @@ namespace GOS.Pages
 
             try
             {
-                Client c = new Client(this.nom, this.prenom, this.solde);
+                Client c = new Client(this.nom, this.prenom, this.solde, this.rfid);
                 c.store();
-                MessageBox.Show("Carte creer avec succes");
-
+                MessageBox.Show("Client créé avec succes");
+                MainWindow main = (MainWindow)this.Parent;
+                main.Content = new HomePage();
             }
             catch (Exception any)
             {
@@ -88,12 +104,9 @@ namespace GOS.Pages
                 {
                     MessageBox.Show(any.Message);
                 }
-                MessageBox.Show("Impossible de creer la carte");
+                MessageBox.Show("Impossible de créer client");
                 return;
             }
-            
-            MainWindow main = (MainWindow)this.Parent;
-            main.Content = new HomePage();
         }
 
         private void btnRetour_Click(object sender, RoutedEventArgs e)
@@ -105,6 +118,29 @@ namespace GOS.Pages
         private void Grid_Loaded(object sender, RoutedEventArgs e)
         {
             this.txtNom.Focus();
+        }
+
+        private void btnAnalyse_Click(object sender, RoutedEventArgs e)
+        {
+            String rfid_id = "";
+            try
+            {
+                SmartCard card = new SmartCard();            
+                rfid_id = card.getUIDCard();
+                this.enableAll();
+            }
+            catch (RFIDException rfidexcept)
+            {
+                MessageBox.Show(rfidexcept.Message);
+            }
+        }
+
+        private void enableAll()
+        {
+            this.txtNom.IsEnabled = true;
+            this.txtPrenom.IsEnabled = true;
+            this.txtSolde.IsEnabled = true;
+
         }
     }
 }

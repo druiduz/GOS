@@ -6,15 +6,17 @@
       mc:Ignorable="d" Title="GestionCartePage" d:DesignHeight="676" d:DesignWidth="1125">
 
     <Grid Loaded="Grid_Loaded" HorizontalAlignment="Center" VerticalAlignment="Center" Height="403" Width="477" Background="#FFF0F0F0">
-        <TextBox Height="29" HorizontalAlignment="Left" Margin="148,129,0,0" Name="txtNom" VerticalAlignment="Top" Width="255" VerticalContentAlignment="Center" TabIndex="1" />
-        <TextBox Height="27" HorizontalAlignment="Left" Margin="148,240,0,0" Name="txtSolde" VerticalAlignment="Top" Width="255" VerticalContentAlignment="Center" TabIndex="3" />
-        <TextBox Height="27" HorizontalAlignment="Left" Margin="148,189,0,0" Name="txtPrenom" VerticalAlignment="Top" Width="255" VerticalContentAlignment="Center" TabIndex="2" />
-        <Button Content="Créer" Height="38" HorizontalAlignment="Left" Margin="56,325,0,0" Name="btnCreer" VerticalAlignment="Top" Width="153" Click="btnCreer_Click" VerticalContentAlignment="Center" TabIndex="4" />
-        <Button Content="Retour" Height="38" HorizontalAlignment="Left" Margin="250,325,0,0" Name="btnRetour" VerticalAlignment="Top" Width="153" Click="btnRetour_Click" VerticalContentAlignment="Center" TabIndex="5" />
-        <Label Content="Nom" Height="28" HorizontalAlignment="Left" Margin="88,130,0,0" Name="label1" VerticalAlignment="Top" VerticalContentAlignment="Center" />
-        <Label Content="Prenom" Height="28" HorizontalAlignment="Left" Margin="88,189,0,0" Name="label2" VerticalAlignment="Top" VerticalContentAlignment="Center" />
-        <Label Content="Solde" Height="28" HorizontalAlignment="Left" Margin="88,239,0,0" Name="label3" VerticalAlignment="Top" VerticalContentAlignment="Center" />
-        <Label Content="Nouveau Client" Height="39" HorizontalAlignment="Left" Name="NewClient" VerticalAlignment="Top" FontWeight="Bold" FontFamily="Segoe UI" Margin="148,51,0,0" Width="204" FontSize="24" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"></Label>
+        <TextBox Height="29" HorizontalAlignment="Left" Margin="148,116,0,0" Name="txtNom" VerticalAlignment="Top" Width="255" VerticalContentAlignment="Center" TabIndex="1" IsEnabled="False" />
+        <TextBox Height="27" HorizontalAlignment="Left" Margin="148,220,0,0" Name="txtSolde" VerticalAlignment="Top" Width="255" VerticalContentAlignment="Center" TabIndex="3" IsEnabled="False" />
+        <TextBox Height="27" HorizontalAlignment="Left" Margin="148,169,0,0" Name="txtPrenom" VerticalAlignment="Top" Width="255" VerticalContentAlignment="Center" TabIndex="2" IsEnabled="False" />
+        <Button Content="Créer" Height="38" HorizontalAlignment="Left" Margin="59,337,0,0" Name="btnCreer" VerticalAlignment="Top" Width="153" Click="btnCreer_Click" VerticalContentAlignment="Center" TabIndex="4" />
+        <Button Content="Retour" Height="38" HorizontalAlignment="Left" Margin="270,337,0,0" Name="btnRetour" VerticalAlignment="Top" Width="153" Click="btnRetour_Click" VerticalContentAlignment="Center" TabIndex="5" />
+        <Label Content="Nom" Height="28" HorizontalAlignment="Left" Margin="88,117,0,0" Name="label1" VerticalAlignment="Top" VerticalContentAlignment="Center" />
+        <Label Content="Prenom" Height="28" HorizontalAlignment="Left" Margin="88,169,0,0" Name="label2" VerticalAlignment="Top" VerticalContentAlignment="Center" />
+        <Label Content="Solde" Height="28" HorizontalAlignment="Left" Margin="88,219,0,0" Name="label3" VerticalAlignment="Top" VerticalContentAlignment="Center" />
+        <Label Content="Nouveau Client" Height="39" HorizontalAlignment="Left" Name="NewClient" VerticalAlignment="Top" FontWeight="Bold" FontFamily="Segoe UI" Margin="148,33,0,0" Width="204" FontSize="24" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"></Label>
         <Image Height="112" HorizontalAlignment="Center" Margin="0,-111,0,0" Name="image1" Stretch="Fill" VerticalAlignment="Top" Width="477" Source="/GOS;component/Images/Logo%20-%20Com%27In.jpg" />
+        <Button Content="Analyser" Height="27" HorizontalAlignment="Left" Margin="44,275,0,0" Name="btnAnalyse" VerticalAlignment="Top" Width="80" Click="btnAnalyse_Click" />
+        <TextBox Height="27" HorizontalAlignment="Left" Margin="148,275,0,0" Name="txtRfid" TabIndex="3" VerticalAlignment="Top" VerticalContentAlignment="Center" Width="255" IsReadOnly="True" />
     </Grid>
 </Page>

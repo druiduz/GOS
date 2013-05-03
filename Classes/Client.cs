@@ -56,13 +56,13 @@ namespace GOS.Classes
             this.newClient = true;
         }
 
-        public Client(String nom, String prenom, float solde)
+        public Client(String nom, String prenom, float solde, String rfid_id)
         {
             this.id = -1;
             this.nom = nom;
             this.prenom = prenom;
             this.capital = solde;
-            this.rfid_id = this.generateID();
+            this.rfid_id = rfid_id;
             this.newClient = true;
         }
 
@@ -88,6 +88,58 @@ namespace GOS.Classes
             s += "Rfid_id = '" + this.rfid_id + "'\n";
 
             return s;
+        }
+
+        /*
+         * Test si l'identifiant rfid est déjà utilisé pour un client
+        **/
+        public static bool checkRfidUsed(String rfid)
+        {
+            bool retour = false;
+
+            #region BDD
+            try
+            {
+                Connexion co = Connexion.getInstance();
+                co.checkConnexion();
+
+                string query = "SELECT id FROM client WHERE rfid_ID = @rfidid";
+                MySqlCommand cmd = new MySqlCommand(query, co.connexion);
+                cmd.Parameters.AddWithValue("@rfidid", rfid);
+                MySqlDataReader dataReader = cmd.ExecuteReader();
+
+                try
+                {
+                    if (dataReader.HasRows)
+                    {
+                        retour = true;
+                    }
+
+                    dataReader.Close();
+                }
+                catch (Exception any)
+                {
+                    if (ConfigurationManager.AppSettings["debugmode"] == "true")
+                    {
+                        MessageBox.Show("DEBUG: " + any.Message);
+                    }
+
+                    dataReader.Close();
+                }
+
+            }
+            catch (InvalidConnexion e)
+            {
+                if (ConfigurationManager.AppSettings["debugmode"] == "true")
+                {
+                    MessageBox.Show("DEBUG: " + "Connexion avec la base de donnée perdu");
+                }
+                retour = true;
+            }
+
+            #endregion
+
+            return retour;
         }
 
         /**
