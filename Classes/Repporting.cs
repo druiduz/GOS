@@ -12,7 +12,9 @@ namespace GOS.Classes
     static class Repporting
     {
 
-        static string exportPath = "E:\\Codage\\GOS\\export";
+        static string exportPath =System.IO.Path.GetFullPath("..\\..\\export");
+
+        //Code Mort
 
         public static bool repportCsv(DateTime debut, DateTime fin, string path)
         {
@@ -34,7 +36,7 @@ namespace GOS.Classes
             return true;
         }
 
-        
+        //
         /**
          * Export la list donnée dans un fichier csv
          * TODO: Faire en sorte que ce soit générique en fonctions de la list, classes mère ?
@@ -69,7 +71,7 @@ namespace GOS.Classes
                     sb.Remove(sb.Length - 1, 1).AppendLine();
                 }
 
-                File.WriteAllText(exportPath + "/Stocks_" + String.Format("{0:yyyy_MM_dd_HH_mm_ss}", DateTime.Now) + ".csv", sb.ToString());
+                File.WriteAllText(exportPath + "\\Stocks_" + String.Format("{0:yyyy_MM_dd_HH_mm_ss}", DateTime.Now) + ".csv", sb.ToString());
             }
             catch (Exception any)
             {
@@ -110,7 +112,7 @@ namespace GOS.Classes
                     sb.Remove(sb.Length - 1, 1).AppendLine();
                 }
 
-                File.WriteAllText(exportPath + "/Clients_" + String.Format("{0:yyyy_MM_dd_HH_mm_ss}", DateTime.Now) + ".csv", sb.ToString());
+                File.WriteAllText(exportPath + "\\Clients_" + String.Format("{0:yyyy_MM_dd_HH_mm_ss}", DateTime.Now) + ".csv", sb.ToString());
             }
             catch (Exception any)
             {

@@ -1,0 +1,11 @@
+ID;Name;Type;Prix;Quantite;Quantite_min;Logo;LogoFull
+1;coca;boisson;0,6;37;5;coca-cola-logo.jpg;"C:/Users/Sabrina/Documents/Visual Studio 2010/Projects/GOS/Images/logo-produit/coca-cola-logo.jpg"
+2;cafe;boisson;0,4;41;5;cafe.jpg;"C:/Users/Sabrina/Documents/Visual Studio 2010/Projects/GOS/Images/logo-produit/cafe.jpg"
+3;m&m;nourriture;0,6;37;5;mms-logo.jpg;"C:/Users/Sabrina/Documents/Visual Studio 2010/Projects/GOS/Images/logo-produit/mms-logo.jpg"
+4;lion;nourriture;0,6;50;5;lion.jpg;"C:/Users/Sabrina/Documents/Visual Studio 2010/Projects/GOS/Images/logo-produit/lion.jpg"
+5;redbull;autre;1;50;5;redbull.jpg;"C:/Users/Sabrina/Documents/Visual Studio 2010/Projects/GOS/Images/logo-produit/redbull.jpg"
+6;bounty;nourriture;0;0;5;bounty.jpg;"C:/Users/Sabrina/Documents/Visual Studio 2010/Projects/GOS/Images/logo-produit/bounty.jpg"
+7;fanta;boisson;0,6;50;5;fanta.png;"C:/Users/Sabrina/Documents/Visual Studio 2010/Projects/GOS/Images/logo-produit/fanta.png"
+8;m&m noir;nourriture;0,6;50;5;mms-noir-logo.png;"C:/Users/Sabrina/Documents/Visual Studio 2010/Projects/GOS/Images/logo-produit/mms-noir-logo.png"
+9;sucettes;nourriture;0,2;200;5;sucettes.jpg;"C:/Users/Sabrina/Documents/Visual Studio 2010/Projects/GOS/Images/logo-produit/sucettes.jpg"
+10;kit kat;nourriture;0,6;50;5;Kit-Kat.jpg;"C:/Users/Sabrina/Documents/Visual Studio 2010/Projects/GOS/Images/logo-produit/Kit-Kat.jpg"
