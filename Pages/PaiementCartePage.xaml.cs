@@ -40,9 +40,10 @@ namespace GOS.Pages
 
                 if (curClient == null)
                 {
-                    MessageBox.Show("Client introuvable");
+                    MessageBox.Show("Aucun client trouvé");
                     MainWindow main = (MainWindow)this.Parent;
                     main.Content = new VentePage(this.panier);
+                    return;
                 }
 
                 this.textNom.Text = curClient.Nom;
@@ -51,9 +52,11 @@ namespace GOS.Pages
                 this.textNewSolde.Text = (curClient.Capital - panier.getTotal()).ToString();
 
             }
-            catch (RFIDException excep)
+            catch (RFIDException rfidexcept)
             {
-                MessageBox.Show(excep.Message);
+                MessageBox.Show(rfidexcept.Message);
+                MainWindow main = (MainWindow)this.Parent;
+                main.Content = new VentePage(this.panier);
             }
         }
 

@@ -70,15 +70,6 @@ namespace GOS.Classes
             return true;
         }
 
-        /*public static string getRandomString(int l)
-        {
-            string retour = "";
-            char[] listcar = char["a", "b", "c", "d", "e", "f", "g", "h", "i","j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
-
-
-            return retour;
-        }*/
-
         public static string getRandomString(int size)
         {
             StringBuilder builder = new StringBuilder();

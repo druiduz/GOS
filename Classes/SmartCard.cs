@@ -6,9 +6,24 @@ using System.Text;
 using PCSC;
 using PCSC.Iso7816;
 using System.Windows;
+using System.Configuration;
 
 namespace GOS.Classes
 {
+
+    public class RFIDException : Exception
+    {
+        new public string Message;
+        public RFIDException()
+        {
+            this.Message = "";
+        }
+        public RFIDException(string m)
+        {
+            this.Message = m;
+        }
+    }
+
     class SmartCard
     {
         private SCardContext ctx;
@@ -49,19 +64,25 @@ namespace GOS.Classes
 
         public SmartCard()
         {
-            // Establish PC/SC context
-            this.ctx = new SCardContext();
-            ctx.Establish(SCardScope.System);
+            try
+            {
+                // Establish PC/SC context
+                this.ctx = new SCardContext();
+                ctx.Establish(SCardScope.System);
 
-            // Create a reader object
-            this.reader = new SCardReader(this.ctx);
+                // Create a reader object
+                this.reader = new SCardReader(this.ctx);
 
-            // Use the first reader that is found
-            this.omnikeyReader = ctx.GetReaders()[1];
+                // Use the first reader that is found
+                this.omnikeyReader = ctx.GetReaders()[1];
 
-            // Connect to the card
-            this.card = new IsoCard(this.reader);
-
+                // Connect to the card
+                this.card = new IsoCard(this.reader);
+            }
+            catch (PCSCException any)
+            {
+                throw new RFIDException("Un problème est survenue lors de la lecture de la carte");
+            }
         }
 
         public String getUIDCard()
@@ -74,9 +95,14 @@ namespace GOS.Classes
             }
             catch (RemovedCardException e) {
 
-                MessageBox.Show("Veuillez deposez une carte");
-                return "";
+                if (ConfigurationManager.AppSettings["debugmode"] == "true")
+                {
+                    MessageBox.Show("DEBUG: " + e.Message);
+                }
+
+                throw new RFIDException("Aucune carte detecté");
             }
+
             // Build a ATR fetch case
             CommandApdu apdu = card.ConstructCommandApdu(
                 IsoCase.Case2Short);

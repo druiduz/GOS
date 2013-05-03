@@ -7,19 +7,6 @@ using MySql.Data.MySqlClient;
 namespace GOS.Classes
 {
 
-    public class RFIDException : Exception
-    {
-        new public string Message;
-        public RFIDException()
-        {
-            this.Message = "";
-        }
-        public RFIDException(string m)
-        {
-            this.Message = m;
-        }
-    }
-
     public class Client
     {
 
@@ -424,12 +411,16 @@ namespace GOS.Classes
         {
 
             Client client = null;
+            String rfid_id = "";
 
             SmartCard card = new SmartCard();
-            String rfid_id = card.getUIDCard();
-
-            if (rfid_id == "") {
-                return null;
+            try
+            {
+                rfid_id = card.getUIDCard();
+            }
+            catch (RFIDException rfidexcept)
+            {
+                throw rfidexcept;
             }
 
             MessageBox.Show("RFID: "+rfid_id);
