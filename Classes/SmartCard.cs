@@ -5,6 +5,7 @@ using System.Text;
 
 using PCSC;
 using PCSC.Iso7816;
+using System.Windows;
 
 namespace GOS.Classes
 {
