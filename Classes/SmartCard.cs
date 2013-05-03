@@ -67,8 +67,15 @@ namespace GOS.Classes
         {
             String uid = "";
 
-            card.Connect(omnikeyReader, SCardShareMode.Shared, SCardProtocol.Any);
+            try
+            {
+                card.Connect(omnikeyReader, SCardShareMode.Shared, SCardProtocol.Any);
+            }
+            catch (RemovedCardException e) {
 
+                MessageBox.Show("Veuillez deposez une carte");
+                return "";
+            }
             // Build a ATR fetch case
             CommandApdu apdu = card.ConstructCommandApdu(
                 IsoCase.Case2Short);
