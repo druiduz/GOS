@@ -77,8 +77,6 @@ namespace GOS.Classes
             this.capital = solde;
             this.rfid_id = this.generateID();
             this.newClient = true;
-
-            // TODO: ecriture de l'id sur la carte
         }
 
         public Client(int id, String nom, String prenom, float solde, String rfid_id)
@@ -107,7 +105,7 @@ namespace GOS.Classes
 
         /**
          * Génére un id unique lié à une carte afin d'identifier un client 
-         * 
+         * Note: code mort
         **/
 
         private string generateID()
@@ -116,7 +114,6 @@ namespace GOS.Classes
             string rfid_id = "";
         
             do{
-                //rfid_id = ""; /** TODO: RANDOM **/
                 rfid_id = Utils.getRandomString(10);
 
                 #region BDD

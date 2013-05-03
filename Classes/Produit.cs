@@ -18,10 +18,26 @@ namespace GOS.Classes
         private String logoFull;
 
         private bool newProduit;
+        private static int newId = -1;
 
         public Produit()
         {
-            this._ID = this.getNewProduitId();
+            int idtmp = this.getNewProduitId();
+
+            if (Produit.newId == -1)
+            {
+                Produit.newId = idtmp;
+            }
+            if (idtmp == Produit.newId)
+            {
+                this._ID = idtmp;
+                Produit.newId++;
+            }
+            else
+            {
+                this._ID = Produit.newId++;
+            }
+
             this.name = "undefined";
             this.prix = 0.0f;
             this.quantite = 0;
