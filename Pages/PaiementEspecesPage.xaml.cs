@@ -63,7 +63,7 @@ namespace GOS.Pages
         private void Valider_Click(object sender, RoutedEventArgs e)
         {
 
-            if (this.monnaieTxt == "" || float.Parse(this.monnaieTxt) < float.Parse(this.txtPrix.Text))
+            if (this.monnaieTxt == "" || float.Parse(this.monnaieTxt) < float.Parse(this.txtPrix.Text.Replace('.', ',')))
             {
                 MessageBox.Show("Montant insufisant");
                 return;

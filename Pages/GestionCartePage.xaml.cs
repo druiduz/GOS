@@ -80,7 +80,7 @@ namespace GOS.Pages
             this.prenom = this.txtPrenom.Text;
             if (this.txtSolde.Text != String.Empty)
             {
-                this.solde = float.Parse(this.txtSolde.Text);
+                this.solde = float.Parse(this.txtSolde.Text.Replace('.', ','));
             }
             this.rfid = this.txtRfid.Text;
 
@@ -127,6 +127,7 @@ namespace GOS.Pages
             {
                 SmartCard card = new SmartCard();            
                 rfid_id = card.getUIDCard();
+                this.txtRfid.Text = rfid_id;
                 this.enableAll();
             }
             catch (RFIDException rfidexcept)

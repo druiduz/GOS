@@ -16,7 +16,6 @@
         <Label Content="Prenom" Height="28" HorizontalAlignment="Left" Margin="235,171,0,0" Name="label2" VerticalAlignment="Top" Width="120" HorizontalContentAlignment="Center" FontWeight="SemiBold" />
         <Label Content="Solde" Height="28" HorizontalAlignment="Left" Margin="72,285,0,0" Name="label3" VerticalAlignment="Top" Width="120" FontWeight="SemiBold" HorizontalContentAlignment="Center" />
         <Label Content="Futur solde" Height="28" HorizontalAlignment="Left" Margin="235,285,0,0" Name="label4" VerticalAlignment="Top" Width="120" FontWeight="SemiBold" HorizontalContentAlignment="Center" />
-        <Button Content="Approvisionnement" Height="98" HorizontalAlignment="Left" Margin="44,421,0,0" Name="btnApprovisionnement" VerticalAlignment="Top" Width="271" />
         <Button Content="Valider" Height="46" HorizontalAlignment="Left" Margin="600,406,0,0" Name="btnValider" VerticalAlignment="Top" Width="271" Click="btnValider_Click" />
         <Button Content="Retour" Height="46" HorizontalAlignment="Left" Margin="600,473,0,0" Name="btnRetour" VerticalAlignment="Top" Width="271" Click="btnAnnuler_Click" />
         <DataGrid AutoGenerateColumns="False" Height="374" HorizontalAlignment="Left" Margin="489,12,0,0" Name="grdRecap" VerticalAlignment="Top" Width="382" />
