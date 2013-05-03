@@ -21,7 +21,7 @@
                 <Grid Height="383" Width="464" Name="gridAllProduit" />
             </TabItem>
         </TabControl>
-        <Image Height="112" HorizontalAlignment="Center" Margin="0,-132,0,0" Name="image1" Stretch="Fill" VerticalAlignment="Top" Width="477" Source="/GOS;component/Images/Logo%20-%20Com%27In.jpg" />
+        <Image Height="112" HorizontalAlignment="Center" Margin="201,-93,195,0" Name="image1" Stretch="Fill" VerticalAlignment="Top" Width="477" Source="/GOS;component/Images/Logo%20-%20Com%27In.jpg" />
         <Button Content="Especes" Height="52" HorizontalAlignment="Left" Margin="728,404,0,0" Name="btnEspeces" VerticalAlignment="Top" Width="156" Click="btnEspeces_Click" TabIndex="2" Grid.ColumnSpan="2" />
         <Label Content="Paiement" HorizontalAlignment="Left" Margin="555,370,0,0" Name="labPaiement" Width="329" HorizontalContentAlignment="Center" FontSize="14" FontWeight="SemiBold" Height="28" VerticalAlignment="Top" Grid.ColumnSpan="2" />
         <Label Content="Panier" Height="28" HorizontalAlignment="Left" Margin="555,100,0,0" Name="labPanier" VerticalAlignment="Top" Width="329" HorizontalContentAlignment="Center" FontWeight="SemiBold" FontSize="14" Grid.ColumnSpan="2" />

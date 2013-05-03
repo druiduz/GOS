@@ -25,6 +25,6 @@
         <TextBox Height="23" HorizontalAlignment="Left" IsEnabled="False" Margin="424,278,0,0" Name="txtPath" VerticalAlignment="Top" Width="153" Grid.Column="1" />
         <Label Content="Destination : " Height="28" HorizontalAlignment="Left" Margin="329,276,0,0" Name="labelPath" VerticalAlignment="Top" Width="79" Grid.Column="1" />
         <Label Content="Export des Données" Height="39" Name="Export" VerticalAlignment="Top" FontWeight="Bold" FontFamily="Segoe UI" Margin="329,70,334,0" FontSize="24" Grid.Column="1"></Label>
-        <Image Height="112" HorizontalAlignment="Center" Margin="211,-129,209,0" Name="image1" Stretch="Fill" VerticalAlignment="Top" Width="477" Source="/GOS;component/Images/Logo%20-%20Com%27In.jpg" Grid.Column="1" />
+        <Image Height="112" HorizontalAlignment="Center" Margin="209,-112,211,0" Name="image1" Stretch="Fill" VerticalAlignment="Top" Width="477" Source="/GOS;component/Images/Logo%20-%20Com%27In.jpg" Grid.Column="1" />
     </Grid>
 </Page>

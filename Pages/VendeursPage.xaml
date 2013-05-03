@@ -16,6 +16,6 @@
         <Label Content="Liste des vendeurs" Height="39" HorizontalAlignment="Left" Name="label1" VerticalAlignment="Top" FontWeight="Bold" FontFamily="Segoe UI" Margin="359,12,0,0" Width="204" FontSize="24"></Label>
         <Button Content="Retour" Height="52" HorizontalAlignment="Left" Margin="715,456,0,0" Name="btnRetour" VerticalAlignment="Top" Width="189" Click="btnRetour_Click" TabIndex="2" Grid.ColumnSpan="2" />
         <Button Content="Enregistrer" Height="52" HorizontalAlignment="Left" Margin="505,456,0,0" Name="btnSave" VerticalAlignment="Top" Width="189" Click="btnSave_Click" TabIndex="1" />
-        <Image Height="112" HorizontalAlignment="Center" Margin="0,-132,0,0" Name="image1" Stretch="Fill" VerticalAlignment="Top" Width="477" Source="/GOS;component/Images/Logo%20-%20Com%27In.jpg" />
+        <Image Height="112" HorizontalAlignment="Center" Margin="188,-94,196,0" Name="image1" Stretch="Fill" VerticalAlignment="Top" Width="477" Source="/GOS;component/Images/Logo%20-%20Com%27In.jpg" />
     </Grid>
 </Page>

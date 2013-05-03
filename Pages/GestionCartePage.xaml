@@ -15,6 +15,6 @@
         <Label Content="Prenom" Height="28" HorizontalAlignment="Left" Margin="88,189,0,0" Name="label2" VerticalAlignment="Top" VerticalContentAlignment="Center" />
         <Label Content="Solde" Height="28" HorizontalAlignment="Left" Margin="88,239,0,0" Name="label3" VerticalAlignment="Top" VerticalContentAlignment="Center" />
         <Label Content="Nouveau Client" Height="39" HorizontalAlignment="Left" Name="NewClient" VerticalAlignment="Top" FontWeight="Bold" FontFamily="Segoe UI" Margin="148,51,0,0" Width="204" FontSize="24" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"></Label>
-        <Image Height="112" HorizontalAlignment="Center" Margin="0,-132,0,0" Name="image1" Stretch="Fill" VerticalAlignment="Top" Width="477" Source="/GOS;component/Images/Logo%20-%20Com%27In.jpg" />
+        <Image Height="112" HorizontalAlignment="Center" Margin="0,-111,0,0" Name="image1" Stretch="Fill" VerticalAlignment="Top" Width="477" Source="/GOS;component/Images/Logo%20-%20Com%27In.jpg" />
     </Grid>
 </Page>
