@@ -431,6 +431,10 @@ namespace GOS.Classes
             SmartCard card = new SmartCard();
             String rfid_id = card.getUIDCard();
 
+            if (rfid_id == "") {
+                return null;
+            }
+
             MessageBox.Show("RFID: "+rfid_id);
 
             try
